@@ -12,6 +12,7 @@ export default function NavigationBar() {
                 <Nav className="me-auto">
                     <Nav.Link onClick={()=> navigate('/')}>HOME</Nav.Link>
                     <Nav.Link onClick={()=> navigate('/test')}>TEST</Nav.Link>
+                    <Nav.Link onClick={()=> navigate('/test2')}>TEST2</Nav.Link>
                     <Nav.Link onClick={()=> navigate('/region')}>REGION</Nav.Link>
                 </Nav>
             </div>
