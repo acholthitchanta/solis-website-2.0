@@ -8,8 +8,7 @@ import Region from './Region';
 
 import Test from './Test';
 import Test2 from './Test2';
-import Test3 from './Test3';
-
+import Blogs from './Blogs';
 export default function App(){
 
   return (
@@ -21,7 +20,7 @@ export default function App(){
             <Route path="/test" element={<Test/>}/>
             <Route path="/region" element={<Region/>}/>
             <Route path="/test2" element={<Test2/>}/>
-            <Route path="/test3" element={<Test3/>}/>
+            <Route path="/blogs" element={<Blogs/>}/>
           </Routes>
         </Router>
     </div>
