@@ -33,6 +33,65 @@ async function ensureBucketExists(){
     }
 }
 
+async function addRegion(doc, region, discipline){
+    const dotIndex = doc.id.indexOf(':')
+    const country = doc.id.slice(0,dotIndex);
+
+    //check if region is already there, if not add it
+    // let {data, error} = await supabase.from('regions').select('id').eq('name', region);
+    // if (error) throw error;
+    // if (data.length > 0) return data[0].id;
+    // else{
+    //     const {error: createError, data: newData} = await supabase
+    //         .from('regions')
+    //         .insert({
+    //             name: region,
+    //             country: country
+    //         })
+    //         .select()
+    //     if (createError){
+    //         console.error(`region creation failed for ${region}`, createError.message);
+    //         return;
+    //     }
+    //     console.log(`region added: ${region}, ${country}`)
+
+    // }
+
+    const {data, error} = await supabase.from('regions').select('id').eq('name', region);
+
+    //getting all team members & rd
+    const memberIds = await doc.ref.collection('members').get();
+    const members = memberIds.docs;
+    let rd;
+
+    for(const person of members){
+        const personId = person.id;
+        const document = await db.collection('users').doc(personId).get();
+
+        let data = document.data();
+        if (){
+            console.error('no data exists');
+            continue;
+        }
+
+        if (data.position ==="Regional Director"){
+            console.log(`director: ${data.fullName}`)
+            rd = data;
+        }
+    }
+    console.log('\n')
+    //adding the team
+    const {error: createError, data: newData} = await supabase
+        .from('teams')
+        .insert({
+            region_id: data,
+            name: `${region}, discipline`,
+            rd_id: 
+        })
+
+
+}
+
 const sharp = require('sharp');
 
 const serviceAccount = require(path.join(__dirname, 'firebase-service-account.json'));
@@ -45,6 +104,14 @@ const app =initializeApp({
 const db = getFirestore(app);
 const bucket = getStorage(app).bucket();
 
+const DISCIPLINE_OVERRIDES = {
+  'new-jersey:bergen-county---art': { baseRegion: 'new-jersey:bergen-county', discipline: 'Art' },
+  'new-jersey:bergen-county-fashion': { baseRegion: 'new-jersey:bergen-county', discipline: 'Fashion' },
+  'new-jersey:bergen-county-nail-art': { baseRegion: 'new-jersey:bergen-county', discipline: 'Nails' },
+  'new-york:manhattan-county-art': { baseRegion: 'new-york:manhattan-county', discipline: 'Art' },
+  'washington:king-county-art': { baseRegion: 'washington:king-county', discipline: 'Art' },
+  'arkansas:washington-county-art': { baseRegion: 'arkansas:washington-county', discipline: 'Art' },
+};
 
 async function main(){
     await ensureBucketExists();
@@ -56,30 +123,32 @@ async function main(){
 
     for (const doc of snapshot.docs){
         const region = doc.data();
-        console.log(`${doc.id} members`)
         
-        const memberIds = await doc.ref.collection('members').get();
-        const members = memberIds.docs;
+        const override = DISCIPLINE_OVERRIDES[doc.id];
+        const baseRegionId = override? override.baseRegion : doc.id;
+        const discipline = override? override.discipline : 'Music';
+        
+        await addRegion(doc, baseRegionId, discipline);
 
         //getting all the people of each region
-        for(const person of members){
-            const personId = person.id;
-            const document = await db.collection('users').doc(personId).get();
+        // for(const person of members){
+        //     const personId = person.id;
+        //     const document = await db.collection('users').doc(personId).get();
 
-            let data = document.data();
-            if (!data){
-                console.error('no data exists');
-                continue;
-            }
+        //     let data = document.data();
+        //     if (!data){
+        //         console.error('no data exists');
+        //         continue;
+        //     }
 
-            if (data.position ==="Regional Director"){
-                console.log(`director: ${data.fullName}`)
-            }
-            else{
-                console.log(`${data.fullName}`)
-            }
-        }
-        console.log('\n')
+        //     if (data.position ==="Regional Director"){
+        //         console.log(`director: ${data.fullName}`)
+        //     }
+        //     else{
+        //         console.log(`${data.fullName}`)
+        //     }
+        // }
+        // console.log('\n')
 
         // const events = await doc.ref.collection('events').get();
 
