@@ -64,7 +64,7 @@ export default function Home() {
                OUR BLOG
               </Card.Title>
               <Card.Text>
-                Our writing department focuses on blogging updates on the organization and spreading knowledge on various forms of therapy through articles and newsletteres
+                Our writing department focuses on blogging updates on the organization and spreading knowledge on various forms of therapy through articles and newsletters
               </Card.Text>
               <Button variant='secondary'>SEE OUR BLOGS</Button>
             </Card.Body>
