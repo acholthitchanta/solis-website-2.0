@@ -1,5 +1,9 @@
 import React from 'react'
 import { Figure, Carousel, Card, Button } from 'react-bootstrap'
+import landing from './assets/landing.jpg'
+import landing1 from './assets/landing1.jpg'
+import landing2 from './assets/landing2.jpg'
+import landing3 from './assets/landing3.jpg'
 
 export default function Home() {
   return (
@@ -7,16 +11,16 @@ export default function Home() {
       <div className="landing">
         <Carousel controls={false} interval={2000}>
           <Carousel.Item>
-            <img className="landing-img" src="/src/assets/landing.jpg"/>
+            <img className="landing-img" src={landing}/>
           </Carousel.Item>
           <Carousel.Item>
-            <img  className="landing-img" src="/src/assets/landing1.jpg"/>
+            <img  className="landing-img" src={landing1}/>
           </Carousel.Item>
           <Carousel.Item>
-            <img className="landing-img" src="/src/assets/landing2.jpg"/>
+            <img className="landing-img" src={landing2}/>
           </Carousel.Item>
           <Carousel.Item>
-            <img className="landing-img" src="/src/assets/landing3.jpg"/>
+            <img className="landing-img" src={landing3}/>
           </Carousel.Item>
         </Carousel>
         <div className="box">
