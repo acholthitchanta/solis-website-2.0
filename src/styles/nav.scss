@@ -1,0 +1,49 @@
+.navbar {
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    left: 0;
+    overflow-x: hidden;
+}
+
+.navbar:has(.navbar-collapse.show),
+.navbar:has(.navbar-collapse.collapsing) {
+    background-color: $dark-blue;
+}
+
+// .nav-link, .navbar-bradn{
+//     color: white;
+// }
+
+.nav-link {
+    font-size: 1.5rem;
+}
+
+
+.navbar-toggler{
+    outline: none;
+    border: none;
+    filter: brightness(0) invert(1);
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.navbar-collapse.show,
+.navbar-collapse.collapsing{
+    background-color: $dark-blue;
+    width: calc(100vw + 2px);
+    margin-left: calc(-50vw - 1px + 50%);
+}
+
+.navbar-nav {
+    align-items: left;
+}
+
+
+@media (max-width: 500px){
+    .nav-link{
+        color: white;
+    }
+}

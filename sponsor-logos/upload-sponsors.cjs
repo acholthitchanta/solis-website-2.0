@@ -46,7 +46,7 @@ const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
 const ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY;
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
-const BUCKET = 'sponsors';
+const BUCKET = 'gallery';
 
 if (!SUPABASE_URL || !ANON_KEY) {
   console.error('Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY env vars.');

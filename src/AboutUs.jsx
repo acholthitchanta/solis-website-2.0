@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import {supabase} from './lib/supabase'
 import { Card } from 'react-bootstrap';
 
-export default function Test(){
+export default function AboutUs(){
   const [region, setRegion] = useState(null);
   const [team, setTeam] = useState(null);
   const [members, setMembers] = useState([]);

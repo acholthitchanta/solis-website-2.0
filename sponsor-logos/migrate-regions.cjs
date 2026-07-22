@@ -39,8 +39,23 @@ async function addRegion(doc, region, discipline) {
 
     const { data, error } = await supabase.from('regions').select('id').eq('name', region);
     if (error) throw error;
-    const regionId = data[0].id;
-    console.log(region);
+
+    let regionId;
+    if (data.length > 0) {
+        regionId = data[0].id;
+        console.log(`region already exists: ${region}`);
+    } else {
+        const { error: regionCreateError, data: newRegion } = await supabase
+            .from('regions')
+            .insert({
+                name: region,
+                country: country
+            })
+            .select();
+        if (regionCreateError) throw regionCreateError;
+        regionId = newRegion[0].id;
+        console.log(`region added: ${region}, ${country}`);
+    }
 
     //check if this team already exists, so re-running is safe
     const { data: existingTeam, error: teamLookupError } = await supabase

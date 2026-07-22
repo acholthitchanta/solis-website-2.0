@@ -9,7 +9,7 @@ const {createClient} = require('@supabase/supabase-js')
 
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
 const SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
-const BUCKET = 'blogs';
+const BUCKET = 'gallery';
 
 if (!SUPABASE_URL || !SERVICE_ROLE_KEY){
     console.error('Missing Supabase URL or Supabase service key');
@@ -50,18 +50,17 @@ const bucket = getStorage(app).bucket();
 async function main(){
     await ensureBucketExists();
 
-    const snapshot = await db.collection('blogs').get();
-    console.log(`Found ${snapshot.size} blog(s) in Firestore.`);
+    const [files] = await bucket.getFiles({ prefix: 'gallery/'});
+    console.log(`Found ${files.length} picture(s) in Firestore.`);
     let failCount = 0;
     let successCount = 0;
 
-    for (const doc of snapshot.docs){
-        const blog = doc.data();
-        const imagePath = `blogs/${blog.picture}`;
-        const file = bucket.file(imagePath);
+    for (const file of files){
+        if(file.name.endsWith("/")) continue;
+        const blog = file.name;
         const [buffer] = await file.download();
 
-        console.log(`Downloaded ${imagePath} - ${buffer.length} bytes`)
+        console.log(`Downloaded ${blog} - ${buffer.length} bytes`)
 
         const metadata = await sharp(buffer).metadata();
         console.log('original dimensions:', metadata.width,'x', metadata.height, 'is transparent?', metadata.hasAlpha)
@@ -70,8 +69,8 @@ async function main(){
 
         let attempts = 0;
 
-        while (attempts < 5 && outputBuffer.length > 1_000_000){
-            outputBuffer = await sharp(outputBuffer).jpeg({quality:80}).toBuffer();
+        while (attempts < 5 && outputBuffer.length > 150_000){
+            outputBuffer = await sharp(outputBuffer).jpeg({quality:80 - 5*attempts}).toBuffer();
             attempts += 1;
         }
         console.log(`new file size: ${outputBuffer.length} bytes`);
@@ -79,13 +78,13 @@ async function main(){
         //upload the file
         const {error: uploadError} = await supabase.storage
             .from(BUCKET)
-            .upload(doc.id + '.jpeg', outputBuffer,{
+            .upload(path.basename(file.name) + '.jpeg', outputBuffer,{
                 contentType: 'image/jpeg',
                 upsert: true,
             });
         
         if (uploadError){
-            console.error(`Upload failed for ${blog.title}:`, uploadError.message);
+            console.error(`Upload failed for ${file}:`, uploadError.message);
             failCount ++;
             continue;
         }
@@ -93,35 +92,30 @@ async function main(){
         //get public url
         const {data: publicURLData} = supabase.storage
             .from(BUCKET)
-            .getPublicUrl(doc.id +'.jpeg');
+            .getPublicUrl(file.name +'.jpeg');
         
         const blogPicUrl = publicURLData.publicUrl;
 
         //add blog data & blog picture to database
         const {error: createError, data: newData} = await supabase
-            .from('blogs')
-            .insert({image_url: blogPicUrl, 
-                author: blog.author, 
-                title: blog.title, 
-                description: blog.description, 
-                content: blog.content,
-                date: blog.date.toDate()})
+            .from('gallery')
+            .insert({image_url: blogPicUrl})
             .select();
         
 
         if (createError){
-            console.error(`Blog creation failed for ${blog.title}`, createError.message);
+            console.error(`Blog creation failed for ${file}`, createError.message);
             failCount++;
             continue;
         }
         
         if (!newData || newData.length ===0){
-            console.warn(`no blog found for ${blog.title}- image uploaded, but no row created.`)
+            console.warn(`no blog found for ${file}- image uploaded, but no row created.`)
             failCount++;
             continue
         }
 
-        console.log(`Done: ${blog.title}`);
+        console.log(`Done: ${file}`);
         successCount ++;
 
 

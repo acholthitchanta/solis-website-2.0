@@ -7,7 +7,7 @@ export default function Test2() {
 
   useEffect(() => {
     async function fetchFiles() {
-      const { data, error } = await supabase.storage.from('sponsors').list();
+      const { data, error } = await supabase.storage.from('gallery').list();
       if (error) {
         console.error(error);
         setLoading(false);
@@ -17,7 +17,7 @@ export default function Test2() {
       // Turn each file into a public URL
       const filesWithUrls = data.map((file) => {
         const { data: urlData } = supabase.storage
-          .from('sponsors')
+          .from('gallery')
           .getPublicUrl(file.name);
         return { ...file, publicUrl: urlData.publicUrl };
       });

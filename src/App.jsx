@@ -2,13 +2,15 @@ import {useEffect, useState} from 'react'
 import {supabase} from './lib/supabase'
 import { Card, Nav } from 'react-bootstrap';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import NavigationBar from './NavigationBar';
+import NavigationBar from './components/NavigationBar';
 import Home from './Home';
 import Region from './Region';
 
-import Test from './Test';
+import AboutUs from './AboutUs';
 import Test2 from './Test2';
 import Blogs from './Blogs';
+import "./styles/custom.scss";
+
 export default function App(){
 
   return (
@@ -17,7 +19,7 @@ export default function App(){
           <NavigationBar/>
           <Routes>
             <Route path="/" element={<Home/>}/>
-            <Route path="/test" element={<Test/>}/>
+            <Route path="/about-us" element={<AboutUs/>}/>
             <Route path="/region" element={<Region/>}/>
             <Route path="/test2" element={<Test2/>}/>
             <Route path="/blogs" element={<Blogs/>}/>

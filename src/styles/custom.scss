@@ -1,0 +1,61 @@
+//colors
+
+$primary: #f5e39b;
+$secondary: #020341;
+
+$dark: #020341;
+$light: #f5e39b;
+
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap/scss/variables";
+
+$theme-colors: map-merge($theme-colors, (
+    "dark-blue": #27385b,
+    "light-blue": rgb(75, 112, 173)
+
+));
+
+$dark-blue: #27385b;
+$light-blue: rgb(75,112,173);
+
+@import "fonts.scss";
+@import "bootstrap/scss/variables";
+@import "home.scss";
+@import "nav.scss";
+@import "fonts.scss";
+
+*{
+    font-family: 'Teachers', 'Trebuchet MS', sans-serif;
+}
+
+:root{
+    width: 100%;
+}
+
+html, body {
+    overflow-x: hidden;
+    touch-action: pan-y;
+}
+
+
+.yellow{
+    background-color: $primary;
+}
+
+.marine{
+    background-color: $secondary;
+}
+
+.dark-blue{
+    background-color: $dark-blue;
+}
+
+.light-blue{
+    background-color: $light-blue;
+}
+
+.spacer{
+    width: 100%;
+    height: 50px;
+}
+
