@@ -7,16 +7,16 @@ export default function Home() {
       <div className="landing">
         <Carousel controls={false} interval={2000}>
           <Carousel.Item>
-            <img className="landing-img" src="src/assets/landing.jpg"/>
+            <img className="landing-img" src="/src/assets/landing.jpg"/>
           </Carousel.Item>
           <Carousel.Item>
-            <img  className="landing-img" src="src/assets/landing1.jpg"/>
+            <img  className="landing-img" src="/src/assets/landing1.jpg"/>
           </Carousel.Item>
           <Carousel.Item>
-            <img className="landing-img" src="src/assets/landing2.jpg"/>
+            <img className="landing-img" src="/src/assets/landing2.jpg"/>
           </Carousel.Item>
           <Carousel.Item>
-            <img className="landing-img" src="src/assets/landing3.jpg"/>
+            <img className="landing-img" src="/src/assets/landing3.jpg"/>
           </Carousel.Item>
         </Carousel>
         <div className="box">
