@@ -37,13 +37,36 @@ html, body {
     touch-action: pan-y;
 }
 
+p {
+    font-family: 'Montserrat';
+}
+
+.section{
+    padding: 10vw 17vw;
+    display: flex;
+    flex-direction: column;
+    gap: 3vw;
+    align-items: center;
+    text-align: center;
+}
+
+.section h1{
+    font-weight: bold;
+    font-size: max(4vw, 1.75rem);
+}
+
+.section p{
+    font-size: 1em;
+}
 
 .yellow{
     background-color: $primary;
+    color: $secondary;
 }
 
 .marine{
     background-color: $secondary;
+    color: white;
 }
 
 .dark-blue{
@@ -59,3 +82,12 @@ html, body {
     height: 50px;
 }
 
+
+@media (max-width: 500px){
+    .section{
+        padding: 1.5rem;
+    }
+    .section text{
+        font-size: 1rem;
+    }
+}

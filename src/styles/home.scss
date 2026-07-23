@@ -35,15 +35,23 @@
 
 .card{
     width: 30%;
+    border: none;
+    border-radius: 20px;
 }
 .card-body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    text-align: center;
-    padding: 3rem;
+    padding: 1.5rem;
 
 }
+
+.card-img{
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0;
+}
+
 .card-title{
     font-weight: bold;
     font-size: max(2vw, 1.5rem);
@@ -60,10 +68,31 @@
 }
 
 
+.impact {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 50px;
+}
+
+.num{
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.num h1{
+    font-size: max(4rem, 7vw) !important;
+}
+
+
 @media (max-width: 500px){
     .landing-img{
         height: 400px;
     }
+ 
     .box{
         top: 40%;
     }
@@ -76,11 +105,19 @@
     .card{
         width: 100%;
     }
+    .card-text{
+        font-size: 1rem;
+    }
     .cards{
         flex-direction: column;
     }
     .card-body{
         text-align: left;
         padding: 1rem;
+    }
+    .impact{
+        flex-direction: column;
+        justify-content: center;
+    
     }
 }
