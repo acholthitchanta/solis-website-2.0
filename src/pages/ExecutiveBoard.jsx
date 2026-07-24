@@ -37,7 +37,7 @@ export default function ExecutiveBoard() {
 
   return (
     <>
-      <div className="section-wide light-blue">
+      <div className="section-medium light-blue">
         <div className="mobile-spacer light-blue" />
         <h1>OUR EXECUTIVE BOARD</h1>
         <div className=" people">
