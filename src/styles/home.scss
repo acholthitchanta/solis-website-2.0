@@ -1,8 +1,3 @@
-.landing-img{
-    object-fit: cover;
-    width: 100%;
-    height: 100vh;
-}
 
 .reveal {
     opacity: 0;
@@ -64,34 +59,10 @@
     font-size: 1rem;
     margin: 0;
 }
-.box{
-    color: white !important;
-}
 
-.highlight{
+
+.highlight, .navigation-bar .nav-link{
       text-shadow: 0px 0px 20px black;
-}
-
-.box h2 {
-    font-size: max(2.5vw, 1em);
-    font-weight:100;
-    width: max(300px, 50vw);
-
-}
-
-.box h1{
-    padding-right: 1rem;
-    font-weight: bold;
-    font-size: max(2.5em, 4vw);
-    margin-bottom: 0rem;
-}
-
-.box {
-    position: absolute;
-    top: 70%;
-    left: 5%;
-    font-weight: normal;
-    width: 100%;
 }
 
 
@@ -135,6 +106,7 @@
     transition: color 0.3s ease-in-out;
 }
 
+
 .activities .nav-link:active, .activities .nav-link:focus, .activities .nav-link:hover{
     color: $orange;
 }
@@ -148,6 +120,10 @@
 
 .activities .nav-link{
     width: fit-content;
+}
+
+.activities .nav-link:not(.btn-donate):not(.btn-contact)::before{
+    content: none;
 }
 
 .activities .nav-link.active::after {
@@ -167,13 +143,7 @@
 
 
 @media (max-width: 500px){
-    .landing-img{
-        height: 400px;
-    }
 
-    .box{
-        top: 40%;
-    }
     .cards{
         flex-direction: column;
         display: flex;
@@ -243,8 +213,8 @@
     }
 }
 
-@media (max-width: 500px){
-    .imagebox {
+@media(max-width: 1000px){
+        .imagebox {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -277,5 +247,13 @@
         aspect-ratio: unset;
         border-radius: 10%;
         margin: 0;
+    }
+}
+@media (max-width: 500px){
+    .nav-link{
+        width: fit-content;
+    }
+        .box{
+        top: 40%;
     }
 }
