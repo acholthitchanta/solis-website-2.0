@@ -85,7 +85,7 @@ export default function Home() {
       {/* landing */}
       <div className="yellow section">
         <h1 className="reveal">THE ART OF CONNECTION</h1>
-        <p className="reveal"> Solis and Luna Arts is a nonprofit 501(c)(3) student-run organization that offers companionship and encouragement to individuals facing physical and mental health troubles. Through musical performances, collaborative art workshops, nail art, and more, we are dedicated to bringing a variety art forms to as many communities as possible!</p>
+        <p className="reveal"> Solis and Luna Arts is a student-run 501(c)(3) organization that offers companionship and encouragement to individuals facing physical and mental health troubles. Through musical performances, collaborative art workshops, nail art, and more, we are dedicated to bringing a variety art forms to as many communities as possible!</p>
         <div className="impact">
           <div className="num">
             <h1><Counter target='50' />+</h1>
