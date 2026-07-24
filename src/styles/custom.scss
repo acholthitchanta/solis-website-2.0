@@ -29,9 +29,15 @@ $orange: #e9ab74;
 @import "fonts.scss";
 @import "animations.scss";
 @import "footer.scss";
+@import "person.scss";
 
 *{
     font-family: 'Teachers', 'Trebuchet MS', sans-serif;
+}
+
+*::selection {
+  color: $primary;
+  background-color: $secondary;
 }
 
 :root{
@@ -94,7 +100,7 @@ p {
 
 }
 
-.section h1{
+.section h1, .section-wide h1{
     font-weight: bold;
     font-size: max(4vw, 1.75rem);
 }
@@ -112,6 +118,7 @@ p {
     background-color: $secondary;
     color: $primary;
 }
+
 
 .dark-blue{
     background-color: $dark-blue;
@@ -157,7 +164,7 @@ p {
 }
 
 @media (max-width: 500px){
-    .section{
+    .section, .section-wide{
         padding: 1.5rem;
     }
     .section text{
@@ -185,5 +192,10 @@ p {
     }
     #navlogo{
         height: 35px;
+    }
+
+    .mobile-spacer{
+        height: 90px;
+        width: 100%;
     }
 }

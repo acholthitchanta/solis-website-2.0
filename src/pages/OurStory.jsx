@@ -1,7 +1,12 @@
+import Landing from "../components/Landing";
+import ourstory from "../assets/ourstory.jpg"
+
+
+
 export default function OurStory() {
   return (
-    <div>
-      <h1>Our Story</h1>
-    </div>
+    <>
+      <Landing landingImg={ourstory} title={"OUR STORY"}/>
+    </>
   )
 }

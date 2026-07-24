@@ -1,0 +1,75 @@
+.people {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px);
+    justify-content: start;
+    gap: 3rem;
+    text-align: left;
+}
+
+.card.person {
+    margin: 2rem 0;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    text-align: left;
+    width: 200px;
+    height: 300px;
+}
+
+.person .card-body {
+    padding: 0.5rem 0;
+}
+
+.person .position {
+    font-family: 'Montserrat', 'Helvetica', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-transform: uppercase;
+    color: $primary;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.person .email-icon {
+    color: inherit;
+    display: inline-flex;
+}
+
+.person .email-icon svg {
+    width: 0.7rem;
+    height: 0.7rem;
+}
+
+.person .card-img {
+    margin-bottom: 0.2rem;
+    border-radius: 2px;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+}
+
+.person .card-body {
+    padding: 0.5rem 0rem;
+}
+
+.person .card-title {
+    color: white;
+    font-size: 1.3rem;
+}
+
+.person .card-text {
+    color: white;
+    font-weight: normal;
+    font-size: 0.85rem;
+}
+
+.person .email {
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-bottom: 0.3rem;
+    color: $primary;
+}

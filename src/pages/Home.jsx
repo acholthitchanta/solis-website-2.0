@@ -1,8 +1,9 @@
 import React from 'react'
 import { Figure, Carousel, Card, Button } from 'react-bootstrap'
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useState } from 'react'
 import { Tab, Nav, Row, Col } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
+import useReveal from '../hooks/useReveal'
 import ImageBox from '../components/ImageBox'
 import Counter from '../components/Counter'
 import landing from '../assets/landing.jpg'
@@ -29,36 +30,11 @@ import floral3 from '../assets/floral3.jpeg'
 export default function Home() {
   const navigate = useNavigate()
   const [activeOffer, setActiveOffer] = useState('first')
-
-  useEffect(() => {
-    const elements = document.querySelectorAll('.reveal')
-    elements.forEach((el) => { el.style.opacity = 0 })
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const el = entry.target
-          const repeats = el.classList.contains('reveal-repeat')
-          if (!repeats && el.classList.contains('shift-up')) return
-          if (entry.isIntersecting) {
-            el.classList.remove('fade-out')
-            el.classList.add('shift-up')
-            el.style.opacity = 1
-            if (!repeats) observer.unobserve(el)
-          } else if (repeats) {
-            el.classList.remove('shift-up')
-            el.classList.add('fade-out')
-            el.style.opacity = 0
-          }
-        })
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
-    )
-    elements.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [])
+  const homeRef = useRef(null)
+  useReveal(homeRef)
 
   return (
-    <>
+    <div ref={homeRef}>
       <div className="landing">
         <Carousel controls={false} interval={2000}>
           <Carousel.Item>
@@ -186,6 +162,6 @@ export default function Home() {
           </Card.Body>
         </Card>
       </div>
-    </>
+    </div>
   )
 }

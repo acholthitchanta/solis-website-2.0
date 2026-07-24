@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ImageBox({pic1, pic2, pic3, description}) {
+export default function ImageBox({pic1, pic2, description}) {
   return (
     <div className="imagebox">
       <img className="imagebox-main" src={pic1} alt=""/>
