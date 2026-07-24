@@ -1,0 +1,38 @@
+@keyframes slideRight{
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(1rem);
+    }
+}
+
+@keyframes growLine{
+    from {width: 0;}
+    to {width: 10vw;}
+}
+
+@keyframes shift-up{
+    from{
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade{
+    from{ opacity: 1; }
+    to{ opacity: 0; }
+}
+
+@keyframes slideInFade{
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

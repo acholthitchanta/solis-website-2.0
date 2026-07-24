@@ -11,18 +11,24 @@ $light: #f5e39b;
 
 $theme-colors: map-merge($theme-colors, (
     "dark-blue": #27385b,
-    "light-blue": rgb(75, 112, 173)
-
+    "light-blue":  rgb(75,112,173),
+    "orange":  #e9ab74,
+    "saturated-yellow":  #fad783
 ));
 
 $dark-blue: #27385b;
 $light-blue: rgb(75,112,173);
+$saturated-yellow: #fad783;
+$orange: #e9ab74;
+
 
 @import "fonts.scss";
 @import "bootstrap/scss/variables";
 @import "home.scss";
 @import "nav.scss";
 @import "fonts.scss";
+@import "animations.scss";
+@import "footer.scss";
 
 *{
     font-family: 'Teachers', 'Trebuchet MS', sans-serif;
@@ -42,12 +48,17 @@ p {
 }
 
 .section{
-    padding: 10vw 17vw;
+    padding: 10vw 19vw;
     display: flex;
     flex-direction: column;
     gap: 3vw;
     align-items: center;
     text-align: center;
+}
+
+.section-wide{
+    padding: 10vw 5vw;
+
 }
 
 .section h1{
@@ -66,15 +77,17 @@ p {
 
 .marine{
     background-color: $secondary;
-    color: white;
+    color: $primary;
 }
 
 .dark-blue{
     background-color: $dark-blue;
+    color: white;
 }
 
 .light-blue{
     background-color: $light-blue;
+    color: white;
 }
 
 .spacer{
@@ -82,6 +95,33 @@ p {
     height: 50px;
 }
 
+.card{
+    width: 30%;
+    border: none;
+    border-radius: 20px;
+}
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem;
+
+}
+
+.card-img{
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0;
+}
+
+.card-title{
+    font-weight: bold;
+    font-size: max(2vw, 1.5rem);
+}
+
+.card-text{
+    font-size: 1.2rem;
+}
 
 @media (max-width: 500px){
     .section{
@@ -89,5 +129,19 @@ p {
     }
     .section text{
         font-size: 1rem;
+    }
+
+    .card{
+        width: 100%;
+    }
+    .card-text{
+        font-size: 1rem;
+    }
+    .cards{
+        flex-direction: column;
+    }
+    .card-body{
+        text-align: left;
+        padding: 1rem;
     }
 }

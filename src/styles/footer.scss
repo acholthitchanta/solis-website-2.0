@@ -1,0 +1,144 @@
+.footer{
+    color: white;
+    text-align: right;
+    padding: 3rem;
+}
+
+.contact-learn-group{
+    display: flex;
+    width: 55%;
+    gap: 10%;
+}
+
+#copyright{
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.footer-columns{
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10%;
+}
+
+.footer-content{
+    color: white;
+    margin-right: 50px;
+}
+
+.footer-logo-col{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#footer-logo{
+    width: max(80px, 10vw);
+    height: auto;
+}
+
+.social-media{
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.social{
+    width: min(20px, 5vw);
+    height: min(20px, 5vw);
+}
+
+.social-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min(40px, 10vw);
+    height: min(40px, 10vw);
+    background-color: white;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footer .social-box{
+    color: $secondary;
+}
+
+.social-box:hover{
+    background-color: $primary;
+}
+
+.links{
+    width: max(300px, 20%);
+}
+
+.links h2{
+    margin: 20px 0;
+}
+
+.pages{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.footer p{
+    font-size: max(0.9rem, 1vw);
+}
+
+.footer h2{
+    font-size: max(1.25rem, 1.8vw);
+}
+
+.footer a{
+    color: white;
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.footer a::before{
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: $primary;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.footer a:hover::before, .footer a:active::before{
+    transform: scaleX(1);
+}
+
+.footer a:hover, .footer a:active{
+    color: $primary;
+}
+
+@media (max-width: 767px){
+    #footer-logo{
+        display: none;
+    }
+
+    .footer{
+        text-align: center !important;
+    }
+
+    .footer-columns{
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .contact-learn-group{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-content{
+        margin-right: 0;
+    }
+}

@@ -10,8 +10,8 @@ export default function NavigationBar() {
 
   return (
     <Navbar  expand="lg" sticky="top">
-        <Container>
-            <Navbar.Brand className="link" onClick={()=> navigate('/')}>  <img src="/solis.png" alt="Logo" height="40"/></Navbar.Brand>
+        <Container fluid>
+            <Navbar.Brand className="link" onClick={()=> navigate('/')}>  <img src="/solis.png" alt="Logo" height="55"/></Navbar.Brand>
             <div style={{marginLeft: 'auto', marginRight:'0'}}>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">

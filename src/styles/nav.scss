@@ -17,9 +17,11 @@
     color: white;
 }
 
-.nav-link::highlight{
+
+.nav-link:focus, .nav-link:hover{
     color: $primary;
 }
+
 
 .nav-link {
     font-size: 1.5rem;

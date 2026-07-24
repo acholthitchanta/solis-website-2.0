@@ -3,6 +3,67 @@
     width: 100%;
     height: 100vh;
 }
+
+.reveal {
+    opacity: 0;
+}
+
+.shift-up {
+    animation: shift-up 0.6s ease-out forwards;
+}
+
+.fade-out {
+    animation: fade 0.5s ease;
+}
+
+
+.imagebox {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    isolation: isolate;
+    animation: slideInFade 1s ease;
+}
+
+.imagebox-main {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.imagebox-secondary {
+    position: absolute;
+    bottom: -8%;
+    left: -8%;
+    width: 40%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid white;
+}
+
+.imagebox-circle {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-20%, 50%);
+    height: 30%;
+    width: max(400px,70%);
+    aspect-ratio: 1;
+    background-color: $primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.imagebox-circle p {
+    color: $secondary;
+    font-size: 1rem;
+    margin: 0;
+}
 .box{
     color: white !important;
 }
@@ -33,33 +94,7 @@
     width: 100%;
 }
 
-.card{
-    width: 30%;
-    border: none;
-    border-radius: 20px;
-}
-.card-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 1.5rem;
 
-}
-
-.card-img{
-    height: 200px;
-    object-fit: cover;
-    border-radius: 20px 20px 0 0;
-}
-
-.card-title{
-    font-weight: bold;
-    font-size: max(2vw, 1.5rem);
-}
-
-.card-text{
-    font-size: 1.2rem;
-}
 .cards{
     display: flex;
     padding: 2vw;
@@ -87,12 +122,55 @@
     font-size: max(4rem, 7vw) !important;
 }
 
+.divided{
+    display: flex;
+}
+
+.activities .nav-link{
+    text-align: left;
+    color: $primary;
+    font-size: 2rem;
+    font-weight: 600;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+
+.activities .nav-link:active, .activities .nav-link:focus, .activities .nav-link:hover{
+    color: $orange;
+}
+
+.activities .nav-link.active{
+    color: $orange;
+    animation: slideRight 0.3s forwards;
+}
+
+
+
+.activities .nav-link{
+    width: fit-content;
+}
+
+.activities .nav-link.active::after {
+    content: '';
+    position: absolute;
+    left: calc(100%  + 2rem);
+    bottom: 2rem;
+    height: 2px;
+    background-color: $orange;
+    animation: growLine 0.3s forwards;
+}
+
+.section-wide .row {
+    align-items: center;
+}
+
+
 
 @media (max-width: 500px){
     .landing-img{
         height: 400px;
     }
- 
+
     .box{
         top: 40%;
     }
@@ -102,22 +180,102 @@
         gap: 1rem;
         padding: 1rem;
     }
-    .card{
-        width: 100%;
-    }
-    .card-text{
-        font-size: 1rem;
-    }
-    .cards{
-        flex-direction: column;
-    }
-    .card-body{
-        text-align: left;
-        padding: 1rem;
-    }
     .impact{
         flex-direction: column;
         justify-content: center;
-    
+
+    }
+}
+
+@media (max-width: 800px){
+    .section-wide .row {
+        flex-direction: column;
+    }
+
+    .activities{
+        align-items: center;
+    }
+    .activities .nav-link {
+        font-size: 1.25rem;
+    }
+
+    .activities .nav-link.active {
+        animation: none;
+    }
+
+    .activities .nav-link::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background-color: $orange;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .activities .nav-link.active::after {
+        opacity: 1;
+        animation: none;
+        transition: 0.5s ease-in;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .section-wide .row > .col-sm-6,
+    .section-wide .row > .col-sm-5 {
+        width: 100%;
+    }
+
+    .imagebox {
+        margin-bottom: 8rem;
+    }
+
+    .imagebox-secondary{
+        border: none;
+    }
+
+    .imagebox-circle {
+        width: 100%;
+        position: static;
+    }
+}
+
+@media (max-width: 500px){
+    .imagebox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        aspect-ratio: unset;
+        height: auto;
+        margin-bottom: 0;
+        gap: 1rem;
+    }
+
+    .imagebox-main {
+        position: static;
+        transform: none;
+        width: 100%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        margin-top: 2rem;
+        margin-bottom: -4rem;
+    }
+
+    .imagebox-secondary {
+        display: none;
+    }
+
+    .imagebox-circle {
+        position: static;
+        transform: none;
+        padding: 0.5rem;
+        width: 100%;
+        height: auto;
+        aspect-ratio: unset;
+        border-radius: 10%;
+        margin: 0;
     }
 }
