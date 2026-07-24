@@ -60,7 +60,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <p id="copyright">©2025 Solis and Luna Arts</p>
+          <p id="copyright">© 2026 Solis and Luna Arts</p>
         </div>
       </footer>
   )
