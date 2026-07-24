@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import {supabase} from './lib/supabase'
+import {supabase} from '../lib/supabase'
 import { Card } from 'react-bootstrap';
 
 export default function AboutUs(){

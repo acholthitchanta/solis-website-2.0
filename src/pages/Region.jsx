@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Card } from 'react-bootstrap'
-import { supabase } from './lib/supabase'
+import { supabase } from '../lib/supabase'
 
 export default function Region() {
   const [directors, setDirectors] = useState([]);

@@ -21,7 +21,6 @@ export default function Footer() {
                 <div className="pages">
                   <p><a onClick={() => navigate('/chapters')}>Chapters</a></p>
                   <p><a onClick={() => navigate('/lunatunes')}>LunaTunes</a></p>
-                  <p><a onClick={() => navigate('/photo-gallery')}>Photo Gallery</a></p>
                   <p><a onClick={() => navigate('/press-features')}>Press Features</a></p>
                 </div>
               </div>
@@ -40,7 +39,7 @@ export default function Footer() {
                 <div className="pages">
                   <p><a onClick={() => navigate('/podcast')}>Podcast</a></p>
                   <p><a onClick={() => navigate('/blogs')}>Blog</a></p>
-                  <p><a onClick={() => navigate('/videos')}>Videos</a></p>
+                  <p><a onClick={() => navigate('/videos')}>Photo Gallery</a></p>
                 </div>
               </div>
             </div>
