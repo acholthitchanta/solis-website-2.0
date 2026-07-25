@@ -43,7 +43,7 @@
     position: relative;
 }
 
-.nav-link:not(.donate):not(.contact)::before{
+.nav-link:not(.join):not(.donate)::before{
     content: "";
     position: absolute;
     display: block;
@@ -56,7 +56,7 @@
     transition: transform 0.3s ease;
 }
 
-.nav-link:not(.donate):not(.contact):hover::before, .nav-link:not(.donate):not(.contact):focus::before{
+.nav-link:not(.join):not(.donate):hover::before, .nav-link:not(.join):not(.donate):focus::before{
     transform: scaleX(1);
 }
 
@@ -111,12 +111,12 @@
 }
 
 
-.donate, .contact{
+.join, .donate{
     width: 100px;
     text-align: center;
 }
 
-.donate{
+.join{
     background-color: $primary;
     border: 2px solid $primary;
     border-radius: 6px;
@@ -126,13 +126,13 @@
     transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
-.donate:hover{
+.join:hover{
     background-color: $light-blue;
     border-color: $light-blue;
     color: $primary !important;
 }
 
-.contact{
+.donate{
     background-color: $light-blue;
     border: 2px solid $light-blue;
     border-radius: 6px;
@@ -141,7 +141,7 @@
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.contact:hover, .contact:active{
+.donate:hover, .donate:active{
     background-color: $secondary;
     border-color: $secondary;
 }
@@ -156,16 +156,18 @@
         color: white;
     }
 
-    .contact{
+    .donate{
         background-color: none;
         border: none;
         padding: 0.5rem !important;
         margin-left: 0.5rem;
+        margin-top: 0.5rem;
     }
 
-    .donate{
+    .join{
         border:none;
         padding: 0.5rem !important;
+        margin-top: 0.5rem;
         margin-bottom: 0.5rem;
         transition:none;
     }

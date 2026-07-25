@@ -50,10 +50,10 @@ export default function NavigationBar() {
                             <Nav.Link onClick={()=> handleNavigate('/podcast')}>PODCAST</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link className="donate" onClick={()=> handleNavigate('/support-us')}>JOIN</Nav.Link>
+                            <Nav.Link className="join" onClick={()=> handleNavigate('/support-us')}>JOIN</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link className="contact" onClick={()=> handleNavigate('/support-us#donate')}>DONATE</Nav.Link>
+                            <Nav.Link className="donate" onClick={()=> handleNavigate('/support-us#donate')}>DONATE</Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Navbar.Collapse>

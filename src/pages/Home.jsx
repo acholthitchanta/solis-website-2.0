@@ -93,7 +93,7 @@ export default function Home() {
                 <p className="reveal">Our chapters across the world organize personalized therapeutic events catered to each hospital, retirement home, or venue of request. We provide our patients with a variety of fun and relaxing endeavors such as live music, collaborative art workshops, nail art, floral art, and fashion. </p>
               </header>
               <Tab.Container defaultActiveKey="first"></Tab.Container>
-              <Nav className="flex-column activities mt-5">
+              <Nav className="flex-column activities mt-4">
                 <Nav.Item>
                   <Nav.Link eventKey="first">Musical Performances</Nav.Link>
                 </Nav.Item>
@@ -113,11 +113,11 @@ export default function Home() {
             </Col>
             <Col sm={5}>
               <Tab.Content key={activeOffer}>
-                <Tab.Pane eventKey="first"><ImageBox pic1={music2} pic2={music1} description="Live music creates moments of comfort, connection, and joy. Our student musicians perform uplifting concerts that encourage relaxation, reduce stress, and brighten the day for audiences of all ages." /></Tab.Pane>
-                <Tab.Pane eventKey="second"><ImageBox pic1={art1} pic2={art2} description="Neurographic art combines mindful drawing with creativity to encourage relaxation and self-expression. Participants transform simple lines into unique works of art while practicing focus and finding a sense of calm." /></Tab.Pane>
-                <Tab.Pane eventKey="third"><ImageBox pic1={floral3} pic2={floral2} description="Floral art invites participants to explore creativity through arranging flowers and natural materials. The calming process of designing beautiful arrangements promotes mindfulness, relaxation, and a connection to nature." /></Tab.Pane>
-                <Tab.Pane eventKey="fourth"><ImageBox pic1={fashion1} pic2={fashion2} description="Fashion design encourages creativity, self-expression, and confidence. Participants design and personalize wearable art, exploring their unique style while enjoying a fun, hands-on creative experience." /></Tab.Pane>
-                <Tab.Pane eventKey="fifth"><ImageBox pic1={nailart1} pic2={nailart2} description="Nail art offers a fun, creative outlet that builds confidence and celebrates individuality. Through personalized nail designs, participants can express themselves while enjoying a relaxing and uplifting experience." /></Tab.Pane>
+                <Tab.Pane eventKey="first"><ImageBox pic1={music2} pic2={music1} description="The goal of our music performances is to perform what our patients would like to hear. Through these tailored performances and encouraging our patients to sing along, we hope to bring comfort, connection, and uplift audiences of all ages." /></Tab.Pane>
+                <Tab.Pane eventKey="second"><ImageBox pic1={art1} pic2={art2} description="During our Neurographic Art sessions, participants create a “neuro” line after thinking about a stressor or goal, create the sharp edges into rounded corners, and add a sprinkle of color. With these sessions, we aim for a quiet, stress-free mind." /></Tab.Pane>
+                <Tab.Pane eventKey="third"><ImageBox pic1={floral3} pic2={floral2} description="With our flower arrangement sessions, we wish for our audiences to choose flowers of their liking to create long-lasting bouquets. This intentional interaction with fresh blooms stimulates the mind and calms the nervous system." /></Tab.Pane>
+                <Tab.Pane eventKey="fourth"><ImageBox pic1={fashion1} pic2={fashion2} description="Working with delicate fabrics and clothes as a base allows participants to enter a state of flow and focus, and gives quick gratification with a beautiful, finished work. Our volunteers ensure a safe and welcoming environment where you can freely explore your creativity." /></Tab.Pane>
+                <Tab.Pane eventKey="fifth"><ImageBox pic1={nailart1} pic2={nailart2} description="When our volunteers do nails for patients, it is an intentional way of promoting human connection and care. By having our participants choose their own design and preferred color scheme, we aim to give back a powerful sense of agency and self-expression." /></Tab.Pane>
               </Tab.Content>
             </Col>
           </Row>
@@ -130,7 +130,7 @@ export default function Home() {
       <div className="section-wide light-blue more-about-section">
         <header>
           <h1 className="reveal">DISCOVER SOLIS</h1>
-          <p className="reveal">Take a closer look at who we are, the story behind our mission, and the work we do to bring healing and connection to communities everywhere.</p>
+          <p className="reveal">Take a closer look at who we are, where we came from, and what other programs we run!</p>
         </header>
         <div className="cards">
           <Card className="reveal">
@@ -175,28 +175,28 @@ export default function Home() {
 
       {/* interested in joining */}
       <div className="yellow section-wide join-section">
-        <header>
-          <h1 className="reveal">INTERESTED IN JOINING?</h1>
-          <p className="reveal">Become part of Solis now! Whether you're an artist, a musician, an organizer, or simply someone who wants to give back, there's a place for you here. Join a local chapter, help lead one of our teams, or support our mission with a donation — every contribution helps us bring more comfort and connection to the communities who need it most.</p>
+        <header style={{maxWidth: '700px'}}>
+          <h1 className="reveal">GET INVOLVED</h1>
+          <p className="reveal">Whether you're an artist, a musician, an organizer, or simply someone who supports our mission, there's a place for you here. We welcome volunteers of all ages and skill levels to join us in sharing the beauty of art.</p>
         </header>
         <div className="volunteer-cards-row">
           <div className="volunteer-cards marine text-white">
-            <h2>FIND YOUR LOCAL CHAPTER</h2>
+            <h2>FIND A LOCAL CHAPTER</h2>
             <p>
-              Take a look at our <a href="/chapters">chapters page</a> to find one near you — or if there isn't one yet, <a href="/support-us">start your own local Solis branch</a>.
+              Take a look at our <a href="/chapters">chapters page</a> to locate one near you. If there isn't one yet, consider <a href="/support-us">starting your own branch</a> to bring Solis to your region!
             </p>
             <button className="volunteer-arrow" aria-label="Find your local chapter" onClick={() => navigate('/chapters')}>›</button>
           </div>
 
           <div className="volunteer-cards dark-blue">
             <h2>JOIN OUR TEAM</h2>
-            <p>Get involved with one of the many teams that keep our organization running — finance, outreach, media, writing, or tech &amp; impact.</p>
+            <p>Get involved with one of the many teams that keep our organization running: finance, outreach, media, writing, or tech &amp; impact.</p>
             <button className="volunteer-arrow" aria-label="Join our team" onClick={() => navigate('/support-us')}>›</button>
           </div>
 
           <div className="volunteer-cards light-blue">
-            <h2>DONATE NOW</h2>
-            <p>Every gift helps us bring creativity, comfort, and connection to more communities.</p>
+            <h2>DONATE</h2>
+            <p>We rely on generous donations from organizations and individuals who give to our cause. Every contribution allows us to continue bringing therapeutic arts to our community.</p>
             <button className="volunteer-arrow" aria-label="Donate now" onClick={() => navigate('/support-us#donate')}>›</button>
           </div>
         </div>
