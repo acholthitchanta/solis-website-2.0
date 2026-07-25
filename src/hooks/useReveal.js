@@ -27,7 +27,7 @@ export default function useReveal(containerRef,data = []) {
       )
       elements.forEach((el) => observer.observe(el))
       return () => observer.disconnect()
-    }, data)
+    }, [data])
 
   }
 
