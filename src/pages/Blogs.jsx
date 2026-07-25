@@ -30,8 +30,12 @@ export default function Blogs() {
 
   if (loading) return <p>Loading...</p>
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <h1>Blogs</h1>
+    <div>
+      <div className="section-medium marine">
+        <h1>OUR BLOG</h1>
+        <p>Updates on the organization and knowledge on various forms of therapy, straight from our writing team.</p>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       {blogs.map((blog) => (
         <Card style={{ width: '80%', margin: 'auto', padding: '2rem' }}>
           <div key={blog.id} style={{ marginBottom: '1rem' }}>
@@ -42,6 +46,7 @@ export default function Blogs() {
           </div>
         </Card>
       ))}
+      </div>
     </div>
   )
 }
