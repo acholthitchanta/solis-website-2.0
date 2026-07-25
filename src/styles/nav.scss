@@ -72,7 +72,7 @@
 
 .navbar-collapse.show,
 .navbar-collapse.collapsing{
-    width: 100vw;
+    width: 90vw;
     margin-left: calc(-50vw + 50%);
 }
 
@@ -111,11 +111,16 @@
 }
 
 
+.donate, .contact{
+    width: 100px;
+    text-align: center;
+}
+
 .donate{
-    background-color: transparent;
+    background-color: $primary;
     border: 2px solid $primary;
     border-radius: 6px;
-    color: white !important;
+    color: $secondary !important;
     padding: 0.2rem 0.5rem !important;
     margin-left: 0.5rem;
     transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
@@ -133,10 +138,12 @@
     border-radius: 6px;
     color: $primary !important;
     padding: 0.2rem 0.5rem !important;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .contact:hover, .contact:active{
     background-color: $secondary;
+    border-color: $secondary;
 }
 
 

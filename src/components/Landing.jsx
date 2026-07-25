@@ -9,7 +9,7 @@ export default function Landing({landingImg, title, description}) {
         <img className="landing-img" src={landingImg} />
         <div className="box">
           <h1 className="highlight reveal reveal-repeat">{title}</h1>
-          <h2 className="highlight reveal reveal-repeat landing-description">{description}</h2>
+          <h3 className="highlight reveal reveal-repeat landing-description">{description}</h3>
         </div>
       </div>
   )

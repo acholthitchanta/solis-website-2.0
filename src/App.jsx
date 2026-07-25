@@ -19,6 +19,7 @@ import PressFeatures from './pages/PressFeatures';
 import Podcast from './pages/Podcast';
 import Donate from './pages/Donate';
 import Contact from './pages/Contact';
+import SupportUs from './pages/SupportUs';
 import "./styles/custom.scss";
 
 export default function App() {
@@ -42,6 +43,7 @@ export default function App() {
           <Route path="/podcast" element={<Podcast />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/support-us" element={<SupportUs />} />
         </Routes>
         <Footer />
       </Router>

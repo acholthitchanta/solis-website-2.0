@@ -45,7 +45,7 @@ export default function ExecutiveBoard() {
         <div className="mobile-spacer light-blue" />
         <div class="header">
           <h1 className="reveal">OUR EXECUTIVE BOARD</h1>
-          <h3 className="reveal text-primary">Solis and Luna Arts is entirely student-led: our executive team is made up of high school and college students from across the country who plan, organize, and oversee every Solis chapter, event, and program.</h3>
+          <h3 className="reveal text-primary landing-description">Solis and Luna Arts is entirely student-led: our executive team is made up of high school and college students from across the country who plan, organize, and oversee every Solis chapter, event, and program.</h3>
         </div>
         {(loading) ? (
           <div className="light-blue" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>

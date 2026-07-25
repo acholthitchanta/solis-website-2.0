@@ -34,7 +34,7 @@ export default function Home() {
   useReveal(homeRef)
 
   return (
-    <div ref={homeRef} >
+    <div ref={homeRef} className="home-page">
       <div className="landing">
         <Carousel controls={false} interval={2000}>
           <Carousel.Item>
@@ -52,15 +52,17 @@ export default function Home() {
         </Carousel>
         <div className="box">
           <h1 className="highlight reveal reveal-repeat">SOLIS AND LUNA ARTS</h1>
-          <h2 className="highlight reveal reveal-repeat">Offering companionship and joy through therapeutic creative sessions.</h2>
+          <h2 id="solisdescription" className="highlight reveal reveal-repeat">Offering companionship and joy through therapeutic creative sessions.</h2>
         </div>
       </div>
 
       <div className="light-blue spacer" />
       {/* landing */}
       <div className="yellow section">
-        <h1 className="reveal">THE ART OF CONNECTION</h1>
-        <p className="reveal"> Solis and Luna Arts is a student-run 501(c)(3) organization that offers companionship and encouragement to individuals facing physical and mental health troubles. Through musical performances, collaborative art workshops, nail art, and more, we are dedicated to bringing a variety art forms to as many communities as possible!</p>
+        <header>
+          <h1 className="reveal">THE ART OF CONNECTION</h1>
+          <p className="reveal"> Solis and Luna Arts is a student-run 501(c)(3) organization that offers companionship and encouragement to individuals facing physical and mental health troubles. Through musical performances, collaborative art workshops, nail art, and more, we are dedicated to bringing a variety art forms to as many communities as possible!</p>
+        </header>
         <div className="impact">
           <div className="num">
             <h1><Counter target='50' />+</h1>
@@ -82,12 +84,14 @@ export default function Home() {
       </div>
 
       {/* what we offer */}
-      <div className="dark-blue section section-wide">
+      <div className="dark-blue section section-wide offer-section">
         <Tab.Container activeKey={activeOffer} onSelect={(key) => setActiveOffer(key)}>
           <Row>
             <Col sm={6}>
-              <h1 className="reveal">WHAT WE OFFER</h1>
-              <p className="reveal">Our chapters across the world organize personalized therapeutic events catered to each hospital, retirement home, or venue of request. We provide our patients with a variety of fun and relaxing endeavors such as live music, collaborative art workshops, nail art, floral art, and fashion. </p>
+              <header>
+                <h1 className="reveal">WHAT WE OFFER</h1>
+                <p className="reveal">Our chapters across the world organize personalized therapeutic events catered to each hospital, retirement home, or venue of request. We provide our patients with a variety of fun and relaxing endeavors such as live music, collaborative art workshops, nail art, floral art, and fashion. </p>
+              </header>
               <Tab.Container defaultActiveKey="first"></Tab.Container>
               <Nav className="flex-column activities mt-5">
                 <Nav.Item>
@@ -123,44 +127,79 @@ export default function Home() {
       </div>
 
       {/* more about section */}
-      <div className="cards light-blue">
-        <Card className="reveal">
-          <Card.Img var="top" src={whoweare} />
-          <Card.Body>
-            <Card.Title>
-              OUR MISSION
-            </Card.Title>
-            <Card.Text>
-              Our goal is to bring together passionate musicians, artists, and creators who use their skills to lift the spirits of those in need and make a lasting impact in their communities.             </Card.Text>
-            <Button variant='secondary'>LEARN MORE</Button>
-          </Card.Body>
-        </Card>
+      <div className="section-wide light-blue more-about-section">
+        <header>
+          <h1 className="reveal">DISCOVER SOLIS</h1>
+          <p className="reveal">Take a closer look at who we are, the story behind our mission, and the work we do to bring healing and connection to communities everywhere.</p>
+        </header>
+        <div className="cards">
+          <Card className="reveal">
+            <Card.Img var="top" src={whoweare} />
+            <Card.Body>
+              <Card.Title>
+                OUR MISSION
+              </Card.Title>
+              <Card.Text>
+                Our goal is to bring together passionate musicians, artists, and creators who use their skills to lift the spirits of those in need and make a lasting impact in their communities.             </Card.Text>
+              <Button variant='secondary'>LEARN MORE</Button>
+            </Card.Body>
+          </Card>
 
-        <Card className="reveal">
-          <Card.Img var="top" src={ourteam} />
-          <Card.Body>
-            <Card.Title>
-              OUR LEADERSHIP
-            </Card.Title>
-            <Card.Text>
-              Our executive team is filled with dedicated students from across the country who wish to bring positivity to their communities through therapeutic art
-            </Card.Text>
-            <Button variant='secondary'>MEET THE TEAM</Button>
-          </Card.Body>
-        </Card>
+          <Card className="reveal">
+            <Card.Img var="top" src={ourteam} />
+            <Card.Body>
+              <Card.Title>
+                OUR PODCAST
+              </Card.Title>
+              <Card.Text>
+                Hosted by Willow Yoo, our podcast began with conversations on music therapy and has since grown to feature interdisciplinary professionals and youth leaders exploring creativity's role in social good and wellbeing.
+              </Card.Text>
+              <Button variant='secondary'>LISTEN NOW</Button>
+            </Card.Body>
+          </Card>
 
-        <Card className="reveal">
-          <Card.Img var="top" src={ourblog} />
-          <Card.Body>
-            <Card.Title>
-              OUR BLOG
-            </Card.Title>
-            <Card.Text>
-              Our writing department focuses on blogging updates on the organization and spreading knowledge on various forms of therapy through articles and newsletters
-            </Card.Text>
-            <Button variant='secondary'>READ OUR ARTICLES</Button>
-          </Card.Body>
-        </Card>
+          <Card className="reveal">
+            <Card.Img var="top" src={ourblog} />
+            <Card.Body>
+              <Card.Title>
+                OUR BLOG
+              </Card.Title>
+              <Card.Text>
+                Our writing department focuses on blogging updates on the organization and spreading knowledge on various forms of therapy through articles and newsletters
+              </Card.Text>
+              <Button variant='secondary'>READ OUR ARTICLES</Button>
+            </Card.Body>
+          </Card>
+        </div>
+      </div>
+
+      {/* interested in joining */}
+      <div className="yellow section-wide join-section">
+        <header>
+          <h1 className="reveal">INTERESTED IN JOINING?</h1>
+          <p className="reveal">Become part of Solis now! Whether you're an artist, a musician, an organizer, or simply someone who wants to give back, there's a place for you here. Join a local chapter, help lead one of our teams, or support our mission with a donation — every contribution helps us bring more comfort and connection to the communities who need it most.</p>
+        </header>
+        <div className="volunteer-cards-row">
+          <div className="volunteer-cards marine text-white">
+            <h2>FIND YOUR LOCAL CHAPTER</h2>
+            <p>
+              Take a look at our <a href="/chapters">chapters page</a> to find one near you — or if there isn't one yet, <a href="/support-us">start your own local Solis branch</a>.
+            </p>
+            <button className="volunteer-arrow" aria-label="Find your local chapter" onClick={() => navigate('/chapters')}>›</button>
+          </div>
+
+          <div className="volunteer-cards dark-blue">
+            <h2>JOIN OUR TEAM</h2>
+            <p>Get involved with one of the many teams that keep our organization running — finance, outreach, media, writing, or tech &amp; impact.</p>
+            <button className="volunteer-arrow" aria-label="Join our team" onClick={() => navigate('/support-us')}>›</button>
+          </div>
+
+          <div className="volunteer-cards light-blue">
+            <h2>DONATE NOW</h2>
+            <p>Every gift helps us bring creativity, comfort, and connection to more communities.</p>
+            <button className="volunteer-arrow" aria-label="Donate now" onClick={() => navigate('/support-us#donate')}>›</button>
+          </div>
+        </div>
       </div>
     </div>
   )

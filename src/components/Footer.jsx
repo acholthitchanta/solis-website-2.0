@@ -56,6 +56,9 @@ export default function Footer() {
                 <a className="social-box" target="_blank" rel="noreferrer" href="https://www.youtube.com/@SolisandLunaArts">
                   <svg className="social" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14C4.5 20.5 12 20.5 12 20.5s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81ZM9.6 15.6V8.4L15.8 12Z" /></svg>
                 </a>
+                <a className="social-box" target="_blank" rel="noreferrer" href="https://www.tiktok.com/@solisandlunaarts">
+                  <svg className="social" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82a4.28 4.28 0 0 1-3.14-1.4V15.5a4.85 4.85 0 1 1-4.85-4.85c.16 0 .32.01.48.03v2.46a2.42 2.42 0 1 0 1.7 2.31V2h2.34a4.28 4.28 0 0 0 4.28 4.28v2.4a6.6 6.6 0 0 1-1.31-.13V5.82Z" /></svg>
+                </a>
               </div>
             </div>
           </div>
