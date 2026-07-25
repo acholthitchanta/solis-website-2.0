@@ -10,25 +10,25 @@ export default function ExecutiveBoard() {
   const execRef = useRef(null)
   useReveal(execRef, executives)
 
-  useEffect(() =>{
-    async function loadExecutives(){
-      const {data, error} = await fetchExecutives()
+  useEffect(() => {
+    async function loadExecutives() {
+      const { data, error } = await fetchExecutives()
 
-      if (error){
+      if (error) {
         console.error(error)
         setLoading(false)
         return
       }
 
-      const priorityOrder = {'Chief Executive Director': 0, 'Vice President of Music': 1, 'Vice President of Art': 2, 'Chief of Tech & Impact': 3}
+      const priorityOrder = { 'Chief Executive Director': 0, 'Vice President of Music': 1, 'Vice President of Art': 2, 'Chief of Tech & Impact': 3 }
 
-      const sortedExec = data.sort((a ,b) =>{
+      const sortedExec = data.sort((a, b) => {
         const aPriority = priorityOrder[a.position] ?? 99
         const bPriority = priorityOrder[b.position] ?? 99
         return aPriority - bPriority
 
-         })
-        
+      })
+
       setExecutives(sortedExec)
       setLoading(false)
     }
@@ -43,32 +43,35 @@ export default function ExecutiveBoard() {
     <>
       <div ref={execRef} className="section-medium light-blue">
         <div className="mobile-spacer light-blue" />
-        <h1 className="reveal">OUR EXECUTIVE BOARD</h1>
+        <div class="header">
+          <h1 className="reveal">OUR EXECUTIVE BOARD</h1>
+          <h3 className="reveal text-primary">Solis and Luna Arts is entirely student-led: our executive team is made up of high school and college students from across the country who plan, organize, and oversee every Solis chapter, event, and program.</h3>
+        </div>
         {(loading) ? (
           <div className="light-blue" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
-              <Spinner animation="border" />
-          </div>):  
+            <Spinner animation="border" />
+          </div>) :
           <div className=" people">
-              {executives.map((exec) => (
-                  <Card className="person reveal">
-                    <div className="position">
-                      <span>{exec.position}</span>
-                    </div>
-                    <Card.Img src={exec.headshot_url}/>
-                    <Card.Body>
-                      <Card.Title>{exec.full_name}</Card.Title>
-                      <Card.Text className="email">
-                        <a className="email-icon" href={`mailto:${exec.email}`} aria-label={`Email ${exec.full_name}`}>
-                          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm19 2.35-8.42 6.32a1 1 0 0 1-1.16 0L3 6.35V18h18ZM3.5 5l8.5 6.4L20.5 5Z"/></svg>
-                        </a>
-                        {exec.email}
-                      </Card.Text>
-                      <Card.Text>{exec.occupation}</Card.Text>
-                    </Card.Body>
-                  </Card>
-              ))
-              }
-            </div>}
+            {executives.map((exec) => (
+              <Card className="person reveal">
+                <div className="position">
+                  <span>{exec.position}</span>
+                </div>
+                <Card.Img src={exec.headshot_url} />
+                <Card.Body>
+                  <Card.Title>{exec.full_name}</Card.Title>
+                  <Card.Text className="email">
+                    <a className="email-icon" href={`mailto:${exec.email}`} aria-label={`Email ${exec.full_name}`}>
+                      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm19 2.35-8.42 6.32a1 1 0 0 1-1.16 0L3 6.35V18h18ZM3.5 5l8.5 6.4L20.5 5Z" /></svg>
+                    </a>
+                    {exec.email}
+                  </Card.Text>
+                  <Card.Text>{exec.occupation}</Card.Text>
+                </Card.Body>
+              </Card>
+            ))
+            }
+          </div>}
         <div className="mobile-spacer light-blue" />
       </div>
 
