@@ -34,7 +34,7 @@ export default function Home() {
   useReveal(homeRef)
 
   return (
-    <div ref={homeRef}>
+    <div ref={homeRef} >
       <div className="landing">
         <Carousel controls={false} interval={2000}>
           <Carousel.Item>

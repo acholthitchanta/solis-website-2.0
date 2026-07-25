@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { fetchExecutives } from "../services/MemberService"
-import { Card } from "react-bootstrap"
+import { Card, Spinner } from "react-bootstrap"
+import useReveal from '../hooks/useReveal'
+
 
 export default function ExecutiveBoard() {
   const [executives, setExecutives] = useState([])
   const [loading, setLoading] = useState(true)
+  const execRef = useRef(null)
+  useReveal(execRef, executives)
 
   useEffect(() =>{
     async function loadExecutives(){
@@ -37,30 +41,34 @@ export default function ExecutiveBoard() {
 
   return (
     <>
-      <div className="section-medium light-blue">
+      <div ref={execRef} className="section-medium light-blue">
         <div className="mobile-spacer light-blue" />
-        <h1>OUR EXECUTIVE BOARD</h1>
-        <div className=" people">
-          {executives.map((exec) => (
-              <Card className="person">
-                <div className="position">
-                  <span>{exec.position}</span>
-                </div>
-                <Card.Img src={exec.headshot_url}/>
-                <Card.Body>
-                  <Card.Title>{exec.full_name}</Card.Title>
-                  <Card.Text className="email">
-                    <a className="email-icon" href={`mailto:${exec.email}`} aria-label={`Email ${exec.full_name}`}>
-                      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm19 2.35-8.42 6.32a1 1 0 0 1-1.16 0L3 6.35V18h18ZM3.5 5l8.5 6.4L20.5 5Z"/></svg>
-                    </a>
-                    {exec.email}
-                  </Card.Text>
-                  <Card.Text>{exec.occupation}</Card.Text>
-                </Card.Body>
-              </Card>
-          ))
-          }
-        </div>
+        <h1 className="reveal">OUR EXECUTIVE BOARD</h1>
+        {(loading) ? (
+          <div className="light-blue" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
+              <Spinner animation="border" />
+          </div>):  
+          <div className=" people">
+              {executives.map((exec) => (
+                  <Card className="person reveal">
+                    <div className="position">
+                      <span>{exec.position}</span>
+                    </div>
+                    <Card.Img src={exec.headshot_url}/>
+                    <Card.Body>
+                      <Card.Title>{exec.full_name}</Card.Title>
+                      <Card.Text className="email">
+                        <a className="email-icon" href={`mailto:${exec.email}`} aria-label={`Email ${exec.full_name}`}>
+                          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm19 2.35-8.42 6.32a1 1 0 0 1-1.16 0L3 6.35V18h18ZM3.5 5l8.5 6.4L20.5 5Z"/></svg>
+                        </a>
+                        {exec.email}
+                      </Card.Text>
+                      <Card.Text>{exec.occupation}</Card.Text>
+                    </Card.Body>
+                  </Card>
+              ))
+              }
+            </div>}
         <div className="mobile-spacer light-blue" />
       </div>
 

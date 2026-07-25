@@ -3,8 +3,8 @@
     top: 0;
     z-index: 1000;
     padding: 1rem;
-    width: 100%;
     justify-content: space-between;
+    width: 100%;
     left: 0;
     background-color: transparent;
     transition: background-color 0.4s ease, box-shadow 0.4s ease;
@@ -72,8 +72,8 @@
 
 .navbar-collapse.show,
 .navbar-collapse.collapsing{
-    width: calc(100vw + 2px);
-    margin-left: calc(-50vw - 1px + 50%);
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
 }
 
 .navbar-nav {
@@ -104,7 +104,7 @@
 
 
 .dropdown-item:hover, .dropdown-item:focus{
-    background-color: darken($primary, 20%);
+    background-color: darken($primary, 10%);
 }
 
 

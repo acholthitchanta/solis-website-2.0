@@ -53,8 +53,21 @@
     src: url('../assets/fonts/Montserrat-Regular.woff') format('woff');
 }
 
+
 @font-face{
-    font-family: 'Nunito';
-    src: url('../assets/fonts/Nunito-ExtraLight.ttf') format('truetype');
-    font-weight: 200;
+    font-family: 'Poppins';
+    src: url('../assets/fonts/Poppins-Regular.woff') format('woff');
+    font-weight: 400;
+}
+
+@font-face{
+    font-family: 'Poppins';
+    src: url('../assets/fonts/Poppins-Bold.woff') format('woff');
+    font-weight: 700;
+}
+
+@font-face{
+    font-family: 'Lato';
+    src: url('../assets/fonts/Lato-Black.woff') format('woff');
+    font-weight: 900;
 }

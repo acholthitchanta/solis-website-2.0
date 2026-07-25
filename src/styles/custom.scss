@@ -35,6 +35,10 @@ $orange: #e9ab74;
     font-family: 'Teachers', 'Trebuchet MS', sans-serif;
 }
 
+h1, .card-title{
+    font-family: 'Poppins', 'Helvetica', sans-serif
+}
+
 *::selection {
   color: $primary;
   background-color: $secondary;
@@ -46,8 +50,10 @@ $orange: #e9ab74;
 
 html, body {
     overflow-x: hidden;
-    touch-action: pan-y;
+    overscroll-behavior-x: none;
 }
+
+
 
 p {
     font-family: 'Montserrat';
@@ -65,16 +71,15 @@ p {
 
 
 .box h2 {
-    font-size: max(2.5vw, 1em);
+    font-size: max(2.2vw, 1em);
     font-weight:100;
     width: max(300px, 50vw);
-
 }
 
 .box h1{
     padding-right: 1rem;
     font-weight: bold;
-    font-size: max(2.5em, 4vw);
+    font-size: max(2.5em, 4.5vw);
     margin-bottom: 0rem;
 }
 
@@ -167,15 +172,22 @@ p {
     font-size: 1.2rem;
 }
 
-@media (max-width: 500px){
+@media (max-width: 700px){
     .section, .section-wide{
         padding: 1.5rem;
     }
     .section text{
         font-size: 1rem;
     }
+    .box h1{
+        line-height: 1;
+    }
     .box{
-        top: 40%;
+        top: min(260px,46%);
+    }
+
+    .carousel-indicators{
+        bottom: -12px;
     }
     .landing-img{
         height: 400px;
