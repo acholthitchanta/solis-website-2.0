@@ -229,20 +229,18 @@
         margin-bottom: 0;
     }
     .testimonial-image{
-        border: solid 3px $primary;
+        width: 120%;
+        border-top: 5px;
         border-radius: 0;
     }
     .testimonial-content{
         font-size: 0.9rem;
     }
     .testimonials-row {
-        flex-direction: column-reverse;
+        flex-direction: column;
         gap: 2rem;
     }
 
-    .testimonial-image {
-        width: 100%;
-    }
 }
 
 @media (min-width: 801px) {
@@ -521,6 +519,7 @@
         position: static;
         transform: none;
         width: 100%;
+        border: 4px solid white;
         aspect-ratio: 1;
         border-radius: 50%;
         margin-top: 2rem;
