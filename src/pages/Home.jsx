@@ -42,6 +42,8 @@ export default function Home() {
 
   const [sponsorsLoading, setSponsorsLoading] = useState(true)
   const [reviewsLoading, setReviewsLoading] = useState(true)
+  const [sponsorCarouselVisible, setSponsorCarouselVisible] = useState(true)
+  const sponsorCarouselRef = useRef(null)
 
   const homeRef = useRef(null)
   useReveal(homeRef, useMemo(()=> ({reviews}), [reviews]))
@@ -78,6 +80,16 @@ export default function Home() {
       setTestimonialOverflowing(testimonialContentRef.current.scrollHeight > testimonialContentRef.current.clientHeight)
     }
   }, [testimonialIndex, reviews])
+
+  useEffect(() => {
+    if (!sponsorCarouselRef.current) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setSponsorCarouselVisible(entry.isIntersecting),
+      { threshold: 0 }
+    )
+    observer.observe(sponsorCarouselRef.current)
+    return () => observer.disconnect()
+  }, [])
 
   function nextTestimonial() {
     setTestimonialDirection('next')
@@ -190,9 +202,9 @@ export default function Home() {
               <h1 className="reveal">OUR SUPPORTERS</h1>
               <p className="reveal">Thank you to our sponsors and partners who give their time, financial support, and resources we need for Solis to continue serving more communities.</p>
             </header>
-            <div className="sponsor-carousel">
+            <div className="sponsor-carousel" ref={sponsorCarouselRef}>
               {sponsors.length > 0 ? (
-                <div className="sponsor-track">
+                <div className={`sponsor-track${sponsorCarouselVisible ? '' : ' paused'}`}>
                   {sponsors.concat(sponsors).map((url, i) => (
                     <img key={i} src={url} className="sponsor-logo" alt="Sponsor logo" />
                   ))}
