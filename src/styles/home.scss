@@ -49,7 +49,7 @@
     top: 70%;
     left: 50%;
     transform: translate(-20%, 50%);
-    height: 10rem;
+    height: 32%;
     width: max(400px, 70%);
     border-radius: 10px;
     aspect-ratio: 1;
@@ -107,8 +107,8 @@
 
 .testimonial-quote-mark {
     position: absolute;
-    top: 0.5rem;
-    right: 1.5rem;
+    top: -2rem;
+    right: 0rem;
     font-size: max(10rem, 25vw);
     font-weight: bold;
     color: rgba(255, 255, 255, 0.15);
@@ -217,6 +217,10 @@
 
 @media (max-width: 800px) {
 
+    .testimonial-quote-mark{
+        top: 0.5rem;
+        right: 1.5rem;
+    }
     .testimonial-controls {
         top: 20px;
         left: calc(1.5rem - 15px);
