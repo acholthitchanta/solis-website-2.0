@@ -1,12 +1,13 @@
 import { useEffect, useState, useRef } from "react"
 import { fetchExecutives } from "../services/MemberService"
-import { Card, Spinner } from "react-bootstrap"
+import { Card, Placeholder } from "react-bootstrap"
 import useReveal from '../hooks/useReveal'
 
 
 export default function ExecutiveBoard() {
   const [executives, setExecutives] = useState([])
   const [loading, setLoading] = useState(true)
+  const [loadedHeadshots, setLoadedHeadshots] = useState({})
   const execRef = useRef(null)
   useReveal(execRef, executives)
 
@@ -48,16 +49,40 @@ export default function ExecutiveBoard() {
           <h3 className="reveal landing-description">Solis and Luna Arts is entirely student-led: our executive team is made up of high school and college students from across the country who plan, organize, and oversee every Solis chapter, event, and program.</h3>
         </div>
         {(loading) ? (
-          <div className="light-blue" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
-            <Spinner animation="border" />
-          </div>) :
+          <div className="people">
+            {[1, 2, 3, 4].map((n) => (
+              <Card className="person" key={n}>
+                <div className="position">
+                  <Placeholder as="span" animation="glow"><Placeholder xs={6} /></Placeholder>
+                </div>
+                <Placeholder as="div" animation="glow">
+                  <Placeholder xs={12} bg="secondary" className="headshot-placeholder" />
+                </Placeholder>
+                <Card.Body>
+                  <Placeholder as={Card.Title} animation="glow"><Placeholder xs={8} /></Placeholder>
+                  <Placeholder as={Card.Text} animation="glow" className="email"><Placeholder xs={7} /></Placeholder>
+                  <Placeholder as={Card.Text} animation="glow"><Placeholder xs={5} /></Placeholder>
+                </Card.Body>
+              </Card>
+            ))}
+          </div>
+        ) : (
           <div className=" people">
             {executives.map((exec) => (
-              <Card className="person reveal">
+              <Card className="person reveal" key={exec.id}>
                 <div className="position">
                   <span>{exec.position}</span>
                 </div>
-                <Card.Img src={exec.headshot_url} />
+                {!loadedHeadshots[exec.id] && (
+                  <Placeholder as="div" animation="glow">
+                    <Placeholder xs={12} bg="secondary" className="headshot-placeholder" />
+                  </Placeholder>
+                )}
+                <Card.Img
+                  src={exec.headshot_url}
+                  style={{ display: loadedHeadshots[exec.id] ? 'block' : 'none' }}
+                  onLoad={() => setLoadedHeadshots((prev) => ({ ...prev, [exec.id]: true }))}
+                />
                 <Card.Body>
                   <Card.Title>{exec.full_name}</Card.Title>
                   <Card.Text className="email">
@@ -71,7 +96,8 @@ export default function ExecutiveBoard() {
               </Card>
             ))
             }
-          </div>}
+          </div>
+        )}
         <div className="mobile-spacer light-blue" />
       </div>
 

@@ -41,6 +41,14 @@
     height: 0.7rem;
 }
 
+.person .headshot-placeholder {
+    display: block;
+    margin-bottom: 0.2rem;
+    border-radius: 2px;
+    width: 100%;
+    aspect-ratio: 1;
+}
+
 .person .card-img {
     margin-bottom: 0.2rem;
     border-radius: 2px;
