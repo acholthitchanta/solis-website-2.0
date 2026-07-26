@@ -270,13 +270,33 @@
 
 .sponsor-carousel {
     display: flex;
+    position: relative;
     height: 300px;
     justify-content: center;
     margin: 2rem 0;
     width: 100%;
     overflow: hidden;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.sponsor-carousel::before,
+.sponsor-carousel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.sponsor-carousel::before {
+    left: 0;
+    background: linear-gradient(to right, white, rgba(255, 255, 255, 0));
+}
+
+.sponsor-carousel::after {
+    right: 0;
+    background: linear-gradient(to left, white, rgba(255, 255, 255, 0));
 }
 
 .sponsor-track {
