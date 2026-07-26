@@ -186,7 +186,7 @@ export default function Home() {
       <div className="white section-wide">
           {/* our supporters */}
           <div className="supporters-section">
-            <header style={{textAlign: 'left'}}>
+            <header style={{textAlign: 'left', maxWidth: '700px'}}>
               <h1 className="reveal">OUR SUPPORTERS</h1>
               <p className="reveal">Thank you to our sponsors and partners who give their time, financial support, and resources we need for Solis to continue serving more communities.</p>
             </header>
