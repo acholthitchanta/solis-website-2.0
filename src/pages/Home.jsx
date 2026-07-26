@@ -1,8 +1,9 @@
 import React from 'react'
 import { Figure, Carousel, Card, Button } from 'react-bootstrap'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect, useMemo} from 'react'
 import { Tab, Nav, Row, Col } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
+import { getSponsors, getReviews } from '../services/DataService'
 import useReveal from '../hooks/useReveal'
 import ImageBox from '../components/ImageBox'
 import Counter from '../components/Counter'
@@ -24,14 +25,60 @@ import fashion2 from '../assets/homepage/fashion2.jpg'
 import floral1 from '../assets/homepage/floral.jpeg'
 import floral2 from '../assets/homepage/floral2.jpeg'
 import floral3 from '../assets/homepage/floral3.jpeg'
+import testimonials from '../assets/testimonials.jpg'
 
 
 
 export default function Home() {
   const navigate = useNavigate()
   const [activeOffer, setActiveOffer] = useState('first')
+  const [sponsors, setSponsors] = useState([])
+  const [reviews, setReviews] = useState([])
+  const [testimonialIndex, setTestimonialIndex] = useState(0)
+  const [testimonialDirection, setTestimonialDirection] = useState('next')
+
+  const [sponsorsLoading, setSponsorsLoading] = useState(true)
+  const [reviewsLoading, setReviewsLoading] = useState(true)
+
   const homeRef = useRef(null)
-  useReveal(homeRef)
+  useReveal(homeRef, useMemo(()=> ({sponsors,reviews}), [sponsors,reviews]))
+
+  useEffect(() =>{
+    async function loadSponsors(){
+      const sponsorData = await getSponsors();
+      if (sponsorData.length == 0){
+        console.log("No sponsors found")
+      }
+      setSponsors(sponsorData)
+      setSponsorsLoading(false);
+    }
+
+    async function loadReviews(){
+      const {data, error} = await getReviews();
+
+      if (error){
+        console.error(error)
+        setReviewsLoading(false);
+      }
+      setReviews(data)
+      setReviewsLoading(false)
+    }
+
+    
+    loadSponsors();
+    loadReviews();
+
+  },[])
+
+  function nextTestimonial() {
+    setTestimonialDirection('next')
+    setTestimonialIndex((i) => (i + 1) % reviews.length)
+  }
+
+  function prevTestimonial() {
+    setTestimonialDirection('prev')
+    setTestimonialIndex((i) => (i - 1 + reviews.length) % reviews.length)
+  }
 
   return (
     <div ref={homeRef} className="home-page">
@@ -90,7 +137,7 @@ export default function Home() {
             <Col sm={6}>
               <header>
                 <h1 className="reveal">WHAT WE OFFER</h1>
-                <p className="reveal">Our chapters across the world organize personalized therapeutic events catered to each hospital, retirement home, or venue of request. We provide our patients with a variety of fun and relaxing endeavors such as live music, collaborative art workshops, nail art, floral art, and fashion. </p>
+                <p className="reveal">Our chapters across the world organize personalized therapeutic events catered to each hospital, retirement home, or venue of request. We provide our patients with a variety of fun and relaxing endeavors such as live music, collaborative art, nail art, boquet design, and fashion. </p>
               </header>
               <Tab.Container defaultActiveKey="first"></Tab.Container>
               <Nav className="flex-column activities mt-4">
@@ -122,8 +169,50 @@ export default function Home() {
             </Col>
           </Row>
         </Tab.Container>
+      </div>
 
-
+      {/* our testimonials & supporters */}
+      <div className="white section-wide">
+          {/* our supporters */}
+          <div className="supporters-section reveal">
+            <header style={{textAlign: 'left'}}>
+              <h1 className="reveal">OUR SUPPORTERS</h1>
+              <p className="reveal">Thank you to our sponsors and partners who give their time, financial support, and resources we need for Solis to continue serving more communities.</p>
+            </header>
+            <div className="sponsor-carousel">
+              {sponsors.length > 0 && (
+                <div className="sponsor-track">
+                  {sponsors.concat(sponsors).map((url, i) => (
+                    <img key={i} src={url} className="sponsor-logo" alt="Sponsor logo" />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="testimonials-section">
+            <header style={{textAlign:'right'}}>
+              <h1 className="reveal">OUR TESTIMONIALS</h1>
+              <p>Hear from our satisfied venues!</p>
+            </header>
+            <div className="testimonials-row reveal">
+              <div className="testimonial-card dark-blue">
+                <span className="testimonial-quote-mark">&ldquo;</span>
+                {reviews.length > 0 ? (
+                  <div key={testimonialIndex} className={`testimonial-fade testimonial-fade-${testimonialDirection}`}>
+                    <p className="testimonial-content">{reviews[testimonialIndex].content}</p>
+                    <h3 className="testimonial-author">- {reviews[testimonialIndex].interviewee}</h3>
+                  </div>
+                ) : (
+                  <p className="testimonial-content">Loading testimonials...</p>
+                )}
+                <div className="testimonial-controls">
+                  <button aria-label="Previous testimonial" onClick={prevTestimonial}>‹</button>
+                  <button aria-label="Next testimonial" onClick={nextTestimonial}>›</button>
+                </div>
+              </div>
+              <img src={testimonials} className="testimonial-image" alt="Solis and Luna Arts team" />
+            </div>
+          </div>
       </div>
 
       {/* more about section */}
@@ -134,13 +223,13 @@ export default function Home() {
         </header>
         <div className="cards">
           <Card className="reveal">
-            <Card.Img var="top" src={whoweare} />
+            <Card.Img var="top" src={ourblog} />
             <Card.Body>
               <Card.Title>
                 OUR MISSION
               </Card.Title>
               <Card.Text>
-                Our goal is to bring together passionate musicians, artists, and creators who use their skills to lift the spirits of those in need and make a lasting impact in their communities.             </Card.Text>
+                A program we launched to provide opportunities for volunteers to be paired with patients to perform therapeudic music for those who cannot receive it first-hand. </Card.Text>
               <Button variant='secondary'>LEARN MORE</Button>
             </Card.Body>
           </Card>
@@ -159,7 +248,7 @@ export default function Home() {
           </Card>
 
           <Card className="reveal">
-            <Card.Img var="top" src={ourblog} />
+            <Card.Img var="top" src={whoweare} />
             <Card.Body>
               <Card.Title>
                 OUR BLOG
