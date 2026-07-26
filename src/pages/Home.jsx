@@ -44,7 +44,7 @@ export default function Home() {
   const [reviewsLoading, setReviewsLoading] = useState(true)
 
   const homeRef = useRef(null)
-  useReveal(homeRef, useMemo(()=> ({sponsors,reviews}), [sponsors,reviews]))
+  useReveal(homeRef, useMemo(()=> ({reviews}), [reviews]))
 
   useEffect(() =>{
     async function loadSponsors(){
@@ -185,7 +185,7 @@ export default function Home() {
       {/* our testimonials & supporters */}
       <div className="white section-wide">
           {/* our supporters */}
-          <div className="supporters-section reveal">
+          <div className="supporters-section">
             <header style={{textAlign: 'left'}}>
               <h1 className="reveal">OUR SUPPORTERS</h1>
               <p className="reveal">Thank you to our sponsors and partners who give their time, financial support, and resources we need for Solis to continue serving more communities.</p>
@@ -214,7 +214,7 @@ export default function Home() {
               <div class="testimonial-left">
                 <header style={{textAlign:'right'}}>
                   <h1 className="reveal">OUR TESTIMONIALS</h1>
-                  <p>Hear from our satisfied venues!</p>
+                  <p>Hear what our venues have to say!</p>
                 </header>
                 <div className="testimonial-card dark-blue">
                   <span className="testimonial-quote-mark">&ldquo;</span>
