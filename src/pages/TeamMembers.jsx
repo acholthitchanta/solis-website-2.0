@@ -1,6 +1,7 @@
 export default function TeamMembers() {
   return (
     <div>
+      <div className="mobile-spacer light-blue" />
       <div className="section-medium light-blue">
         <h1>OUR TEAM</h1>
         <p>Meet the dedicated students behind Solis and Luna Arts, working across finance, outreach, media, writing, and tech.</p>

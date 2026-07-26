@@ -1,6 +1,7 @@
 export default function LunaTunes() {
   return (
     <div>
+      <div className="mobile-spacer dark-blue" />
       <div className="section-medium dark-blue">
         <h1>LUNA TUNES</h1>
         <p>Our musical performance program brings online, uplifting music to patients upon request.</p>

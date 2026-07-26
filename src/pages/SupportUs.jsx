@@ -3,6 +3,7 @@ import '../styles/supportus.scss'
 export default function SupportUs() {
   return (
     <div>
+      <div className="mobile-spacer yellow" />
       <div className="section-medium yellow">
         <h1>SUPPORT US</h1>
         <p>Find a chapter, join a team, or help us grow.</p>

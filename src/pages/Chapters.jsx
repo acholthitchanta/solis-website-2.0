@@ -1,6 +1,7 @@
 export default function Chapters() {
   return (
     <div>
+      <div className="mobile-spacer yellow" />
       <div className="section-medium yellow">
         <h1>OUR CHAPTERS</h1>
         <p>Explore our chapters from around the world and find one near you.</p>

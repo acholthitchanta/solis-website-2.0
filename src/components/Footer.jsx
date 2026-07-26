@@ -13,7 +13,7 @@ export default function Footer() {
                 <h2>CONTACT US</h2>
                 <p>Los Angeles, California</p>
                 <p><a href="tel:+2019130331">+1 (201) 913-0331</a></p>
-                <p><a target="_blank" rel="noreferrer" href="mailto:solisandlunaarts@gmail.com">solisandlunaarts@gmail.com</a></p>
+                <p><a target="_blank" rel="noreferrer" href="mailto:contact@solisandlunaarts.com">contact@solisandlunaarts.com</a></p>
               </div>
 
               <div className="links">

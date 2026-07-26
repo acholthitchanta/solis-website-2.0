@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import {supabase} from '../lib/supabase'
-import { Card } from 'react-bootstrap';
+import { Card, Placeholder } from 'react-bootstrap';
 
 export default function AboutUs(){
   const [region, setRegion] = useState(null);
@@ -60,13 +60,40 @@ export default function AboutUs(){
     fetchBergenMusic()
   }, [])
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return (
+    <>
+      <div className="mobile-spacer" />
+      <Card style={{width: '80%', margin:'auto', padding:'2rem'}}>
+        <Placeholder as="h1" animation="glow"><Placeholder xs={7} /></Placeholder>
+
+        <Placeholder as="h2" animation="glow"><Placeholder xs={4} /></Placeholder>
+        {[1, 2].map((n) => (
+          <div key={n} style={{marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '1rem'}}>
+            <Placeholder as="div" animation="glow">
+              <Placeholder xs={12} bg="secondary" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
+            </Placeholder>
+            <Placeholder as="p" animation="glow" style={{marginBottom: 0}}><Placeholder xs={6} /></Placeholder>
+          </div>
+        ))}
+
+        <Placeholder as="h2" animation="glow"><Placeholder xs={4} /></Placeholder>
+        {[1, 2].map((n) => (
+          <div key={n} style={{marginBottom: '1rem'}}>
+            <Placeholder as="p" animation="glow"><Placeholder xs={3} /></Placeholder>
+            <Placeholder as="p" animation="glow"><Placeholder xs={9} /> <Placeholder xs={5} /></Placeholder>
+            <Placeholder as="div" animation="glow">
+              <Placeholder xs={12} bg="secondary" style={{ width: '300px', height: '180px' }} />
+            </Placeholder>
+          </div>
+        ))}
+      </Card>
+    </>
+  )
 
   return (
-
-
-
-    <Card style={{width: '80%', margin:'auto', padding:'2rem'}}>
+    <>
+      <div className="mobile-spacer" />
+      <Card style={{width: '80%', margin:'auto', padding:'2rem'}}>
       <h1>{region?.name} — {team?.discipline} team</h1>
 
       <h2>Members ({members.length})</h2>
@@ -88,5 +115,6 @@ export default function AboutUs(){
         </div>
       ))}
     </Card>
+    </>
   )
 }

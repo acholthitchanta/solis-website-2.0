@@ -1,6 +1,7 @@
 export default function Contact() {
   return (
     <div>
+      <div className="mobile-spacer marine" />
       <div className="section-medium marine">
         <h1>CONTACT US</h1>
         <p>Have a question or want to get in touch? We'd love to hear from you.</p>

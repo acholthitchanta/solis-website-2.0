@@ -1,5 +1,5 @@
 import React from 'react'
-import { Figure, Carousel, Card, Button } from 'react-bootstrap'
+import { Figure, Carousel, Card, Button, Placeholder } from 'react-bootstrap'
 import { useRef, useState, useEffect, useMemo} from 'react'
 import { Tab, Nav, Row, Col } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
@@ -36,6 +36,9 @@ export default function Home() {
   const [reviews, setReviews] = useState([])
   const [testimonialIndex, setTestimonialIndex] = useState(0)
   const [testimonialDirection, setTestimonialDirection] = useState('next')
+  const [testimonialExpanded, setTestimonialExpanded] = useState(false)
+  const [testimonialOverflowing, setTestimonialOverflowing] = useState(false)
+  const testimonialContentRef = useRef(null)
 
   const [sponsorsLoading, setSponsorsLoading] = useState(true)
   const [reviewsLoading, setReviewsLoading] = useState(true)
@@ -70,13 +73,21 @@ export default function Home() {
 
   },[])
 
+  useEffect(() => {
+    if (testimonialContentRef.current) {
+      setTestimonialOverflowing(testimonialContentRef.current.scrollHeight > testimonialContentRef.current.clientHeight)
+    }
+  }, [testimonialIndex, reviews])
+
   function nextTestimonial() {
     setTestimonialDirection('next')
+    setTestimonialExpanded(false)
     setTestimonialIndex((i) => (i + 1) % reviews.length)
   }
 
   function prevTestimonial() {
     setTestimonialDirection('prev')
+    setTestimonialExpanded(false)
     setTestimonialIndex((i) => (i - 1 + reviews.length) % reviews.length)
   }
 
@@ -180,37 +191,56 @@ export default function Home() {
               <p className="reveal">Thank you to our sponsors and partners who give their time, financial support, and resources we need for Solis to continue serving more communities.</p>
             </header>
             <div className="sponsor-carousel">
-              {sponsors.length > 0 && (
+              {sponsors.length > 0 ? (
                 <div className="sponsor-track">
                   {sponsors.concat(sponsors).map((url, i) => (
                     <img key={i} src={url} className="sponsor-logo" alt="Sponsor logo" />
+                  ))}
+                </div>
+              ) : (
+                <div className="sponsor-track">
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <Placeholder key={i} as="div" animation="glow">
+                      <Placeholder xs={12} bg="secondary" className="sponsor-logo-placeholder" />
+                    </Placeholder>
                   ))}
                 </div>
               )}
             </div>
           </div>
           <div className="testimonials-section">
-            <header style={{textAlign:'right'}}>
-              <h1 className="reveal">OUR TESTIMONIALS</h1>
-              <p>Hear from our satisfied venues!</p>
-            </header>
             <div className="testimonials-row reveal">
-              <div className="testimonial-card dark-blue">
-                <span className="testimonial-quote-mark">&ldquo;</span>
-                {reviews.length > 0 ? (
-                  <div key={testimonialIndex} className={`testimonial-fade testimonial-fade-${testimonialDirection}`}>
-                    <p className="testimonial-content">{reviews[testimonialIndex].content}</p>
-                    <h3 className="testimonial-author">- {reviews[testimonialIndex].interviewee}</h3>
+              <img src={testimonials} className="testimonial-image" alt="Solis and Luna Arts team" />
+              <div class="testimonial-left">
+                <header style={{textAlign:'right'}}>
+                  <h1 className="reveal">OUR TESTIMONIALS</h1>
+                  <p>Hear from our satisfied venues!</p>
+                </header>
+                <div className="testimonial-card dark-blue">
+                  <span className="testimonial-quote-mark">&ldquo;</span>
+                  {reviews.length > 0 ? (
+                    <div key={testimonialIndex} className={`testimonial-fade testimonial-fade-${testimonialDirection}`}>
+                      <p ref={testimonialContentRef} className={`testimonial-content${testimonialExpanded ? ' expanded' : ''}`}>{reviews[testimonialIndex].content}</p>
+                      {testimonialOverflowing && (
+                        <button className="testimonial-read-more" onClick={() => setTestimonialExpanded((e) => !e)}>
+                          {testimonialExpanded ? 'Read less' : 'Read more'}
+                        </button>
+                      )}
+                      <h3 className="testimonial-author text-primary">- {reviews[testimonialIndex].interviewee}</h3>
+                    </div>
+                  ) : (
+                    <Placeholder as="div" animation="glow" className="testimonial-content">
+                      <Placeholder xs={12} size="lg" /> <Placeholder xs={9} size="lg" /> <Placeholder xs={7} size="lg" />
+                      <br />
+                      <Placeholder xs={4} size="lg" className="mt-3" />
+                    </Placeholder>
+                  )}
+                  <div className="testimonial-controls">
+                    <button aria-label="Previous testimonial" onClick={prevTestimonial}>‹</button>
+                    <button aria-label="Next testimonial" onClick={nextTestimonial}>›</button>
                   </div>
-                ) : (
-                  <p className="testimonial-content">Loading testimonials...</p>
-                )}
-                <div className="testimonial-controls">
-                  <button aria-label="Previous testimonial" onClick={prevTestimonial}>‹</button>
-                  <button aria-label="Next testimonial" onClick={nextTestimonial}>›</button>
                 </div>
               </div>
-              <img src={testimonials} className="testimonial-image" alt="Solis and Luna Arts team" />
             </div>
           </div>
       </div>
@@ -226,10 +256,10 @@ export default function Home() {
             <Card.Img var="top" src={ourblog} />
             <Card.Body>
               <Card.Title>
-                OUR MISSION
+                LUNATUNES
               </Card.Title>
               <Card.Text>
-                A program we launched to provide opportunities for volunteers to be paired with patients to perform therapeudic music for those who cannot receive it first-hand. </Card.Text>
+                LunaTunes is a program we launched to provide opportunities for volunteers to be paired with patients to perform therapeudic music for those who cannot receive it first-hand. </Card.Text>
               <Button variant='secondary'>LEARN MORE</Button>
             </Card.Body>
           </Card>

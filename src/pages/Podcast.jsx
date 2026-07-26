@@ -1,7 +1,8 @@
 export default function Podcast() {
   return (
     <div>
-      <div className="section-medium marine">
+      <div className="mobile-spacer yellow" />
+      <div className="section-medium yellow">
         <h1>THE PODCAST</h1>
         <p>Hosted by Willow Yoo, our podcast began with conversations on music therapy and has since grown to feature interdisciplinary professionals and youth leaders exploring creativity's role in social good and wellbeing.</p>
       </div>
