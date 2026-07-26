@@ -46,7 +46,7 @@ export default function Blogs() {
                   <Placeholder xs={12} /> <Placeholder xs={10} /> <Placeholder xs={7} />
                 </Placeholder>
                 <Placeholder as="div" animation="glow">
-                  <Placeholder xs={12} bg="secondary" style={{ height: '250px', width: '90%' }} />
+                  <Placeholder xs={12} bg="secondary" style={{ height: '250px', width: '95%' }} />
                 </Placeholder>
               </div>
             </Card>

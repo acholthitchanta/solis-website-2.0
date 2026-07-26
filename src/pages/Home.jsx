@@ -201,7 +201,7 @@ export default function Home() {
                 <div className="sponsor-track">
                   {Array.from({ length: 6 }).map((_, i) => (
                     <Placeholder key={i} as="div" animation="glow">
-                      <Placeholder xs={12} bg="secondary" className="sponsor-logo-placeholder" />
+                      <Placeholder xs={12} bg="primary" className="sponsor-logo-placeholder" />
                     </Placeholder>
                   ))}
                 </div>

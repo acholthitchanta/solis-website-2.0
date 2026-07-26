@@ -269,7 +269,7 @@
     height: 300px;
     justify-content: center;
     margin: 2rem 0;
-    width: 90%;
+    width: 100%;
     overflow: hidden;
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
@@ -469,7 +469,7 @@
     }
 
     .sponsor-track {
-        animation: sponsor-scroll 60s linear infinite;
+        animation: sponsor-scroll 90s linear infinite;
     }
 
     .activities .nav-link.active::after {
