@@ -26,6 +26,7 @@ $orange: #e9ab74;
 @import "bootstrap/scss/variables";
 @import "home.scss";
 @import "nav.scss";
+@import "supportus.scss";
 @import "fonts.scss";
 @import "animations.scss";
 @import "footer.scss";
@@ -36,6 +37,21 @@ $orange: #e9ab74;
     font-family: 'Teachers', 'Trebuchet MS', sans-serif;
 }
 
+a{
+    font-family: inherit;
+}
+
+h1, .card-title{
+    font-family: 'Poppins', 'Helvetica', sans-serif
+}
+
+h2, h3, h4{
+    font-weight: 200;
+}
+
+
+
+
 *::selection {
   color: $primary;
   background-color: $secondary;
@@ -45,9 +61,18 @@ $orange: #e9ab74;
     width: 100%;
 }
 
+
 html, body {
     overflow-x: hidden;
-    touch-action: pan-y;
+    overscroll-behavior-x: none;
+}
+
+.highlight{
+    text-shadow: 1px 1px 20px black;
+}
+
+header p{
+    margin-bottom: 1rem;
 }
 
 p {
@@ -58,6 +83,7 @@ p {
     object-fit: cover;
     width: 100%;
     height: 100vh;
+    filter: brightness(0.7);
 }
 
 .box{
@@ -67,15 +93,21 @@ p {
 
 .box h2 {
     font-size: max(2.5vw, 1em);
+    width: 70%;
     font-weight:100;
-    width: max(300px, 50vw);
+}
 
+
+.landing-description{
+    max-width: 650px;
+    font-size: 1.2rem;
+    font-family: 'Montserrat', 'Arial', 'sans-serif'
 }
 
 .box h1{
     padding-right: 1rem;
     font-weight: bold;
-    font-size: max(2.5em, 4vw);
+    font-size: max(2.5em, 4.5vw);
     margin-bottom: 0rem;
 }
 
@@ -84,7 +116,7 @@ p {
     top: 70%;
     left: 5%;
     font-weight: normal;
-    width: 100%;
+    width: 95%;
 }
 
 .section{
@@ -97,8 +129,10 @@ p {
 }
 
 .section-wide{
-    padding: 10vw 5vw;
-
+    padding: 5vw 5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
 }
 
 .section-medium{
@@ -124,6 +158,11 @@ p {
     color: $primary;
 }
 
+.orange{
+    background-color: $orange;
+    color: $secondary;
+}
+
 
 .dark-blue{
     background-color: $dark-blue;
@@ -135,13 +174,18 @@ p {
     color: white;
 }
 
+.white{
+    background-color: white;
+    color: $dark-blue;
+}
+
 .spacer{
     width: 100%;
     height: 50px;
 }
 
 .card{
-    width: 30%;
+    flex: 1;
     border: none;
     border-radius: 20px;
 }
@@ -168,18 +212,34 @@ p {
     font-size: 1.2rem;
 }
 
-@media (max-width: 500px){
-    .section, .section-wide{
-        padding: 1.5rem;
+@media (max-width: 700px){
+    .section, .section-wide, .section-medium, .offer-section{
+        padding: 2rem 1rem !important;
+        text-align: left;
     }
     .section text{
         font-size: 1rem;
     }
+    .box h1{
+        line-height: 1;
+    }
+    .box h2{
+        width: 100%;
+    }
+
     .box{
-        top: 40%;
+        top: min(300px,55%);
+        width: 270px;
+    }
+    .landing-description{
+        font-size: 1rem;
+    }
+
+    .carousel-indicators{
+        bottom: -12px;
     }
     .landing-img{
-        height: 400px;
+        height: 450px;
     }
 
     .card{
@@ -190,6 +250,7 @@ p {
     }
     .cards{
         flex-direction: column;
+        padding: 0;
     }
     .card-body{
         text-align: left;
