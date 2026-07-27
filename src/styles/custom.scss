@@ -236,9 +236,13 @@ p {
         top: min(300px,55%);
         width: 270px;
     }
+    
     .landing-description{
         font-size: 1rem;
-        width: 100vw !important;
+    }
+
+    .section .landing-description, .section-medium .landing-description, .section-wide .landing-description{
+      width: 100vw !important
     }
 
     .carousel-indicators{
