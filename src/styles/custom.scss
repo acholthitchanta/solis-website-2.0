@@ -32,6 +32,7 @@ $orange: #e9ab74;
 @import "footer.scss";
 @import "person.scss";
 @import "podcast.scss";
+@import "blogs.scss";
 
 *{
     font-family: 'Teachers', 'Trebuchet MS', sans-serif;
@@ -98,8 +99,12 @@ p {
 }
 
 
+.section-wide .landing-description{
+    max-width: 50vw;
+}
+
 .landing-description{
-    max-width: 650px;
+    max-width: 40vw;
     font-size: 1.2rem;
     font-family: 'Montserrat', 'Arial', 'sans-serif'
 }
