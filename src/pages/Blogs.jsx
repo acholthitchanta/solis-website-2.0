@@ -2,23 +2,15 @@ import React from 'react'
 import { Card, Placeholder } from 'react-bootstrap'
 import { supabase } from '../lib/supabase';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { getBlogs } from '../services/DataService';
+import formatDate from '../lib/formatDate';
 
 const CATEGORIES = ['music', 'art', 'psychology', 'culture', 'interviews', 'news']
 const PAGE_SIZE = 12
 
-function formatDate(dateString) {
-  if (!dateString) return ''
-  const date = new Date(`${dateString}T00:00:00`)
-  const month = date.toLocaleString('en-US', { month: 'long' })
-  const day = date.getDate()
-  const year = date.getFullYear()
-
-  const suffix = (day > 3 && day < 21) ? 'th' : ({ 1: 'st', 2: 'nd', 3: 'rd' }[day % 10] || 'th')
-
-  return `${month} ${day}${suffix}, ${year}`
-}
-
 export default function Blogs() {
+  const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -28,17 +20,13 @@ export default function Blogs() {
 
   useEffect(() => {
     async function fetchBlogs() {
-      const { data, error } = await supabase
-        .from('blogs')
-        .select('*')
-        .order('date', { ascending: false });
+      const { data, error } = await getBlogs();
+
       if (error) {
         console.error(error);
         setLoading(false)
         return
       }
-
-
       setBlogs(data);
       setLoading(false);
     }
@@ -52,7 +40,7 @@ export default function Blogs() {
 
   const filteredBlogs = blogs
     .filter((blog) => activeCategory === 'all' || blog.category === activeCategory)
-    .filter((blog) => blog.title?.toLowerCase().includes(search.toLowerCase()))
+    .filter((blog) => blog.description?.toLowerCase().includes(search.toLowerCase()))
     .sort((a, b) => {
       const diff = new Date(a.date) - new Date(b.date)
       return sortOrder === 'oldest' ? diff : -diff
@@ -140,7 +128,7 @@ export default function Blogs() {
         <>
           <div className="blog-grid">
             {visibleBlogs.map((blog) => (
-              <Card className="blog-card" key={blog.id}>
+              <Card className="blog-card" key={blog.id} onClick={()=> (navigate(`/blogs/${blog.slug}`))}>
                 <img src={blog.image_url} className="blog-card-image" alt={blog.title} />
                 <div className="blog-card-body">
                   <div className="blog-card-meta">

@@ -20,6 +20,7 @@ import PressFeatures from './pages/PressFeatures';
 import Podcast from './pages/Podcast';
 import Contact from './pages/Contact';
 import SupportUs from './pages/SupportUs';
+import Blog from './components/Blog';
 import "./styles/custom.scss";
 
 export default function App() {
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/region" element={<Region />} />
           <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs/:slug" element={<Blog/>} />
           <Route path="/our-story" element={<OurStory />} />
           <Route path="/executive-board" element={<ExecutiveBoard />} />
           <Route path="/team-members" element={<TeamMembers />} />

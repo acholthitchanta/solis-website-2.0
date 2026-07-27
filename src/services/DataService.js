@@ -23,3 +23,23 @@ export async function getReviews(){
     
     return {data, error}
 }
+
+
+export async function getBlogs(){
+    const { data, error } = await supabase
+        .from('blogs')
+        .select('*')
+        .order('date', { ascending: false });
+
+    return {data,error}
+}
+
+export async function getBlog(slug){
+    const {data,error} = await supabase
+        .from('blogs')
+        .select('*')
+        .eq('slug', slug)
+        .single()
+    
+    return {data,error}
+}
