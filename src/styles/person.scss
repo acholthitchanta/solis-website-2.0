@@ -20,16 +20,15 @@
     padding: 0.5rem 0;
 }
 
-.person .position {
-    font-family: 'Montserrat', 'Helvetica', sans-serif;
+.person .position span {
+    font-family: 'Poppins', 'Helvetica', sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     text-transform: uppercase;
     color: $primary;
     margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: 0.95rem;
 }
 
 .person .email-icon {
@@ -40,6 +39,14 @@
 .person .email-icon svg {
     width: 0.7rem;
     height: 0.7rem;
+}
+
+.person .headshot-placeholder {
+    display: block;
+    margin-bottom: 0.2rem;
+    border-radius: 2px;
+    width: 100%;
+    aspect-ratio: 1;
 }
 
 .person .card-img {

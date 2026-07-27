@@ -4,6 +4,7 @@ import { Card, Nav } from 'react-bootstrap';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Region from './pages/Region';
 
@@ -17,8 +18,8 @@ import LunaTunes from './pages/LunaTunes';
 import PhotoGallery from './pages/PhotoGallery';
 import PressFeatures from './pages/PressFeatures';
 import Podcast from './pages/Podcast';
-import Donate from './pages/Donate';
 import Contact from './pages/Contact';
+import SupportUs from './pages/SupportUs';
 import "./styles/custom.scss";
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
   return (
     <div>
       <Router>
+        <ScrollToTop />
         <NavigationBar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -40,8 +42,8 @@ export default function App() {
           <Route path="/photo-gallery" element={<PhotoGallery />} />
           <Route path="/press-features" element={<PressFeatures />} />
           <Route path="/podcast" element={<Podcast />} />
-          <Route path="/donate" element={<Donate />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/support-us" element={<SupportUs />} />
         </Routes>
         <Footer />
       </Router>
