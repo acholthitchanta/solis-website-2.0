@@ -32,6 +32,9 @@ $orange: #e9ab74;
 @import "footer.scss";
 @import "person.scss";
 @import "podcast.scss";
+@import "blogs.scss";
+@import "blog.scss";
+
 
 *{
     font-family: 'Teachers', 'Trebuchet MS', sans-serif;
@@ -98,8 +101,12 @@ p {
 }
 
 
+.section-wide .landing-description{
+    width: 50vw;
+}
+
 .landing-description{
-    max-width: 650px;
+    width: 40vw;
     font-size: 1.2rem;
     font-family: 'Montserrat', 'Arial', 'sans-serif'
 }
@@ -231,8 +238,13 @@ p {
         top: min(300px,55%);
         width: 270px;
     }
+    
     .landing-description{
         font-size: 1rem;
+    }
+
+    .section .landing-description, .section-medium .landing-description, .section-wide .landing-description{
+      width: 100vw !important
     }
 
     .carousel-indicators{

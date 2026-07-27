@@ -25,7 +25,7 @@ import fashion2 from '../assets/homepage/fashion2.jpg'
 import floral1 from '../assets/homepage/floral.jpeg'
 import floral2 from '../assets/homepage/floral2.jpeg'
 import floral3 from '../assets/homepage/floral3.jpeg'
-import testimonials from '../assets/testimonials.jpg'
+import testimonials from '../assets/homepage/testimonials.jpg'
 
 
 
@@ -272,7 +272,7 @@ export default function Home() {
               </Card.Title>
               <Card.Text>
                 LunaTunes is a program we launched to provide opportunities for volunteers to be paired with patients to perform therapeudic music for those who cannot receive it first-hand. </Card.Text>
-              <Button variant='secondary'>LEARN MORE</Button>
+              <Button variant='secondary' onClick={() => (navigate('/lunatunes'))}>LEARN MORE</Button>
             </Card.Body>
           </Card>
 
@@ -285,7 +285,7 @@ export default function Home() {
               <Card.Text>
                 Hosted by Willow Yoo, our podcast began with conversations on music therapy and has since grown to feature interdisciplinary professionals and youth leaders exploring creativity's role in social good and wellbeing.
               </Card.Text>
-              <Button variant='secondary'>LISTEN NOW</Button>
+              <Button variant='secondary' onClick={() => (navigate('/podcast'))}>LISTEN NOW</Button>
             </Card.Body>
           </Card>
 
@@ -298,7 +298,7 @@ export default function Home() {
               <Card.Text>
                 Our writing department focuses on blogging updates on the organization and spreading knowledge on various forms of therapy through articles and newsletters
               </Card.Text>
-              <Button variant='secondary'>READ OUR ARTICLES</Button>
+              <Button variant='secondary' onClick={() => (navigate('/blogs'))}>READ OUR ARTICLES</Button>
             </Card.Body>
           </Card>
         </div>

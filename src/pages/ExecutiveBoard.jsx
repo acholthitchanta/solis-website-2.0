@@ -42,7 +42,7 @@ export default function ExecutiveBoard() {
 
   return (
     <>
-      <div ref={execRef} className="section-medium light-blue">
+      <div ref={execRef} className="section-wide light-blue">
         <div className="mobile-spacer light-blue" />
         <div class="header">
           <h1 className="reveal">OUR EXECUTIVE BOARD</h1>
