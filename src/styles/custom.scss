@@ -102,11 +102,11 @@ p {
 
 
 .section-wide .landing-description{
-    width: min(100vw, 650px);
+    width: min(100%, 650px);
 }
 
 .landing-description{
-    width: min(100vw, 550px);
+    width: min(100%, 550px);
     font-size: 1.2rem;
     font-family: 'Montserrat', 'Arial', 'sans-serif'
 }
