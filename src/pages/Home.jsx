@@ -135,19 +135,39 @@ export default function Home() {
         </header>
         <div className="impact">
           <div className="num">
-            <h1><Counter target='50' />+</h1>
+            <h1>
+              <span className="num-value-wrap">
+                <span className="num-value-ghost" aria-hidden="true">50+</span>
+                <span className="num-value-visible"><Counter target='50' />+</span>
+              </span>
+            </h1>
             <h4 className="reveal">Chapters</h4>
           </div>
           <div className="num">
-            <h1><Counter target='350' />+</h1>
+            <h1>
+              <span className="num-value-wrap">
+                <span className="num-value-ghost" aria-hidden="true">350+</span>
+                <span className="num-value-visible"><Counter target='350' />+</span>
+              </span>
+            </h1>
             <h4 className="reveal">Events</h4>
           </div>
           <div className="num">
-            <h1><Counter target='2000' />+</h1>
+            <h1>
+              <span className="num-value-wrap">
+                <span className="num-value-ghost" aria-hidden="true">2000+</span>
+                <span className="num-value-visible"><Counter target='2000' />+</span>
+              </span>
+            </h1>
             <h4 className="reveal">Volunteers</h4>
           </div>
           <div className="num">
-            <h1><Counter target='10' />K+</h1>
+            <h1>
+              <span className="num-value-wrap">
+                <span className="num-value-ghost" aria-hidden="true">10K+</span>
+                <span className="num-value-visible"><Counter target='10' />K+</span>
+              </span>
+            </h1>
             <h4 className="reveal">Patients Impacted</h4>
           </div>
         </div>

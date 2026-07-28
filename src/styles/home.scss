@@ -3,7 +3,7 @@
 }
 
 
-#solisdescription{
+#solisdescription {
     width: 45%;
 }
 
@@ -68,14 +68,14 @@
 }
 
 
-.testimonial-left{
+.testimonial-left {
     display: flex;
     flex-direction: column;
     align-self: flex-start;
 }
 
 
-.offer-section{
+.offer-section {
     padding: 5vw 5vw 10vw 5vw !important;
 }
 
@@ -217,29 +217,34 @@
 
 @media (max-width: 800px) {
 
-    .testimonial-quote-mark{
+    .testimonial-quote-mark {
         top: 0.5rem;
         right: 1.5rem;
     }
+
     .testimonial-controls {
         top: 20px;
         left: calc(1.5rem - 15px);
         right: calc(1.5rem - 15px);
     }
+
     .testimonial-author {
         font-size: 1rem;
         line-height: 1.3;
         min-height: 3.9rem;
         margin-bottom: 0;
     }
-    .testimonial-image{
+
+    .testimonial-image {
         width: 120%;
         border-top: 5px;
         border-radius: 0;
     }
-    .testimonial-content{
+
+    .testimonial-content {
         font-size: 0.9rem;
     }
+
     .testimonials-row {
         flex-direction: column;
         gap: 2rem;
@@ -254,8 +259,8 @@
 
     .testimonial-image {
         flex: none;
-        width: min(900px,55vw);
-        height: min(900px,55vw);
+        width: min(900px, 55vw);
+        height: min(900px, 55vw);
         margin-top: -100px;
         margin-left: -200px;
         position: relative;
@@ -376,10 +381,27 @@
 }
 
 .num {
-    width: 20vw;
+    width: fit-content;
+    padding: 0 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.num-value-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.num-value-ghost {
+    visibility: hidden;
+}
+
+.num-value-visible {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 .num h1 {
@@ -445,8 +467,8 @@
 
 
 @media (max-width: 800px) {
-    #solisdescription{
-    width: 100%;
+    #solisdescription {
+        width: 100%;
     }
 
     .cards {
@@ -459,8 +481,10 @@
     .impact {
         flex-direction: column;
         justify-content: center;
+        align-items: center;
 
     }
+
     .section-wide .row {
         flex-direction: column;
     }
@@ -488,13 +512,15 @@
         opacity: 0;
         transition: opacity 0.3s ease-in-out;
     }
+
     .sponsor-carousel {
         align-items: center;
         height: 100px;
         margin-bottom: 0;
         width: 100%;
     }
-    .offer-section header{
+
+    .offer-section header {
         text-align: center;
     }
 
