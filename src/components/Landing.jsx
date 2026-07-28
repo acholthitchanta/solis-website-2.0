@@ -1,16 +1,23 @@
 import React, { useRef } from 'react'
 import useReveal from '../hooks/useReveal'
+import useFitTextToLine from '../hooks/useFitTextToLine'
 
-export default function Landing({landingImg, title, description}) {
+export default function Landing({landingImg, title, description, theme,background}) {
   const containerRef = useRef(null)
   useReveal(containerRef)
+  useFitTextToLine(containerRef, '.landing-medium-text h1', title)
   return (
-      <div className="landing" ref={containerRef}>
-        <img className="landing-img" src={landingImg} />
-        <div className="box">
-          <h1 className="highlight reveal reveal-repeat">{title}</h1>
-          <h3 className="highlight reveal reveal-repeat landing-description">{description}</h3>
-        </div>
+    <div ref={containerRef}className={`landing-medium ${theme} ${background}`}>
+      <div className="landing-medium-text reveal">
+        <h1>{title}</h1>
+        <p>{description}</p>
       </div>
+      <div className="landing-medium-image-wrap">
+        <img src={landingImg} className="landing-medium-image" alt="" />
+      </div>
+    </div>
   )
 }
+
+
+//      <Landing landingImg={} title={""} description={""}/>

@@ -2,6 +2,9 @@ import { useEffect, useState, useRef } from "react"
 import { fetchExecutives } from "../services/MemberService"
 import { Card, Placeholder } from "react-bootstrap"
 import useReveal from '../hooks/useReveal'
+import useFitTextToLine from '../hooks/useFitTextToLine'
+import Landing from "../components/Landing"
+import exec from '../assets/execboard.jpg'
 
 
 export default function ExecutiveBoard() {
@@ -10,6 +13,7 @@ export default function ExecutiveBoard() {
   const [loadedHeadshots, setLoadedHeadshots] = useState({})
   const execRef = useRef(null)
   useReveal(execRef, executives)
+  useFitTextToLine(execRef, '.person .card-title', executives)
 
   useEffect(() => {
     async function loadExecutives() {
@@ -41,13 +45,9 @@ export default function ExecutiveBoard() {
 
 
   return (
-    <>
-      <div ref={execRef} className="section-wide light-blue">
-        <div className="mobile-spacer light-blue" />
-        <div class="header">
-          <h1 className="reveal">OUR EXECUTIVE BOARD</h1>
-          <h3 className="reveal landing-description">Solis and Luna Arts is entirely student-led: our executive team is made up of high school and college students from across the country who plan, organize, and oversee every Solis chapter, event, and program.</h3>
-        </div>
+    <div ref={execRef} className="light-blue">
+      <Landing theme="dark-blue" background="lb" landingImg={exec} title={"EXECUTIVE BOARD"} description={"Solis and Luna Arts is entirely student-led: our executive team is made up of high school and college students from across the country who plan, organize, and oversee every Solis chapter, event, and program."}/>
+      <div className="section-wide light-blue">
         {(loading) ? (
           <div className="people">
             {[1, 2, 3, 4].map((n) => (
@@ -101,7 +101,7 @@ export default function ExecutiveBoard() {
         <div className="mobile-spacer light-blue" />
       </div>
 
-    </>
+    </div>
 
   )
 }

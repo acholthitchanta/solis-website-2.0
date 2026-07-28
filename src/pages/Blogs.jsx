@@ -1,10 +1,13 @@
 import React from 'react'
 import { Card, Placeholder } from 'react-bootstrap'
 import { supabase } from '../lib/supabase';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getBlogs } from '../services/DataService';
 import formatDate from '../lib/formatDate';
+import blogLanding from '../assets/blog.jpg';
+import useReveal from '../hooks/useReveal';
+import Landing from '../components/Landing';
 
 const CATEGORIES = ['music', 'art', 'psychology', 'culture', 'interviews', 'news']
 const PAGE_SIZE = 12
@@ -17,6 +20,11 @@ export default function Blogs() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [sortOrder, setSortOrder] = useState('newest');
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const blogRef = useRef(null)
+  
+
+  useReveal(blogRef, useMemo(()=> ({blogs}), [blogs]))
+  
 
   useEffect(() => {
     async function fetchBlogs() {
@@ -49,12 +57,8 @@ export default function Blogs() {
   const visibleBlogs = filteredBlogs.slice(0, visibleCount)
 
   return (
-    <div>
-      <div className="mobile-spacer light-blue"/>
-      <div className="section-medium light-blue">
-        <h1>OUR BLOG</h1>
-        <p>Updates on the organization and knowledge on various forms of therapy, straight from our writing team.</p>
-      </div>
+    <div ref={blogRef}>
+      <Landing theme='dark-blue' background='white' className='white' landingImg={blogLanding} title={"OUR BLOG"} description={"Updates on the organization and insights on various forms of art from our passionate writing team."}/>
 
       <div className="blog-controls">
         <div className="blog-controls-top">

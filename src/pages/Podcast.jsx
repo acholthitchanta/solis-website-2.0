@@ -1,9 +1,11 @@
 import podcast1 from "../assets/podcast/podcast1.jpg";
 import podcast2 from "../assets/podcast/podcast2.jpg";
 import { Placeholder } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import useReveal from "../hooks/useReveal";
 
-function PodcastEmbed({title, src}) {    
+function PodcastEmbed({title, src}) {  
+      
     return (
         <div>      
             <iframe
@@ -13,7 +15,6 @@ function PodcastEmbed({title, src}) {
                 allowFullScreen
                 allow={spotifyAllow}
                 loading="lazy"
-                onLoad={() => setIsLoaded(true)}
             ></iframe>
         </div>
     );
@@ -55,8 +56,11 @@ const playlistSections = [
 const spotifyAllow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
 
 export default function Podcast() {
+    const podcastRef = useRef(null)
+    useReveal(podcastRef)
+    
   return (
-    <main className="podcast-page">
+    <main ref={podcastRef}className="podcast-page">
         <section className="podcast-landing">
             <img className="podcast-landing-bg" src={podcast1} alt="" />
             <img className="podcast-landing-logo" src={podcast2} alt="Solis and Luna Arts Podcast" />
@@ -65,9 +69,9 @@ export default function Podcast() {
         
         <section className="light-blue podcast-intro">
             <section>
-                <h2>See our most recent episode:</h2>
+                <h2 className="reveal">See our most recent episode:</h2>
                 
-                <div className="light-blue podcast-category">
+                <div className="light-blue podcast-category reveal">
                     <PodcastEmbed
                         title="Most Recent Episode"
                         src="https://open.spotify.com/embed/show/4nyCM6CHrLnu43uTBFJ3VX?utm_source=generator&si=ca9288b6d6f54f79"
@@ -75,11 +79,11 @@ export default function Podcast() {
                 </div>
             </section>
             <section>
-                <h1>Welcome to the Solis and Luna Arts Podcast, hosted by Willow Yoo.</h1>
-                <p>The podcast, originally started in February 2024, centered on discussions with musicians and music therapists. Since then, we've reached 1.5k+ global impressions and expanded to interviews with 70+ interdisciplinary professionals, artists, and youth leaders about the usage of creativity and the arts for social good, innovation, and wellbeing.</p>
+                <h1 className="reveal" >Welcome to the Solis and Luna Arts Podcast, hosted by Willow Yoo.</h1>
+                <p className="reveal" >The podcast, originally started in February 2024, centered on discussions with musicians and music therapists. Since then, we've reached 1.5k+ global impressions and expanded to interviews with 70+ interdisciplinary professionals, artists, and youth leaders about the usage of creativity and the arts for social good, innovation, and wellbeing.</p>
                 
-                <h4>Recognized by Spotify as...</h4>
-                <ul>
+                <h4 className="reveal" >Recognized by Spotify as...</h4>
+                <ul className="reveal">
                     <li>A 2025 Rising Star - our growth outpaced 84% of other shows</li>
                     <li>A 2025 Fan Fave - our average rating was higher than 61% of other shows</li>
                     <li>A 2025 Most Shared Show - we received more shares than 91% of other shows</li>
@@ -89,13 +93,13 @@ export default function Podcast() {
         
         <section className="dark-blue">
             <div className="dark-blue podcast-divider">
-                <h2>SOME THEMES WE'VE EXPLORED:</h2>
+                <h2 className="reveal">SOME THEMES WE'VE EXPLORED:</h2>
             </div>
 
             <div className="podcast-category-grid">
                 {playlistSections.map((playlist) => (
-                    <div className="podcast-category" key={playlist.id}>
-                        <PodcastEmbed
+                    <div className="podcast-category reveal" key={playlist.id}>
+                        <PodcastEmbed 
                             title={playlist.embedTitle}
                             src={playlist.src}
                         />
