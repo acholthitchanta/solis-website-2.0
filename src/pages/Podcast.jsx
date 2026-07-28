@@ -1,5 +1,5 @@
-import podcast1 from "../assets/podcast1.jpg";
-import podcast2 from "../assets/podcast2.jpg";
+import podcast1 from "../assets/podcast/podcast1.jpg";
+import podcast2 from "../assets/podcast/podcast2.jpg";
 import { Placeholder } from "react-bootstrap";
 import { useState } from "react";
 
