@@ -102,11 +102,11 @@ p {
 
 
 .section-wide .landing-description{
-    width: 50vw;
+    width: max(100vw, 650px)
 }
 
 .landing-description{
-    width: 40vw;
+    width: max(100vw, 550px);
     font-size: 1.2rem;
     font-family: 'Montserrat', 'Arial', 'sans-serif'
 }
@@ -247,10 +247,6 @@ p {
     
     .landing-description{
         font-size: 1rem;
-    }
-
-    .section .landing-description, .section-medium .landing-description, .section-wide .landing-description{
-      width: 100vw !important
     }
 
     .carousel-indicators{
