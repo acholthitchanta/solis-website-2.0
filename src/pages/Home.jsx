@@ -160,7 +160,7 @@ export default function Home() {
             <Col sm={6}>
               <header>
                 <h1 className="reveal">WHAT WE OFFER</h1>
-                <p className="reveal">Our chapters across the world organize personalized therapeutic events catered to each hospital, retirement home, or venue of request. We provide our patients with a variety of fun and relaxing endeavors such as live music, collaborative art, nail art, boquet design, and fashion. </p>
+                <p className="reveal">Our chapters across the world organize personalized therapeutic events catered to each hospital, retirement home, or venue of request. We provide our patients with a variety of fun and relaxing endeavors such as live music, collaborative art, nail art, and bouquet design. </p>
               </header>
               <Tab.Container defaultActiveKey="first"></Tab.Container>
               <Nav className="flex-column activities mt-4">
