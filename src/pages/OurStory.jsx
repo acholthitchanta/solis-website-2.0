@@ -59,6 +59,7 @@ export default function OurStory() {
               <h1 className="text-secondary">FINDING HER VOICE</h1>
             </header>
             <p>In the eight years before that, Chloey and her grandfather barely spoke a word. With the language barriers and his struggles with PTSD from his service, the most interaction they'd have was a nod of acknowledgement. When Chloey's mother encouraged her to play Arirang for her grandfather, she finally felt the connection she had been longing for.</p>
+            <br/>
             <p>He began to tell bedtime stories of his childhood to her and her brother, which shaped her childhood. She then realized how powerful music was in connecting people, and that music performance was a two-way street: it's not just about what you want to play, but also about what the audience wants to hear.</p>
           </div>
             <div className="story-spacer"/>
@@ -102,7 +103,8 @@ export default function OurStory() {
               <h1 className="text-primary">A MOVEMENT BEGINS</h1>
             </header>
             <p>Chloey remembers how her grandfather's eyes started to sparkle after hearing Arirang, and how his childhood memories became bedtime stories for her and her brother to hear.</p>
-            <p>Thus, in 2021 — when she was merely 14 years old — she started Solis and Luna Arts as a small club at her school. Slowly, one club became two, and two became three. Five years later, Solis and Luna Arts has grown to support over 50 chapters across 15 states and 10 chapters!</p>
+            <br/>
+            <p>Thus, in 2021 — when she was merely 14 years old — she started Solis and Luna Arts as a small club at her school. Soon, one club became two, and two became three. Five years later, Solis and Luna Arts has grown to support over 50 chapters across 15 states and 10 chapters!</p>
           </div>
         </div>
       </div>
