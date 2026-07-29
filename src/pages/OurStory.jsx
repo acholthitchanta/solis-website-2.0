@@ -119,6 +119,7 @@ export default function OurStory() {
               <h1 className="orange-text">OUR MISSION</h1>
             </header>
             <p>Every Solis and Luna Arts member has their unique story, but each has come to the same conclusion as Chloey — that they want to leverage their passion for the arts to heal and connect.</p>
+            <br/>
             <p>The unique stories and diverse backgrounds of our thousands of volunteers across the globe come together to meet the shared goal of shedding light on therapeutic creative arts.</p>
           </div>
           <div className="story-mission-cluster">
