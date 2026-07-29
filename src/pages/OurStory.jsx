@@ -58,7 +58,7 @@ export default function OurStory() {
             <header>
               <h1 className="text-secondary">FINDING HER VOICE</h1>
             </header>
-            <p>In the eight years before that, Chloey and her grandfather barely spoke a word. With the language barriers and his struggles with PTSD from his service, the most interaction they'd have was a nod of acknowledgement. When Chloey's mother encouraged her to play Arirang for her grandfather, she finally felt the connection she had been longing for.</p>
+            <p>Throughout her childhood, Chloey barely heard her grandfather speak a word. With the language barriers and his struggles with PTSD from his service, the most interaction they'd have was a nod of acknowledgement. When Chloey's mother encouraged her to play Arirang for her grandfather, she finally felt the connection she had been longing for.</p>
             <p>He began to tell bedtime stories of his childhood to her and her brother, which shaped her childhood. She then realized how powerful music was in connecting people, and that music performance was a two-way street: it's not just about what you want to play, but also about what the audience wants to hear.</p>
           </div>
             <div className="story-spacer"/>
