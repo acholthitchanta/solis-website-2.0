@@ -18,7 +18,7 @@ export default function OurStory() {
   useReveal(containerRef)
   const scrollY = useScrollY()
 
-  const bigOffset = scrollY * 0.1
+  const bigOffset = scrollY * 0.15
   const smallOffset = scrollY * 0.075
 
   return (
@@ -51,16 +51,16 @@ export default function OurStory() {
           src={notesGraphic}
           className="story-graphic story-graphic-notes"
           alt=""
-          style={{ transform: `translateY(${-smallOffset}px)` }}
+          style={{ transform: `translateY(${smallOffset}px)` }}
         />
         <div className="story-row-inner">
           <div className="story-text reveal">
             <header>
-              <h1 className="text-secondary">FINDING HER VOICE</h1>
+              <h1 className="text-secondary">A FACE FILLED WITH JOY</h1>
             </header>
-            <p>Throughout her childhood, Chloey barely heard her grandfather speak a word. With the language barriers and his struggles with PTSD from his service, the most interaction they'd have was a nod of acknowledgement. When Chloey's mother encouraged her to play Arirang for her grandfather, she finally felt the connection she had been longing for.</p>
+            <p>Throughout her childhood, Chloey rarely heard her grandfather speak a word. With the language barriers and his struggles with PTSD from his service, the most interaction they'd have was a nod of acknowledgement. When Chloey's mother encouraged her to play a song for her grandfather on the violin, she decided to play “Arirang”. As she performed, she noticed that her grandfather’s eyes started to twinkle and his mouth slowly turned up into a smile: it was the first time she had ever felt the connection she had been longing for.</p>
             <br/>
-            <p>He began to tell bedtime stories of his childhood to her and her brother, which shaped her childhood. She then realized how powerful music was in connecting people, and that music performance was a two-way street: it's not just about what you want to play, but also about what the audience wants to hear.</p>
+            <p>With a new light in his eyes, Chloey’s grandfather began telling bedtime stories about his childhood to her and her brother, which shaped her childhood. She then realized how powerful music was in connecting people, and that music performance was a two-way street: it's not just about what you want to play, but also about what the audience wants to hear.</p>
           </div>
             <div className="story-spacer"/>
           <div className="story-photo-cluster">
@@ -95,16 +95,16 @@ export default function OurStory() {
               src={starsGraphic}
               className="story-graphic story-graphic-stars"
               alt=""
-              style={{ transform: `translateY(${-smallOffset}px)` }}
+              style={{ transform: `translateY(${smallOffset}px)` }}
             />
           </div>
           <div className="story-text reveal">
             <header>
               <h1 className="text-primary">A MOVEMENT BEGINS</h1>
             </header>
-            <p>Chloey remembers how her grandfather's eyes started to sparkle after hearing Arirang, and how his childhood memories became bedtime stories for her and her brother to hear.</p>
+            <p>Chloey remembers how playing music for her grandfather transformed him from a silent, grave man to a vibrant personality with endless stories to tell. Our members resonate with Chloey, whether it be through similar experiences or personal interest. </p>
             <br/>
-            <p>Thus, in 2021 — when she was merely 14 years old — she started Solis and Luna Arts as a small club at her school. Soon, one club became two, and two became three. Five years later, Solis and Luna Arts has grown to support over 50 chapters across 15 states and 10 chapters!</p>
+            <p>Thus, in 2021 — when she was just 14 years old — she started Solis and Luna Arts as a small club at her school. Soon, one club became two, and two became three. Five years later, Solis and Luna Arts has grown to support over 50 chapters across 15 states and 10 chapters!</p>
           </div>
         </div>
       </div>
@@ -127,19 +127,19 @@ export default function OurStory() {
               src={starGraphic}
               className="story-mission-graphic story-mission-star"
               alt=""
-              style={{ transform: `translateY(${-bigOffset}px)` }}
+              style={{ transform: `translateY(${bigOffset}px)` }}
             />
             <img
               src={sunGraphic}
               className="story-mission-graphic story-mission-sun"
               alt=""
-              style={{ transform: `translateY(${bigOffset}px)` }}
+              style={{ transform: `translateY(${-bigOffset}px)` }}
             />
             <img
               src={moonGraphic}
               className="story-mission-graphic story-mission-moon"
               alt=""
-              style={{ transform: `translateY(${bigOffset}px)` }}
+              style={{ transform: `translateY(${-bigOffset}px)` }}
             />
           </div>
         </div>
