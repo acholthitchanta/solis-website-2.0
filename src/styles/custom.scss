@@ -34,6 +34,7 @@ $orange: #e9ab74;
 @import "podcast.scss";
 @import "blogs.scss";
 @import "blog.scss";
+@import "ourstory.scss";
 
 
 *{
@@ -44,7 +45,7 @@ a{
     font-family: inherit;
 }
 
-h1, .card-title{
+h1, .card-title, h1 em{
     font-family: 'Poppins', 'Helvetica', sans-serif
 }
 
@@ -221,6 +222,12 @@ p, li {
 
 }
 
+.db.light-blue.landing-medium{
+    &::after{
+        background-color: $dark-blue;
+    }
+}
+
 .lb.dark-blue.landing-medium{
     &::after{
         background-color: $light-blue;
@@ -298,6 +305,10 @@ p, li {
 .orange{
     background-color: $orange;
     color: $secondary;
+}
+
+.orange-text{
+    color: $orange;
 }
 
 
@@ -409,6 +420,10 @@ p, li {
 
     .mobile-spacer{
         height: 90px;
+        width: 100%;
+    }
+    .mobile-spacer-smaller{
+        height: 50px;
         width: 100%;
     }
 }
