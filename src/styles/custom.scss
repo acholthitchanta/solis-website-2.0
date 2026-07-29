@@ -12,7 +12,7 @@ $light: #f5e39b;
 $theme-colors: map-merge($theme-colors, (
     "dark-blue": #27385b,
     "light-blue":  rgb(75,112,173),
-    "orange":  #e9ab74,
+    "orange":  #b0825a,
     "saturated-yellow":  #fad783
 ));
 
@@ -253,6 +253,21 @@ p, li {
 
     &::after{
         background-color: $white;
+    }
+}
+
+.orange.landing-medium{
+    background-color: $orange;
+
+    h1{
+        color: $secondary;
+    }
+    p{
+        color: black;
+    }
+
+    &::after{
+        background-color: $dark-blue;
     }
 }
 

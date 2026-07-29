@@ -45,7 +45,7 @@ header h1 {
 .story-photo-bleed-down {
     position: relative;
     z-index: 2;
-    margin-bottom: -30px;
+    margin-top: -30px;
 }
 
 /* Section B */
@@ -56,7 +56,7 @@ header h1 {
 }
 
 .story-graphic-notes {
-    top: -100px;
+    top: -7vw;
     left: 53%;
     width: 130px;
     z-index: 3;
@@ -150,7 +150,14 @@ header h1 {
     z-index: 1;
 }
 
-
+@media (min-width: 800px){
+    .story-photo{
+        transition: transform 0.25s ease;
+    }
+    .story-photo:hover{
+        transform: scale(1.05);
+    }
+}
 
 @media (max-width: 800px) {
     .story-row {
