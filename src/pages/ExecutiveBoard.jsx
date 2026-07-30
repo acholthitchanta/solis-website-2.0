@@ -16,6 +16,10 @@ export default function ExecutiveBoard() {
   useFitTextToLine(execRef, '.person .card-title', executives)
 
   useEffect(() => {
+    if (!loading) window.scrollTo(0, 0)
+    }, [loading])
+
+  useEffect(() => {
     async function loadExecutives() {
       const { data, error } = await fetchExecutives()
 
@@ -42,10 +46,6 @@ export default function ExecutiveBoard() {
 
   }, [])
   
-  useEffect(() => {
-  if (!loading) window.scrollTo(0, 0)
-  }, [loading])
-
 
 
 
