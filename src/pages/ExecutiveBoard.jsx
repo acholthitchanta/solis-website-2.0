@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react"
-import { fetchExecutives } from "../services/MemberService"
+import { getExecutives } from "../services/MemberService"
 import { Card, Placeholder } from "react-bootstrap"
 import useReveal from '../hooks/useReveal'
 import useFitTextToLine from '../hooks/useFitTextToLine'
@@ -21,7 +21,7 @@ export default function ExecutiveBoard() {
 
   useEffect(() => {
     async function loadExecutives() {
-      const { data, error } = await fetchExecutives()
+      const { data, error } = await getExecutives()
 
       if (error) {
         console.error(error)

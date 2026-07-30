@@ -22,6 +22,7 @@ import Podcast from './pages/Podcast';
 import Contact from './pages/Contact';
 import SupportUs from './pages/SupportUs';
 import Blog from './components/Blog';
+import Chapter from './components/Chapter';
 import "./styles/custom.scss";
 
 export default function App() {
@@ -42,6 +43,7 @@ export default function App() {
           <Route path="/executive-board" element={<ExecutiveBoard />} />
           <Route path="/team-members" element={<TeamMembers />} />
           <Route path="/chapters" element={<Chapters />} />
+          <Route path="/chapter/:slug" element={<Chapter />} />
           <Route path="/lunatunes" element={<LunaTunes />} />
           <Route path="/photo-gallery" element={<PhotoGallery />} />
           <Route path="/press-features" element={<PressFeatures />} />

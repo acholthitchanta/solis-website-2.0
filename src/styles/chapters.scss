@@ -1,0 +1,109 @@
+.chapters-map-row {
+    position: relative;
+}
+
+.chapter-map{
+    max-width: 1000px;
+    margin: auto;
+}
+
+.chapters-view-btn {
+    position: absolute;
+    top: 2vw;
+    left: 5vw;
+    z-index: 10;
+    background-color: $secondary;
+    color: $primary;
+    border: none;
+    text-transform: uppercase;
+    border-radius: 10px;
+    padding: 0.6rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.chapter-panel {
+    position: absolute;
+    top: 10rem;
+    right: 5vw;
+    z-index: 100;
+    width: 300px;
+    background-color: $primary;
+    border-radius: 24px;
+    padding: 2.5rem 2rem 2rem;
+}
+
+.chapter-panel-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    line-height: 1;
+    color: $secondary;
+    cursor: pointer;
+}
+
+.chapter-panel-close svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+.chapter-panel h3 {
+    text-transform: uppercase;
+    margin: 0 0 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    color: $secondary;
+}
+
+.chapter-panel ul {
+    list-style: disc;
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.chapter-panel li {
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    color: rgb(75, 112, 173);
+}
+
+.chapter-panel li:last-child {
+    margin-bottom: 0;
+}
+
+.chapter-panel a {
+    color: inherit;
+    text-decoration: none;
+}
+
+@media (max-width: 800px) {
+    .chapter-panel {
+        top: 0.75rem;
+        right: 0.75rem;
+        width: 200px;
+        padding: 1.75rem 1.25rem 1.25rem;
+        border-radius: 16px;
+    }
+
+    .chapter-panel h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    .chapter-panel li {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .chapters-view-btn{
+        top: -0.3rem;
+        left: 0.1rem;
+        font-size: 0.8rem;
+        background-color: transparent;
+        color: black;
+    }
+}
