@@ -110,7 +110,7 @@ export default function OurStory() {
             </header>
             <p>Chloey remembered how playing music for her grandfather transformed him from a silent, grave man to a vibrant personality with endless stories to tell. She wondered if she could also help change the lives of more people like him through her art. </p>
             <br/>
-            <p>Thus, in 2021 — when she was just 14 years old — she started Solis and Luna Arts as a small club at her school so her peers too could use their passions to create profound connections with those around them. Soon, one club became two, and two became three. Five years later, Solis and Luna Arts has grown to support over 50 chapters across 15 states and 10 chapters! </p>
+            <p>Thus, in 2021 — when she was just 14 years old — she started Solis and Luna Arts as a small club at her school so her peers too could use their passions to create profound connections with those around them. Soon, one club became two, and two became three. Five years later, Solis and Luna Arts has grown to support over 50 chapters across 15 states and 10 countries! </p>
           </div>
         </div>
       </div>
