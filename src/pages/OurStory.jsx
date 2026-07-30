@@ -62,7 +62,7 @@ export default function OurStory() {
             </header>
             <p>Throughout her childhood, Chloey rarely heard her grandfather speak a word. With the language barriers and his struggles with PTSD from his service, the most interaction they'd have was a nod of acknowledgement. When Chloey's mother encouraged her to play a song for her grandfather on the violin, she decided to play “Arirang”. As she performed, she noticed that her grandfather’s eyes started to twinkle and his mouth slowly turned up into a smile: it was the first time she had ever felt the connection she had been longing for.</p>
             <br/>
-            <p>With a new light in his eyes, Chloey’s grandfather began telling bedtime stories about his childhood to her and her brother, which shaped her childhood. She then realized how powerful music was in connecting people, and that music performance was a two-way street: it's not just about what you want to play, but also about what the audience wants to hear.</p>
+            <p>With a new light in his eyes, Chloey’s grandfather began telling bedtime stories about his childhood to her and her brother, accounts that brought them immeasurably closer to him. She then realized how powerful music was in connecting people, and that music performance was a two-way street: it's not just about what you want to play, but also about what the audience wants to hear.</p>
           </div>
             <div className="story-spacer"/>
           <div className="story-photo-cluster">
