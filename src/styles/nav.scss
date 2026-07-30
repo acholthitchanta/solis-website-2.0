@@ -10,6 +10,10 @@
     transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 
+.chapters-navbar {
+    background-color: $dark-blue;
+}
+
 #navlogo{
     height: 40px;
 }
@@ -147,7 +151,7 @@
 }
 
 
-@media (max-width: 500px){
+@media (max-width: 800px){
     .navbar{
         background-color: transparent;
     }
@@ -170,5 +174,11 @@
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
         transition:none;
+    }
+    .chapters-navbar {
+        background-color: transparent;
+        .navbar-toggler{
+            filter: brightness(1) invert(0);
+        }
     }
 }
