@@ -50,7 +50,7 @@ export default function ExecutiveBoard() {
       <div className="section-wide light-blue">
         {(loading) ? (
           <div className="people">
-            {[1, 2, 3, 4].map((n) => (
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
               <Card className="person" key={n}>
                 <div className="position">
                   <Placeholder as="span" animation="glow"><Placeholder xs={6} /></Placeholder>
