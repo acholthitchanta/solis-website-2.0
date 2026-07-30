@@ -45,6 +45,10 @@ export default function Home() {
   const [sponsorCarouselVisible, setSponsorCarouselVisible] = useState(true)
   const sponsorCarouselRef = useRef(null)
 
+  //errors
+  const [sponsorError, setSponsorsError] = useState(false);
+  const [testimonialError, setTestimonialError] = useState(false);
+
   const homeRef = useRef(null)
   useReveal(homeRef, useMemo(()=> ({reviews}), [reviews]))
 
