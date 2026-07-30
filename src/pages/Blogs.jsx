@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Placeholder } from 'react-bootstrap'
 import { supabase } from '../lib/supabase';
-import { useState, useEffect, useRef} from 'react';
+import { useState, useEffect, useRef, useMemo} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getBlogs } from '../services/DataService';
 import formatDate from '../lib/formatDate';
