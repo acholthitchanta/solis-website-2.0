@@ -180,5 +180,12 @@
         .navbar-toggler{
             filter: brightness(1) invert(0);
         }
+
+        &:has(.navbar-collapse.show),
+        &:has(.navbar-collapse.collapsing), &.navbar-scrolled {
+            .navbar-toggler{
+                filter: brightness(0) invert(1) !important;
+            }
+        }
     }
 }
