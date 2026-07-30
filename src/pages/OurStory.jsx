@@ -108,9 +108,9 @@ export default function OurStory() {
             <header>
               <h1 className="text-primary">A MOVEMENT BEGINS</h1>
             </header>
-            <p>Chloey remembers how playing music for her grandfather transformed him from a silent, grave man to a vibrant personality with endless stories to tell. Our members resonate with Chloey, whether it be through similar experiences or personal interest. </p>
+            <p>Chloey remembered how playing music for her grandfather transformed him from a silent, grave man to a vibrant personality with endless stories to tell. She wondered if she could also help change the lives of even more people like him through her art. </p>
             <br/>
-            <p>Thus, in 2021 — when she was just 14 years old — she started Solis and Luna Arts as a small club at her school so her peers too could use their passions to create profound connections with those around them. Soon, one club became two, and two became three. Five years later, Solis and Luna Arts has grown to support over 50 chapters across 15 states and 10 chapters!</p>
+            <p>Thus, in 2021 — when she was just 14 years old — she started Solis and Luna Arts as a small club at her school so her peers too could use their passions to create profound connections with those around them. Soon, one club became two, and two became three. Five years later, Solis and Luna Arts has grown to support over 50 chapters across 15 states and 10 chapters!Our members resonate with Chloey, whether it be through similar experiences or personal interest. </p>
           </div>
         </div>
       </div>
