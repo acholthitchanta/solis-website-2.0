@@ -41,6 +41,11 @@ export default function ExecutiveBoard() {
     loadExecutives()
 
   }, [])
+  
+  useEffect(() => {
+  if (!loading) window.scrollTo(0, 0)
+  }, [loading])
+
 
 
 
