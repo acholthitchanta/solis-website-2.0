@@ -99,7 +99,7 @@ export default function AboutUs(){
       <h2>Members ({members.length})</h2>
       {members.map(member => (
         <div key={member.id} style={{marginBottom: '1rem'}}>
-          <img src={member.headshot_url} alt={member.name} width={100} />
+          <img src={member.headshot_url} alt={member.name} width={100} loading="lazy" />
           <p>{member.name} — {member.role}</p>
         </div>
       ))}
@@ -110,7 +110,7 @@ export default function AboutUs(){
           <p>{event.event_date}</p>
           <p>{event.content}</p>
           {event.event_images?.map(img => (
-            <img key={img.id} src={img.image_url} width={300} />
+            <img key={img.id} src={img.image_url} width={300} loading="lazy" />
           ))}
         </div>
       ))}

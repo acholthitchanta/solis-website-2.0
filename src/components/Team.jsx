@@ -8,7 +8,7 @@ export default function Team({people}) {
                 <div className="position">
                   <span>{person.role}</span>
                 </div>
-                <Card.Img src={person.headshot_url}/>
+                <Card.Img src={person.headshot_url} loading="lazy"/>
                 <Card.Body>
                   <Card.Title>{person.full_name}</Card.Title>
                 </Card.Body>

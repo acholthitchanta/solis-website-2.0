@@ -3,8 +3,8 @@ import React from 'react'
 export default function ImageBox({pic1, pic2, description}) {
   return (
     <div className="imagebox">
-      <img className="imagebox-main" src={pic1} alt=""/>
-      <img className="imagebox-secondary" src={pic2} alt=""/>
+      <img className="imagebox-main" src={pic1} alt="" loading="lazy"/>
+      <img className="imagebox-secondary" src={pic2} alt="" loading="lazy"/>
       <div className="imagebox-circle">
         <p>{description}</p>
       </div>

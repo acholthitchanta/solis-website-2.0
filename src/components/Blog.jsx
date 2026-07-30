@@ -63,7 +63,7 @@ export default function Blog() {
                         <h1 className="blog-detail-title">{blog.title}</h1>
                         <p className="blog-detail-author">{blog.author}</p>
                         <p className="blog-detail-description">{blog.description}</p>
-                        <img src={blog.image_url} className="blog-detail-image" alt={blog.title} />
+                        <img src={blog.image_url} className="blog-detail-image" alt={blog.title} loading="lazy" />
                         <div className="blog-detail-content">
                             <ReactMarkdown>{blog.content}</ReactMarkdown>
                         </div>

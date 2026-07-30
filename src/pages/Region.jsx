@@ -58,6 +58,7 @@ export default function Region() {
               alt={director.full_name}
               width={100}
               height={100}
+              loading="lazy"
               style={{ borderRadius: '50%', objectFit: 'cover', marginRight: '1rem' }}
             />
             <div>

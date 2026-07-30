@@ -133,7 +133,7 @@ export default function Blogs() {
           <div className="blog-grid">
             {visibleBlogs.map((blog) => (
               <Card className="blog-card" key={blog.id} onClick={()=> (navigate(`/blogs/${blog.slug}`))}>
-                <img src={blog.image_url} className="blog-card-image" alt={blog.title} />
+                <img src={blog.image_url} className="blog-card-image" alt={blog.title} loading="lazy" />
                 <div className="blog-card-body">
                   <div className="blog-card-meta">
                     <span className={`category-badge category-${blog.category}`}>{blog.category}</span>

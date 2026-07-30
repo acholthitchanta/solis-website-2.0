@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import SmoothScroll from './components/SmoothScroll';
 import Home from './pages/Home';
 import Region from './pages/Region';
 
@@ -28,6 +29,7 @@ export default function App() {
   return (
     <div>
       <Router>
+        <SmoothScroll />
         <ScrollToTop />
         <NavigationBar />
         <Routes>

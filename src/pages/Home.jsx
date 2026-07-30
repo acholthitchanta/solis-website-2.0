@@ -109,19 +109,19 @@ export default function Home() {
 
   return (
     <div ref={homeRef} className="home-page">
-      <div className="landing">
+      <div className="landing" >
         <Carousel controls={false} interval={2000}>
           <Carousel.Item>
             <img className="landing-img" src={landing} />
           </Carousel.Item>
           <Carousel.Item>
-            <img className="landing-img" src={landing1} />
+            <img className="landing-img" src={landing1} loading="lazy" />
           </Carousel.Item>
           <Carousel.Item>
-            <img className="landing-img" src={landing2} />
+            <img className="landing-img" src={landing2} loading="lazy" />
           </Carousel.Item>
           <Carousel.Item>
-            <img className="landing-img" src={landing3} />
+            <img className="landing-img" src={landing3} loading="lazy" />
           </Carousel.Item>
         </Carousel>
         <div className="box">
@@ -230,7 +230,7 @@ export default function Home() {
               {sponsors.length > 0 ? (
                 <div className={`sponsor-track${sponsorCarouselVisible ? '' : ' paused'}`}>
                   {sponsors.concat(sponsors).map((url, i) => (
-                    <img key={i} src={url} className="sponsor-logo" alt="Sponsor logo" />
+                    <img key={i} src={url} className="sponsor-logo" alt="Sponsor logo" loading="lazy" />
                   ))}
                 </div>
               ) : (
@@ -246,7 +246,7 @@ export default function Home() {
           </div>
           <div className="testimonials-section">
             <div className="testimonials-row reveal">
-              <img src={testimonials} className="testimonial-image" alt="Solis and Luna Arts team" />
+              <img src={testimonials} className="testimonial-image" alt="Solis and Luna Arts team" loading="lazy" />
               <div class="testimonial-left">
                 <header style={{textAlign:'right'}}>
                   <h1 className="reveal">OUR TESTIMONIALS</h1>
@@ -289,7 +289,7 @@ export default function Home() {
         </header>
         <div className="cards">
           <Card className="reveal">
-            <Card.Img var="top" src={ourblog} />
+            <Card.Img var="top" src={ourblog} loading="lazy" />
             <Card.Body>
               <Card.Title>
                 LUNATUNES
@@ -301,7 +301,7 @@ export default function Home() {
           </Card>
 
           <Card className="reveal">
-            <Card.Img var="top" src={ourteam} />
+            <Card.Img var="top" src={ourteam} loading="lazy" />
             <Card.Body>
               <Card.Title>
                 OUR PODCAST
@@ -314,7 +314,7 @@ export default function Home() {
           </Card>
 
           <Card className="reveal">
-            <Card.Img var="top" src={whoweare} />
+            <Card.Img var="top" src={whoweare} loading="lazy" />
             <Card.Body>
               <Card.Title>
                 OUR BLOG

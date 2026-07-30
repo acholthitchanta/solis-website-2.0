@@ -33,6 +33,7 @@ export default function OurStory() {
               src={pic1}
               className="story-photo"
               alt="Chloey Cho playing the violin as a child"
+              loading="lazy"
               // style={{ transform: `translateY(${-smallOffset}px)` }}
             />
           </div>
@@ -51,6 +52,7 @@ export default function OurStory() {
           src={notesGraphic}
           className="story-graphic story-graphic-notes"
           alt=""
+          loading="lazy"
           style={{ transform: `translateY(${smallOffset}px)` }}
         />
         <div className="story-row-inner">
@@ -69,6 +71,7 @@ export default function OurStory() {
                 src={pic2}
                 className="story-photo"
                 alt="Chloey Cho as a toddler"
+                loading="lazy"
               />
             </div>
             <div className="story-photo-wrap story-photo-3">
@@ -76,6 +79,7 @@ export default function OurStory() {
                 src={pic3}
                 className="story-photo"
                 alt="Chloey Cho practicing the violin"
+                loading="lazy"
               />
             </div>
           </div>
@@ -90,11 +94,13 @@ export default function OurStory() {
               src={pic4}
               className="story-photo story-photo-pic4"
               alt="Chloey Cho performing with the violin"
+              loading="lazy"
             />
             <img
               src={starsGraphic}
               className="story-graphic story-graphic-stars"
               alt=""
+              loading="lazy"
               style={{ transform: `translateY(${smallOffset}px)` }}
             />
           </div>
@@ -127,18 +133,21 @@ export default function OurStory() {
               src={starGraphic}
               className="story-mission-graphic story-mission-star"
               alt=""
+              loading="lazy"
               style={{ transform: `translateY(${bigOffset}px)` }}
             />
             <img
               src={sunGraphic}
               className="story-mission-graphic story-mission-sun"
               alt=""
+              loading="lazy"
               style={{ transform: `translateY(${-bigOffset}px)` }}
             />
             <img
               src={moonGraphic}
               className="story-mission-graphic story-mission-moon"
               alt=""
+              loading="lazy"
               style={{ transform: `translateY(${-bigOffset}px)` }}
             />
           </div>

@@ -80,6 +80,7 @@ export default function ExecutiveBoard() {
                 )}
                 <Card.Img
                   src={exec.headshot_url}
+                  loading="lazy"
                   style={{ display: loadedHeadshots[exec.id] ? 'block' : 'none' }}
                   onLoad={() => setLoadedHeadshots((prev) => ({ ...prev, [exec.id]: true }))}
                 />
