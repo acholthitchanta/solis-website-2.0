@@ -1,8 +1,12 @@
+.chapters-navbar {
+    background-color: $dark-blue;
+}
+
 .chapters-map-row {
     position: relative;
 }
 
-.chapter-map{
+.chapter-map {
     max-width: 1000px;
     margin: auto;
 }
@@ -12,8 +16,8 @@
     top: 2vw;
     left: 5vw;
     z-index: 10;
-    background-color: $secondary;
-    color: $primary;
+    background-color: $white;
+    color: black;
     border: none;
     text-transform: uppercase;
     border-radius: 10px;
@@ -28,7 +32,7 @@
     right: 5vw;
     z-index: 100;
     width: 300px;
-    background-color: $primary;
+    background-color: $secondary;
     border-radius: 24px;
     padding: 2.5rem 2rem 2rem;
 }
@@ -36,11 +40,11 @@
 .chapter-panel-close {
     position: absolute;
     top: 0.75rem;
-    right: 1rem;
+    right: 0.5rem;
     background: none;
     border: none;
     line-height: 1;
-    color: $secondary;
+    color: white;
     cursor: pointer;
 }
 
@@ -56,7 +60,7 @@
     text-align: center;
     font-weight: bold;
     font-size: 2rem;
-    color: $secondary;
+    color: $primary;
 }
 
 .chapter-panel ul {
@@ -68,7 +72,7 @@
 .chapter-panel li {
     margin-bottom: 0.75rem;
     font-weight: 600;
-    color: rgb(75, 112, 173);
+    color: white;
 }
 
 .chapter-panel li:last-child {
@@ -99,7 +103,7 @@
         margin-bottom: 0.5rem;
     }
 
-    .chapters-view-btn{
+    .chapters-view-btn {
         top: -0.3rem;
         left: 0.1rem;
         font-size: 0.8rem;

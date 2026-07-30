@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Nav, Navbar, NavDropdown, Container } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 export default function NavigationBar() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const isChaptersPage = location.pathname === '/chapters' || location.pathname === '/our-story'
     const [scrolled, setScrolled] = useState(false)
     const [expanded, setExpanded] = useState(false)
 
@@ -22,7 +24,7 @@ export default function NavigationBar() {
 
 
   return (
-    <Navbar expanded={expanded} onToggle={setExpanded} className={`navigation-bar ${scrolled ? 'navbar-scrolled' : ''}`} expand="lg" sticky="top">
+    <Navbar expanded={expanded} onToggle={setExpanded} className={`navigation-bar ${scrolled ? 'navbar-scrolled' : ''} ${isChaptersPage ? 'chapters-navbar' : ''}`} expand="lg" sticky="top">
         <Container fluid>
             <Navbar.Brand className="link" onClick={()=> handleNavigate('/')}>  <img src="/solis.png" alt="Logo" id="navlogo"/></Navbar.Brand>
             <div style={{marginLeft: 'auto', marginRight:'0'}}>

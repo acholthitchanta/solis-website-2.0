@@ -223,6 +223,20 @@ p, li {
 
 }
 
+.yellow.landing-medium{
+    background-color: $primary;
+    h1{
+        color: $secondary;
+    }
+    p{
+        color: $dark-blue
+    }
+
+    &::after{
+        background-color: $dark-blue;
+    }
+}
+
 .db.light-blue.landing-medium{
     &::after{
         background-color: $dark-blue;

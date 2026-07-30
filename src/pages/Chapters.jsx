@@ -7,7 +7,6 @@ import worldCountries from 'world-atlas/countries-50m.json'
 import { Link } from "react-router-dom";
 
 
-
 export default function Chapters() {
     const [regions, setRegions] = useState(null);
     const [regionsLoading, setRegionsLoading] = useState(true)

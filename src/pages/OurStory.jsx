@@ -23,7 +23,7 @@ export default function OurStory() {
 
   return (
     <div ref={containerRef}>
-      <Landing theme='orange' landingImg={ourstory} title={"OUR STORY"} description={"Solis and Luna Arts started in 2021 as a small school club in Bergen County, New Jersey by Chloey Cho."} />
+      <Landing theme='yellow' background="dark-blue-bg" landingImg={ourstory} title={"OUR STORY"} description={"Solis and Luna Arts started in 2021 as a small school club in Bergen County, New Jersey by Chloey Cho."} />
 
       {/* Section A */}
       <div className="story-row dark-blue">
