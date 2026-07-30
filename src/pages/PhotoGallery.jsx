@@ -1,8 +1,12 @@
+import landing from '../assets/gallerylanding.jpg'
+import Landing from '../components/Landing'
+
+
 export default function PhotoGallery() {
   return (
     <div>
-      <div className="mobile-spacer yellow" />
-      <div className="section-medium yellow">
+      <Landing theme='light-blue' background='db' landingImg={landing} title={"PHOTO GALLERY"} description={"Solis and Luna Arts started in 2021 as a small school club in Bergen County, New Jersey by Chloey Cho."} />
+        <div className="section-medium dark-blue">
         <h1>PHOTO GALLERY</h1>
         <p>Take a look back at our performances, workshops, and the communities we've had the privilege to serve.</p>
       </div>

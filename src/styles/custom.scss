@@ -228,6 +228,12 @@ p, li {
     }
 }
 
+.orange-bg.light-blue.landing-medium{
+    &::after{
+        background-color: $orange;
+    }
+}
+
 .lb.dark-blue.landing-medium{
     &::after{
         background-color: $light-blue;
