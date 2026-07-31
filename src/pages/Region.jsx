@@ -15,7 +15,6 @@ export default function Region() {
 
       if (error) {
         console.error(error);
-        setLoading(false);
         return;
       }
       setDirectors(data || []);

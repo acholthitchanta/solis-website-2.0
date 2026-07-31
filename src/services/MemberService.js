@@ -59,9 +59,9 @@ export async function getTeams(regionID){
 export async function getRDs(teamID){
     const {data, error} = await supabase
         .from('profiles')
-        .select('full_name, headshot_url')
+        .select('full_name, headshot_url, team_id')
         .in('role', ['rd'])
-        .eq('team_id', regionID)
+        .eq('team_id', teamID)
     
     return {data, error}
 }
@@ -69,7 +69,7 @@ export async function getRDs(teamID){
 export async function getRegionMembers(teamID){
     const {data,error} = await supabase
         .from('team_members')
-        .select('full_name, headshot_url')
+        .select('name, headshot_url, role')
         .eq('team_id', teamID)
     
     return {data,error}

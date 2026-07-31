@@ -25,7 +25,6 @@ export default function ExecutiveBoard() {
 
       if (error) {
         console.error(error)
-        setLoading(false)
         return
       }
 

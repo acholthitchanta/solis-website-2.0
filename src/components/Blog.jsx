@@ -18,7 +18,6 @@ export default function Blog() {
 
             if (error) {
                 console.error(error);
-                setLoading(false);
                 return;
             }
             setBlog(data)

@@ -32,7 +32,6 @@ export default function Blogs() {
 
       if (error) {
         console.error(error);
-        setLoading(false)
         return
       }
       setBlogs(data);

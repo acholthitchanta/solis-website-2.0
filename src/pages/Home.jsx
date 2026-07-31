@@ -67,7 +67,7 @@ export default function Home() {
 
       if (error){
         console.error(error)
-        setReviewsLoading(false);
+        return
       }
       setReviews(data)
       setReviewsLoading(false)

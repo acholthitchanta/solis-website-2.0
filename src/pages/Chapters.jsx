@@ -1,5 +1,6 @@
 import { getRegions, formatSlugLabel, slugifyCountryName } from "../services/MemberService"
 import { useEffect, useState, useMemo } from "react";
+import { Spinner } from "react-bootstrap";
 
 import { ComposableMap, Geographies, Geography, Annotation, ZoomableGroup } from 'react-simple-maps'
 import usStates from 'us-atlas/states-10m.json'
@@ -10,25 +11,30 @@ import { Link } from "react-router-dom";
 export default function Chapters() {
     const [regions, setRegions] = useState(null);
     const [regionsLoading, setRegionsLoading] = useState(true)
+    const [regionsError, setRegionsError] = useState(false)
     const [view, setView] = useState('usa')
     const [usselected, usSetSelected] = useState(null)
     const [selected, setSelected] = useState(null)
+    const [showFullList, setShowFullList] = useState(false)
 
+
+    async function fetchRegions(){
+      setRegionsLoading(true);
+      setRegionsError(false);
+      const {data: regionData, error: regionError} = await getRegions();
+
+      if (regionError){
+        console.error(regionError);
+        setRegionsError(true);
+        setRegionsLoading(false);
+        return;
+      }
+
+      setRegions(regionData);
+      setRegionsLoading(false);
+    }
 
     useEffect(()=>{
-        async function fetchRegions(){
-          const {data: regionData, error: regionError} = await getRegions();
-
-          if (regionError){
-            console.error(regionError);
-            setRegionsLoading(false);
-            return;
-          }
-
-          setRegions(regionData);
-          setRegionsLoading(false);
-        }
-
         fetchRegions();
     }, [])
 
@@ -62,9 +68,26 @@ export default function Chapters() {
       <div className="mobile-spacer yellow" />
       <div className="section-medium yellow">
         <h1>OUR CHAPTERS</h1>
-        <p>Explore our chapters from around the world and find one near you.</p>
+        <p>Explore our chapters from around the world and find one near you! If you're interested in joining or starting one yourself, please <a href="/support-us">go to this page to sign up</a>!</p>
       </div>
+      {regionsLoading ? (
+        <>
+        <div className="spinner-container">
+          <Spinner/>
+          <p>Loading chapters...</p>
+        </div>
+        </>
+      ) : regionsError ? (
+        <div className="spinner-container">
+          <p>Something went wrong loading chapters. Please check your connection and try again.</p>
+          <button className="retry-btn" onClick={fetchRegions}>Retry</button>
+        </div>
+      ) : (
+      <>
       <div className="chapters-map-row white">
+        <button className="chapters-list-btn" onClick={() => setShowFullList((v) => !v)}>
+          {showFullList ? 'Hide full list' : 'Show full list'}
+        </button>
       {selected && (
           <div className="chapter-panel">
             <button className="chapter-panel-close" onClick={() => setSelected(null)} aria-label="Close">
@@ -86,94 +109,140 @@ export default function Chapters() {
       {view === 'world' ? (
         <div>
           <button className="chapters-view-btn" onClick={() => setView('usa')}>See USA map</button>
-        <div className="chapter-map">
-          <ComposableMap>
-            <ZoomableGroup >
-              <Geographies geography={worldCountries}>
+          <div className="chapter-map">
+            <ComposableMap>
+              <ZoomableGroup >
+                <Geographies geography={worldCountries}>
+                  {({ geographies }) =>
+                    geographies.map((geo) => {
+                      const slug = slugifyCountryName(geo.properties.name)
+                      return (
+                        <Geography
+                          key={geo.rsmKey}
+                          geography={geo}
+                          style={{
+                            default: { fill: grouped[slug] ? '#2b4469' : '#DDD', outline: 'none' },
+                            hover: { fill: grouped[slug] ? 'rgb(75,112,173)' : '#DDD', outline: 'none' },
+                            pressed: { fill: grouped[slug] ? 'rgb(75,112,173)' : '#DDD', outline: 'none' },
+                          }}
+                          onClick={() => {
+                            if (slug === 'usa') setView('usa')
+                            //country clicked
+                            else {
+                              const list = grouped[slug]
+                              if (!list) return
+
+                              const regionsList = Array.isArray(list)
+                                ? list.map((county) => ({
+                                    label: formatSlugLabel(county),
+                                    fullSlug: `${slug}:${county}`,
+                                  }))
+                                : Object.entries(list).flatMap(([state, counties]) =>
+                                    counties.map((county) => ({
+                                      label: `${formatSlugLabel(county)}, ${formatSlugLabel(state)}`,
+                                      fullSlug: `${slug}:${state}:${county}`,
+                                    }))
+                                  )
+
+                              setSelected({ name: geo.properties.name, regions: regionsList })
+                            }
+                          }}
+                        />
+                      )
+                    })
+                  }
+                </Geographies>
+              </ZoomableGroup>
+            </ComposableMap>
+          </div>
+          </div>
+          ) : (
+            <div className="chapter-map">
+              <button className="chapters-view-btn" onClick={() => setView('world')}>See world map</button>
+            <ComposableMap projection="geoAlbersUsa" projectionConfig={{ scale: 1000 }}>
+              <ZoomableGroup center={[-98, 39]}>
+              <Geographies geography={usStates}>
                 {({ geographies }) =>
                   geographies.map((geo) => {
                     const slug = slugifyCountryName(geo.properties.name)
+                    const hasChapters = Boolean(grouped.usa && grouped.usa[slug])
                     return (
                       <Geography
                         key={geo.rsmKey}
                         geography={geo}
                         style={{
-                          default: { fill: grouped[slug] ? '#2b4469' : '#DDD', outline: 'none' },
-                          hover: { fill: grouped[slug] ? 'rgb(75,112,173)' : '#DDD', outline: 'none' },
-                          pressed: { fill: grouped[slug] ? 'rgb(75,112,173)' : '#DDD', outline: 'none' },
+                          default: { fill: hasChapters ? '#2b4469' : '#DDD', outline: 'none' },
+                          hover: { fill: hasChapters ? 'rgb(75,112,173)' : '#DDD', outline: 'none' },
+                          pressed: { fill: hasChapters ? 'rgb(75,112,173)' : '#DDD', outline: 'none' },
                         }}
                         onClick={() => {
-                          if (slug === 'usa') setView('usa')
-                          //country clicked
-                          else {
-                            const list = grouped[slug]
-                            if (!list) return
+                          const list = grouped.usa && grouped.usa[slug]
+                          if (!list) return
 
-                            const regionsList = Array.isArray(list)
-                              ? list.map((county) => ({
-                                  label: formatSlugLabel(county),
-                                  fullSlug: `${slug}:${county}`,
-                                }))
-                              : Object.entries(list).flatMap(([state, counties]) =>
-                                  counties.map((county) => ({
-                                    label: `${formatSlugLabel(county)}, ${formatSlugLabel(state)}`,
-                                    fullSlug: `${slug}:${state}:${county}`,
-                                  }))
-                                )
-
-                            setSelected({ name: geo.properties.name, regions: regionsList })
-                          }
+                          setSelected({
+                            name: geo.properties.name,
+                            regions: list.map((county) =>({
+                              label: formatSlugLabel(county),
+                              fullSlug: `usa:${slug}:${county}`,
+                            })),
+                          })
                         }}
                       />
                     )
                   })
                 }
               </Geographies>
-            </ZoomableGroup>
-          </ComposableMap>
+              </ZoomableGroup>
+            </ComposableMap>
+            </div>
+          )}
         </div>
-        </div>
-      ) : (
-        <div className="chapter-map">
-          <button className="chapters-view-btn" onClick={() => setView('world')}>See world map</button>
-        <ComposableMap projection="geoAlbersUsa" projectionConfig={{ scale: 1000 }}>
-          <ZoomableGroup center={[-98, 39]}>
-          <Geographies geography={usStates}>
-            {({ geographies }) =>
-              geographies.map((geo) => {
-                const slug = slugifyCountryName(geo.properties.name)
-                const hasChapters = Boolean(grouped.usa && grouped.usa[slug])
-                return (
-                  <Geography
-                    key={geo.rsmKey}
-                    geography={geo}
-                    style={{
-                      default: { fill: hasChapters ? '#2b4469' : '#DDD', outline: 'none' },
-                      hover: { fill: hasChapters ? 'rgb(75,112,173)' : '#DDD', outline: 'none' },
-                      pressed: { fill: hasChapters ? 'rgb(75,112,173)' : '#DDD', outline: 'none' },
-                    }}
-                    onClick={() => {
-                      const list = grouped.usa && grouped.usa[slug]
-                      if (!list) return
 
-                      setSelected({
-                        name: geo.properties.name,
-                        regions: list.map((county) =>({
-                          label: formatSlugLabel(county),
-                          fullSlug: `usa:${slug}:${county}`,
-                        })),
-                      })
-                    }}
-                  />
-                )
-              })
+        <div className="light-blue chapters-list">
+          {showFullList && Object.entries(grouped).flatMap(([country, value]) => {
+            if (country === 'usa') {
+              return Object.entries(value).map(([state, counties]) => (
+                <div key={`usa-${state}`} className="chapters-list-group">
+                  <h4>{formatSlugLabel(state)}, USA</h4>
+                  <ul>
+                    {counties.map((county) => (
+                      <li key={county}>
+                        <Link to={`/chapter/usa:${state}:${county}`}>{formatSlugLabel(county)}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))
             }
-          </Geographies>
-          </ZoomableGroup>
-        </ComposableMap>
+
+            const items = Array.isArray(value)
+              ? value.map((region) => ({
+                  label: formatSlugLabel(region),
+                  fullSlug: `${country}:${region}`,
+                }))
+              : Object.entries(value).flatMap(([state, counties]) =>
+                  counties.map((county) => ({
+                    label: `${formatSlugLabel(county)}, ${formatSlugLabel(state)}`,
+                    fullSlug: `${country}:${state}:${county}`,
+                  }))
+                )
+
+            return [
+              <div key={country} className="chapters-list-group">
+                <h4>{formatSlugLabel(country)}</h4>
+                <ul>
+                  {items.map((item) => (
+                    <li key={item.fullSlug}>
+                      <Link to={`/chapter/${item.fullSlug}`}>{item.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ]
+          })}
         </div>
+      </>
       )}
-      </div>
     </div>
   )
 }

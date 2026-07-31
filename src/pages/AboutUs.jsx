@@ -19,7 +19,6 @@ export default function AboutUs(){
 
       if (regionError){
         console.error(regionError);
-        setLoading(false);
         return;
       }
       setRegion(regionData);
@@ -33,7 +32,6 @@ export default function AboutUs(){
 
       if (teamError){
         console.error(teamError);
-        setLoading(false);
         return;
       }
       setTeam(teamData);
