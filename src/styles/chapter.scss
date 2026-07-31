@@ -1,0 +1,346 @@
+.chapter-teams-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 2vw;
+
+}
+
+.chapter-teams-col {
+    flex: 1 1 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.chapter-team {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.chapter-people {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 2rem 3rem;
+    text-align: left;
+    overflow: hidden;
+    max-height: 200px;
+}
+
+.chapter-people.expanded {
+    max-height: none;
+}
+
+.chapter-load-more-btn {
+    align-self: flex-start;
+    background: none;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: white;
+    padding: 0.4rem 0.7rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.chapter-person {
+    min-width: 150px;
+    max-width: 150px;
+}
+
+.card.chapter-person {
+    margin: 0;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    text-align: left;
+    border-radius: 0;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.chapter-person .card-img {
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 0;
+    margin-bottom: 0.2rem;
+}
+
+.chapter-person .card-body {
+    padding: 0.5rem 0;
+}
+
+.chapter-person .card-title {
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 0.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chapter-person .card-text {
+    color: white;
+    font-weight: normal;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 500px) {
+    .chapter-people {
+        gap: 1rem;
+    }
+}
+
+.chapter-team h2 {
+    color: $primary;
+    font-family: 'Poppins', Helvetica, sans-serif;
+    text-transform: uppercase !important;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.chapter-events-sidebar {
+    flex: 1 1 30%;
+    max-width: 320px;
+    padding-top: 1rem;
+}
+
+.chapter-events-sidebar h4 {
+    font-weight: bold;
+    font-family: 'Poppins', Helvetica, sans-serif;
+    margin-bottom: 1.5rem;
+}
+
+.chapter-events-sidebar-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    color: white;
+}
+
+.chapter-events-sidebar-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.chapter-events-sidebar-text h5 {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.chapter-events-sidebar-date {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.chapter-events-sidebar-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.chapter-events-section h1 {
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.chapter-events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+    gap: 2rem;
+}
+
+.chapter-event-card {
+    background-color: white;
+    color: $secondary;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chapter-event-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+}
+
+.chapter-event-card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+.chapter-event-card-body h3 {
+    color: $secondary;
+    font-weight: bold;
+    font-size: 1.5rem;
+    font-family: 'Poppins';
+    line-height: 1.3;
+    min-height: 3.25rem;
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.chapter-event-card-body p:not(.chapter-event-card-date) {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.chapter-event-card-date {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: $light-blue;
+}
+
+@keyframes chapter-skeleton-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+}
+
+.chapter-skeleton {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 4px;
+    animation: chapter-skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+.chapter-skeleton.dark {
+    background-color: rgba(2, 3, 65, 0.08);
+}
+
+.chapter-skeleton-line {
+    height: 0.9rem;
+    width: 100%;
+}
+
+.chapter-skeleton-line.short {
+    width: 55%;
+}
+
+.chapter-skeleton-paragraph {
+    flex: 1;
+    min-height: 3rem;
+}
+
+.chapter-landing-skeleton {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    min-height: 420px;
+    padding: 3rem 4rem;
+    background-color: $dark-blue;
+}
+
+.chapter-landing-skeleton-text {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.chapter-landing-skeleton-text .chapter-skeleton-title {
+    height: 2.5rem;
+    width: 70%;
+}
+
+.chapter-landing-skeleton-image {
+    flex: 1 1 55%;
+    height: 320px;
+}
+
+.chapter-team-title-skeleton {
+    height: 1.5rem;
+    width: 200px;
+    margin-bottom: 1rem;
+}
+
+.chapter-person-skeleton {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.chapter-person-skeleton-img {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 2px;
+    margin-bottom: 0.2rem;
+}
+
+.chapter-event-skeleton-image {
+    height: 250px;
+    flex-shrink: 0;
+}
+
+.chapter-event-card-skeleton .chapter-event-card-body {
+    gap: 0.75rem;
+}
+
+.chapter-events-sidebar-item-skeleton {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.chapter-events-sidebar-text-skeleton {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.chapter-events-sidebar-img-skeleton {
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 800px) {
+    .chapter-teams-row {
+        flex-direction: column;
+    }
+
+    .chapter-events-sidebar {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .chapter-events-sidebar {
+        display: none;
+    }
+
+    .chapter-events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(90vw, 1fr));
+        gap: 2rem;
+    }
+}

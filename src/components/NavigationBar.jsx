@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 export default function NavigationBar() {
     const navigate = useNavigate();
     const location = useLocation();
-    const isChaptersPage = location.pathname === '/chapters' || location.pathname === '/our-story'
+    const isChaptersPage = location.pathname === '/chapters' || location.pathname === '/our-story' 
     const [scrolled, setScrolled] = useState(false)
     const [expanded, setExpanded] = useState(false)
 

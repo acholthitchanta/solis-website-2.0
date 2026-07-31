@@ -36,6 +36,7 @@ $orange: #e9ab74;
 @import "blog.scss";
 @import "ourstory.scss";
 @import "chapters.scss";
+@import "chapter.scss";
 
 
 *{
@@ -235,6 +236,20 @@ p, li {
 
 }
 
+.yellow.lb.landing-medium{
+    background-color: $primary;
+    h1{
+        color: $secondary;
+    }
+    p{
+        color: $dark-blue
+    }
+
+    &::after{
+        background-color: $light-blue;
+    }
+}
+
 .yellow.landing-medium{
     background-color: $primary;
     h1{
@@ -248,6 +263,7 @@ p, li {
         background-color: $dark-blue;
     }
 }
+
 
 .db.light-blue.landing-medium{
     &::after{
