@@ -247,7 +247,7 @@ export default function Home() {
           <div className="testimonials-section">
             <div className="testimonials-row reveal">
               <img src={testimonials} className="testimonial-image" alt="Solis and Luna Arts team" loading="lazy" />
-              <div class="testimonial-left">
+              <div className="testimonial-left">
                 <header style={{textAlign:'right'}}>
                   <h1 className="reveal">OUR TESTIMONIALS</h1>
                   <p>Hear what our venues have to say!</p>

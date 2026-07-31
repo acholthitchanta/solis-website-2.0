@@ -8,78 +8,78 @@ export function slugifyCountryName(name) {
 
 export function formatSlugLabel(slug) {
     return slug
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
+        .split('-')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
 }
 export function formatSlugRegion(slug) {
     const parts = slug.split(':')
     if (parts[0] === 'usa') parts.shift()
     return parts
-    .reverse()
-    .map((part) => formatSlugLabel(part))
-    .join(', ')
+        .reverse()
+        .map((part) => formatSlugLabel(part))
+        .join(', ')
 }
-export async function getExecutives(){
-    const {data, error} = await supabase
+export async function getExecutives() {
+    const { data, error } = await supabase
         .from('profiles')
         .select('*')
         .in('role', ['exec_board', 'admin'])
-    
-    return {data, error}
+
+    return { data, error }
 }
 
 
-export async function getRegions(){
-    const {data, error} = await supabase
+export async function getRegions() {
+    const { data, error } = await supabase
         .from('regions')
         .select('name')
-    return {data, error}
+    return { data, error }
 }
 
-export async function getRegion(name){
-    const {data,error} = await supabase
+export async function getRegion(name) {
+    const { data, error } = await supabase
         .from('regions')
-        .select('id, name')
-        .eq('name',name)
+        .select('id, name, image_url')
+        .eq('name', name)
         .single()
-    
-    return {data,error}
+
+    return { data, error }
 }
 
-export async function getTeams(regionID){
-    const {data, error} = await supabase
+export async function getTeams(regionID) {
+    const { data, error } = await supabase
         .from('teams')
-        .select('id')
+        .select('id, discipline')
         .eq('region_id', regionID)
 
-    return {data, error}
+    return { data, error }
 }
 
-export async function getRDs(teamID){
-    const {data, error} = await supabase
+export async function getRDs(teamID) {
+    const { data, error } = await supabase
         .from('profiles')
-        .select('full_name, headshot_url, team_id')
+        .select('id, full_name, headshot_url, team_id')
         .in('role', ['rd'])
         .eq('team_id', teamID)
-    
-    return {data, error}
+
+    return { data, error }
 }
 
-export async function getRegionMembers(teamID){
-    const {data,error} = await supabase
+export async function getRegionMembers(teamID) {
+    const { data, error } = await supabase
         .from('team_members')
-        .select('name, headshot_url, role')
+        .select('id, name, headshot_url, role, team_id')
         .eq('team_id', teamID)
-    
-    return {data,error}
+
+    return { data, error }
 }
 
-export async function getEvents(regionID){
-    const {data,error} = await supabase
+export async function getEvents(regionID) {
+    const { data, error } = await supabase
         .from('events')
-        .select('event_date, content, image_url')
+        .select('id, event_date, content, image_url')
         .eq('region_id', regionID)
-    
-        return {data,error}
+
+    return { data, error }
 }

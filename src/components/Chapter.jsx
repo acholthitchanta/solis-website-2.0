@@ -1,8 +1,8 @@
 import React from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { Spinner } from "react-bootstrap";
 import { getRegion, getTeams, getEvents, getRDs, getRegionMembers, formatSlugRegion } from "../services/MemberService"
-
 import Landing from './Landing'
 
 export default function Chapter() {
@@ -23,6 +23,8 @@ export default function Chapter() {
   const [events, setEvents] = useState(null)
   const [eventsLoading, setEventsLoading] = useState(true)
 
+  const placeholder_url = 'https://uvwpttufrutumpzkysvo.supabase.co/storage/v1/object/public/regions/placeholder_2560x1400.png'
+
   useEffect(() => {
     async function fetchRegion() {
       const { data: regionData, error: regionDataError } = await getRegion(slug);
@@ -41,9 +43,9 @@ export default function Chapter() {
 
   }, [])
 
-    useEffect(() => {
+  useEffect(() => {
     async function fetchEvents() {
-      if(!region) return
+      if (!region) return
       const { data: eventsData, error: eventsDataError } = await getEvents(region.id);
 
       if (eventsDataError) {
@@ -96,30 +98,38 @@ export default function Chapter() {
   }, [teams])
 
   useEffect(() => {
-  async function fetchMembers() {
-    if (!teams) return
+    async function fetchMembers() {
+      if (!teams) return
 
 
-    const results = await Promise.all(
-      teams.map((team) => getRegionMembers(team.id))
+      const results = await Promise.all(
+        teams.map((team) => getRegionMembers(team.id))
+      )
+
+      const allMembers = results.flatMap((result) => result.data || [])
+      console.log(allMembers)
+      setMembers(allMembers)
+      setMembersLoading(false)
+    }
+    fetchMembers();
+
+  }, [teams])
+
+
+  if (regionLoading){
+    return(
+      <div className="spinner-container dark-blue">
+        <Spinner/>
+      </div>
     )
-
-    const allMembers = results.flatMap((result) => result.data || [])
-    console.log(allMembers)
-    setMembers(allMembers)
-    setMembersLoading(false)
   }
-  fetchMembers();
-
-}, [teams])
-
   return (
 
     //landing page, 
-    <div className="section marine" style={{ height: '500px' }}>
-      {!regionLoading && <div style={{ margin: 'auto' }}><h1>{formatSlugRegion(region.name)}
-      </h1></div>}
-
+    <div>
+      <Landing theme="dark-blue" background="lb" landingImg={region.image_url || placeholder_url} title={formatSlugRegion(region.name)} description={""}/>
+      <div className="section marine" style={{ height: '500px' }}>
+      </div>
     </div>
 
   )
