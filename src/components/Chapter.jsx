@@ -341,7 +341,7 @@ export default function Chapter() {
         ) : events && events.length > 0 ? (
           <>
           <div className="chapter-events-grid" ref={eventsGridRef}>
-            {(showAllEvents ? events : events.slice(0, 6)).map((event) => {
+            {(showAllEvents ? latestEvents : latestEvents.slice(0, 6)).map((event) => {
               const { title, description } = splitEventContent(event.content)
               return (
                 <div
