@@ -24,6 +24,14 @@ export async function getReviews(){
     return {data, error}
 }
 
+export async function getPress(){
+    const {data, error} = await supabase
+        .from('press')
+        .select('*')
+    
+    return {data,error}
+}
+
 
 export async function getBlogs(){
     const { data, error } = await supabase
