@@ -1,6 +1,8 @@
 import { getRegions, formatSlugLabel, slugifyCountryName } from "../services/MemberService"
 import { useEffect, useState, useMemo } from "react";
 import { Spinner } from "react-bootstrap";
+import chapterIMG from "../assets/chapters.jpg"
+import Landing from "../components/Landing";
 
 import { ComposableMap, Geographies, Geography, Annotation, ZoomableGroup } from 'react-simple-maps'
 import usStates from 'us-atlas/states-10m.json'
@@ -65,11 +67,7 @@ export default function Chapters() {
 
   return (
     <div>
-      <div className="mobile-spacer yellow" />
-      <div className="section-medium yellow">
-        <h1>OUR CHAPTERS</h1>
-        <p>Explore our chapters from around the world and find one near you! If you're interested in joining or starting one yourself, please <a href="/support-us">go to this page to sign up</a>!</p>
-      </div>
+      <Landing theme="yellow" background="white" landingImg={chapterIMG} title={"OUR CHAPTERS"} description={<>Explore our chapters from around the world and find one near you! Interested in joining or starting one? <a href="/support-us">Sign up here</a>!</>} />
       {regionsLoading ? (
         <>
         <div className="spinner-container">

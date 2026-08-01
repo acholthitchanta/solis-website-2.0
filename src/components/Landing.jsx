@@ -12,9 +12,9 @@ export default function Landing({landingImg, title, description, theme,backgroun
         <h1>{title}</h1>
         <p>{description}</p>
       </div>
-      <div className="landing-medium-image-wrap">
+      {landingImg && <div className="landing-medium-image-wrap">
         <img src={landingImg} className="landing-medium-image" alt="" />
-      </div>
+      </div>}
     </div>
   )
 }

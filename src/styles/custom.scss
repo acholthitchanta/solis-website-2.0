@@ -39,6 +39,7 @@ $orange: #e9ab74;
 @import "chapter.scss";
 @import "pressfeatures.scss";
 @import "lunatunes.scss";
+@import "photogallery.scss";
 
 
 *{
@@ -97,6 +98,23 @@ header p{
 
 p, li {
     font-family: 'Montserrat';
+}
+
+.show-more-btn {
+    margin-top: 2rem;
+    align-self: center;
+    background: $dark-blue;
+    color: $primary;
+    border-radius: 10px;
+    padding: 0.6rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.show-more-btn:hover{
+    background-color: $secondary;
 }
 
 .landing-img{
@@ -171,7 +189,7 @@ p, li {
     color: white;
     overflow: hidden;
     padding: 0;
-    min-height: 420px;
+    height: 600px;
 }
 
 
@@ -202,7 +220,8 @@ p, li {
         font-size: max(2.5em, 4.5vw);
     }
     p{
-        font-size: (max(1rem, 1.2vw))
+        font-size: (max(1rem, 1.2vw));
+        margin-top: -1rem;
     }
 }
 
@@ -238,17 +257,47 @@ p, li {
 
 }
 
+.blue.landing-medium{
+    background-color: $dark-blue;
+
+    h1{
+        color: white;
+    }
+    p{
+        color: $primary;
+    }
+
+    &::after{
+        background-color: transparent;
+    }
+
+}
+
 .yellow.lb.landing-medium{
     background-color: $primary;
     h1{
         color: $secondary;
     }
     p{
-        color: $dark-blue
+        color: $dark-blue;
     }
 
     &::after{
         background-color: $light-blue;
+    }
+}
+
+.yellow.white.landing-medium{
+    background-color: $primary;
+    h1{
+        color: $secondary;
+    }
+    p{
+        color: $dark-blue;
+    }
+
+    &::after{
+        background-color: white;
     }
 }
 
@@ -282,6 +331,12 @@ p, li {
 .orange-bg.light-blue.landing-medium{
     &::after{
         background-color: $orange;
+    }
+}
+
+.orange.white.landing-medium{
+        &::after{
+        background-color: white;
     }
 }
 

@@ -264,20 +264,20 @@ export default function Chapter() {
                       )}
                     </div>
                     {overflowingTeams[team.id] && !expandedTeams[team.id] && (
-                      <button
+                      <div
                         className="chapter-load-more-btn"
                         onClick={() => setExpandedTeams((prev) => ({ ...prev, [team.id]: true }))}
                       >
                         SEE ALL MEMBERS
-                      </button>
+                      </div>
                     )}
                     {overflowingTeams[team.id] && expandedTeams[team.id] && (
-                      <button
+                      <div
                         className="chapter-load-more-btn"
                         onClick={() => setExpandedTeams((prev) => ({ ...prev, [team.id]: false }))}
                       >
                         HIDE MEMBERS
-                      </button>
+                      </div>
                     )}
                   </div>
                 )
@@ -360,9 +360,9 @@ export default function Chapter() {
             })}
           </div>
           {events.length > 6 && !showAllEvents && (
-            <button className="dark-blue chapter-load-more-btn" onClick={() => setShowAllEvents(true)}>
+            <div style={{alignSelf: 'center'}} className="dark-blue show-more-btn" onClick={() => setShowAllEvents(true)}>
               SEE MORE EVENTS
-            </button>
+            </div>
           )}
           </>
         ) : (

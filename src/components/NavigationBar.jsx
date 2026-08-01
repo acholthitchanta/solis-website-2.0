@@ -42,8 +42,8 @@ export default function NavigationBar() {
                         <NavDropdown title="OUR WORK" id="our-work-dropdown">
                             <NavDropdown.Item onClick={()=> handleNavigate('/chapters')}>Chapters</NavDropdown.Item>
                             <NavDropdown.Item onClick={()=> handleNavigate('/lunatunes')}>LunaTunes</NavDropdown.Item>
-                            <NavDropdown.Item onClick={()=> handleNavigate('/photo-gallery')}>Photo Gallery</NavDropdown.Item>
                             <NavDropdown.Item onClick={()=> handleNavigate('/press-features')}>Press Features</NavDropdown.Item>
+                            <NavDropdown.Item onClick={()=> handleNavigate('/photo-gallery')}>Photo Gallery</NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Item>
                             <Nav.Link onClick={()=> handleNavigate('/blogs')}>BLOG</Nav.Link>

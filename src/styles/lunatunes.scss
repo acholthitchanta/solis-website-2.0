@@ -101,6 +101,10 @@
         flex-direction: column-reverse;
     }
 
+    .lunatunes-row-media-bottom-mobile .lunatunes-row-inner {
+        flex-direction: column-reverse;
+    }
+
     .lunatunes-media,
     .lunatunes-text {
         flex: 1 1 auto;

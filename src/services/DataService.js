@@ -16,6 +16,24 @@ export async function getSponsors(){
     })
 }
 
+export async function getPhotos(){
+    const {data: files, error} = await supabase.storage
+        .from('gallery')
+        .list()
+    
+    if(error){
+        console.error(error)
+        return []
+    }
+
+    return files
+        .filter((file) => file.name !== '.emptyFolderPlaceholder')
+        .map((file) =>{
+            const {data} = supabase.storage.from('gallery').getPublicUrl(file.name)
+            return data.publicUrl
+        })
+}
+
 export async function getReviews(){
     const {data, error} = await supabase
         .from('reviews')
