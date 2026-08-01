@@ -21,7 +21,26 @@
 
 .press-card:hover {
     transform: scale(1.05);
+}
+
+.press-card.theme-yellow {
+    background-color: $primary;
     color: $secondary;
+}
+
+.press-card.theme-light-blue {
+    background-color: $light-blue;
+    color: white;
+}
+
+.press-card.theme-marine {
+    background-color: $secondary;
+    color: $primary;
+}
+
+.press-card.theme-dark-blue {
+    background-color: $dark-blue;
+    color: white;
 }
 
 .press-card-header {
@@ -43,6 +62,9 @@
     height: 48px;
     object-fit: contain;
     flex-shrink: 0;
+    background-color: white;
+    border-radius: 6px;
+    padding: 4px;
 }
 
 .press-card p {

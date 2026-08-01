@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import pressIMG from '../assets/press.jpg'
 import Landing from '../components/Landing'
-import { supabase } from '../lib/supabase'
 import { getPress } from '../services/DataService'
+
+const CARD_THEMES = ['white', 'yellow', 'light-blue', 'dark-blue']
 
 export default function PressFeatures() {
   const [press, setPress] = useState(null)
@@ -43,10 +44,10 @@ export default function PressFeatures() {
           </div>
         ) : press && press.length > 0 ? (
           <div className="press-grid">
-            {press.map((item) => (
+            {press.map((item, index) => (
               <a
                 key={item.id}
-                className="press-card"
+                className={`press-card theme-${CARD_THEMES[index % CARD_THEMES.length]}`}
                 href={item.article_url}
                 target="_blank"
                 rel="noopener noreferrer"
