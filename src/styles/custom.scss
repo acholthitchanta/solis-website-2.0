@@ -38,6 +38,7 @@ $orange: #e9ab74;
 @import "chapters.scss";
 @import "chapter.scss";
 @import "pressfeatures.scss";
+@import "lunatunes.scss";
 
 
 *{
@@ -48,7 +49,7 @@ a{
     font-family: inherit;
 }
 
-h1, .card-title, h1 em{
+h1, .card-title, h1 em, strong{
     font-family: 'Poppins', 'Helvetica', sans-serif
 }
 
@@ -287,6 +288,12 @@ p, li {
 .lb.dark-blue.landing-medium{
     &::after{
         background-color: $light-blue;
+    }
+}
+
+.db.dark-blue.landing-medium{
+    &::after{
+        background-color: $dark-blue;
     }
 }
 

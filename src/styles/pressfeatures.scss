@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-    margin-top: -10vw;
+    margin-top: -7vw;
     width: 100%;
 }
 
@@ -116,5 +116,9 @@
 
     .press-card {
         flex: 1 1 100%;
+    }
+
+    .press-card:hover {
+    transform: none;
     }
 }

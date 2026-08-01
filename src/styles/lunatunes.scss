@@ -1,0 +1,113 @@
+.lunatunes-row {
+    padding: 4rem 6vw;
+}
+
+.lunatunes-row-padded {
+    padding-left: calc(6vw + 1rem);
+    padding-right: calc(6vw + 1rem);
+}
+
+.lunatunes-row-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.lunatunes-media {
+    flex: 0 0 45%;
+}
+
+.lunatunes-text {
+    flex: 0 0 50%;
+}
+
+.lunatunes-row h1 {
+    font-weight: bold;
+    margin-bottom: 1.25rem;
+}
+
+.lunatunes-row p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.lunatunes-row.dark-blue h1 {
+    color: $primary;
+}
+
+.lunatunes-text a {
+    text-decoration: underline;
+}
+
+.lunatunes-circle-wrap {
+    border-radius: 50%;
+    overflow: hidden;
+    aspect-ratio: 1;
+    border: 8px solid white;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.lunatunes-circle-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.lunatunes-video-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.lunatunes-video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.lunatunes-video-caption {
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+}
+
+.lunatunes-media-desktop-only {
+    display: block;
+}
+
+@media (max-width: 800px) {
+    .lunatunes-row {
+        padding: 3rem 1.5rem;
+    }
+
+    .lunatunes-row-inner {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .lunatunes-row-media-top-mobile .lunatunes-row-inner {
+        flex-direction: column-reverse;
+    }
+
+    .lunatunes-media,
+    .lunatunes-text {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+    .lunatunes-media-desktop-only {
+        display: none;
+    }
+}
