@@ -1,7 +1,30 @@
+.join-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10vw;
+}
+
+.join-text {
+    flex: 1 1 50%;
+}
+
+.join-image {
+    flex: 1 1 50%;
+    width: 100%;
+}
+
+.join-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+}
+
 .donate-row {
     display: flex;
     align-items: flex-start;
-    gap: 3rem;
+    gap: 10vw;
 }
 
 .donate-text {
@@ -33,6 +56,11 @@
 }
 
 @media (max-width: 800px) {
+    .join-row {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
     .donate-row {
         flex-direction: column-reverse;
         gap: 2rem;
@@ -41,4 +69,5 @@
     .donate-form {
         width: 90vw;
     }
+
 }

@@ -21,6 +21,7 @@ import PressFeatures from './pages/PressFeatures';
 import Podcast from './pages/Podcast';
 import Contact from './pages/Contact';
 import SupportUs from './pages/SupportUs';
+import PageNotFound from './pages/PageNotFound';
 import Blog from './components/Blog';
 import Chapter from './components/Chapter';
 import "./styles/custom.scss";
@@ -50,6 +51,7 @@ export default function App() {
           <Route path="/podcast" element={<Podcast />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/support-us" element={<SupportUs />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer />
       </Router>
