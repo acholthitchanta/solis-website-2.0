@@ -6,9 +6,6 @@ const FUNRAISE_ORG_ID = '0f310c11-8882-45d5-b412-4b4035fa0272'
 const FUNRAISE_FORM_ID = 51238
 
 export default function SupportUs() {
-  // Funraise's widget tracks "already created" per container id and won't
-  // re-render into the same id twice in one page session, so a fresh id
-  // per mount forces it to treat every visit as new.
   const FUNRAISE_CONTAINER_ID = `fr-placed-form-container-${useId().replace(/:/g, '')}`
 
   useEffect(() => {
@@ -19,8 +16,6 @@ export default function SupportUs() {
       document.head.appendChild(awareScript)
     }
 
-    // re-fire on every mount (including revisits) so Funraise renders into
-    // whatever container element currently exists in the DOM
     const configScript = document.createElement('script')
     configScript.text = `window.funraise.push('create', { form: ${FUNRAISE_FORM_ID} }, { selector: '#${FUNRAISE_CONTAINER_ID}', type: 'grow_contained' });`
     document.head.appendChild(configScript)
@@ -38,12 +33,12 @@ export default function SupportUs() {
           <div className="join-text">
             <h1>JOIN OUR TEAM</h1>
             <p>
-              If you're interested in joining an existing chapter OR starting a new region, please fill out{' '}
+              If you're interested in joining an existing chapter OR starting a new one, please fill out{' '}
               <a href="https://docs.google.com/forms/d/e/1FAIpQLSc9HS8UN9xPjKik2ND47Jl7GX09nk1htlY5dzPykkNUAoIIBg/viewform?usp=sharing&ouid=110272117549008627958" target="_blank" rel="noopener noreferrer">this form</a>.
             </p>
             <p>
               Additionally, if you would like to be a part of our many organizational teams (finance, outreach, media, press, and tech), please reach out to{' '}
-              <a href="mailto:chloey.cho@solisandlunaarts.com">chloey.cho@solisandlunaarts.com</a>!
+              <a href="mailto:contact@solisandlunaarts.com">contact@solisandlunaarts.com</a>!
             </p>
           </div>
           <div className="join-image">
