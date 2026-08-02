@@ -26,14 +26,24 @@ export default function SupportUs() {
     <div>
       <div className="mobile-spacer yellow" />
       <div className="section-medium dark-blue">
-        <h1>SUPPORT US</h1>
+        <h1>JOIN OUR TEAM</h1>
         <p>Find a chapter, join a team, or help us grow.</p>
       </div>
 
-      <div id="donate" className="section-medium yellow">
-        <h1>DONATE</h1>
-        <p>Help us serve more communities by making a donation to Solis and Luna Arts.</p>
-        <div id={FUNRAISE_CONTAINER_ID} style={{ minHeight: '816px' }} />
+      <div id="donate" className="section-medium yellow donate-row">
+        <div className="donate-form">
+          <div id={FUNRAISE_CONTAINER_ID} style={{ minHeight: '700px' }} />
+        </div>
+        <div className="donate-text">
+          <h1>DONATE</h1>
+          <p>Help us serve more communities by making a donation to Solis and Luna Arts! Every contribution directly supports our mission by helping us:</p>
+          <ul>
+            <li><strong>Launch new therapeutic arts programs</strong> like Neurographic Art, Therapeutic Nail Art, Floral Therapy, and more!</li>
+            <li><strong>Expand therapeutic music in communities</strong> by bringing live performances, personalized songs, and interactive activities to more venues around the world</li>
+            <li><strong>Train and support youth volunteers</strong> as young as eight with educational resources, leadership development, and materials that will allow them to deliver meaningful acts of service.</li>
+            <li><strong>Provide supplies for patients and participants</strong> for therapeutic art events (colored pencils, markers, fabric for fashion events, etc).</li>
+          </ul>
+        </div>
       </div>
     </div>
   )

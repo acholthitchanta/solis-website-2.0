@@ -37,7 +37,7 @@ export default function NavigationBar() {
                         <NavDropdown title="ABOUT US" id="about-us-dropdown">
                             <NavDropdown.Item onClick={()=> handleNavigate('/our-story')}>Our Story</NavDropdown.Item>
                             <NavDropdown.Item onClick={()=> handleNavigate('/executive-board')}>Executive Board</NavDropdown.Item>
-                            <NavDropdown.Item onClick={()=> handleNavigate('/team-members')}>Team Members</NavDropdown.Item>
+                            {/* <NavDropdown.Item onClick={()=> handleNavigate('/team-members')}>Team Members</NavDropdown.Item> */}
                         </NavDropdown>
                         <NavDropdown title="OUR WORK" id="our-work-dropdown">
                             <NavDropdown.Item onClick={()=> handleNavigate('/chapters')}>Chapters</NavDropdown.Item>

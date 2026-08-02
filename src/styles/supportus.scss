@@ -1,0 +1,44 @@
+.donate-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
+}
+
+.donate-text {
+    flex: 1 1 50%;
+}
+
+.donate-form {
+    flex: 1 1 50%;
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.donate-form > div {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.donate-text ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.donate-text li {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 800px) {
+    .donate-row {
+        flex-direction: column-reverse;
+        gap: 2rem;
+    }
+
+    .donate-form {
+        width: 90vw;
+    }
+}
