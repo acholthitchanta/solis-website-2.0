@@ -1,8 +1,8 @@
 import React, {useRef, useState, useEffect} from 'react'
 import { Card, Form, Button, Alert } from 'react-bootstrap'
 import { Link, useNavigate} from 'react-router-dom';
-import { supabase } from "../lib/supabase";
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
+import { supabase } from '../../lib/supabase';
 
 
 export default function Login() {
@@ -35,7 +35,7 @@ export default function Login() {
 
     }
   return (
-    <div  className="d-flex align-items-center justify-content-center dark-blue" style={{minHeight:"100vh", flexDirection: 'column'}}>
+    <div  className="d-flex align-items-center justify-content-center dark-blue px-3" style={{minHeight:"100vh", flexDirection: 'column'}}>
     <Card className="w-100" style={{maxWidth: '400px', flex: 'none'}}>
         <Card.Body >
             <h2 className="text-center mb-4">LOG IN</h2>

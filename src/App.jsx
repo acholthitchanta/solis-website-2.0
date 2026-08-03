@@ -8,7 +8,7 @@ import ScrollToTop from './components/ScrollToTop';
 import SmoothScroll from './components/SmoothScroll';
 import Home from './pages/Home';
 import Region from './pages/Region';
-import Login from './pages/Login';
+import Login from './pages/admin/Login';
 import AboutUs from './pages/AboutUs';
 import Blogs from './pages/Blogs';
 import OurStory from './pages/OurStory';

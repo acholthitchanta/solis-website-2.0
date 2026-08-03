@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { Card, Form, Button, Alert } from 'react-bootstrap'
 import { editBlog, uploadBlogImage } from '../../services/Admin';
-
+import { supabase } from '../../lib/supabase';
 
 
 export default function EditBlog({ blog }) {
