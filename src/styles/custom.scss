@@ -101,6 +101,10 @@ header p{
 p, li {
     font-family: 'Montserrat';
 }
+body.modal-open {
+  padding-right: 0 !important;
+}
+
 
 .show-more-btn {
     margin-top: 2rem;

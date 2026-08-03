@@ -12,6 +12,7 @@ export function formatSlugLabel(slug) {
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(' ')
 }
+
 export function formatSlugRegion(slug) {
     const parts = slug.split(':')
     if (parts[0] === 'usa') parts.shift()

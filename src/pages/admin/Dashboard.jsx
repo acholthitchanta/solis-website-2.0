@@ -20,8 +20,8 @@ export default function Dashboard() {
         }
     }
     return (
-        <div className="d-flex align-items-center justify-content-center dark-blue" style={{ minHeight: "100vh", flexDirection: 'column' }}>
-            <Card style={{ flex: 'none' }}>
+        <div className="d-flex align-items-center justify-content-center dark-blue" style={{ minHeight: "100vh", flexDirection: 'column'}}>
+            <Card style={{ flex: 'none'}}>
                 <Card.Body>
                     <h2 className="text-center mb-4">Profile</h2>
                     {error && <Alert variant="danger">{error}</Alert>}

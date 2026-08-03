@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Nav, Navbar, NavDropdown, Container } from 'react-bootstrap'
 import { useNavigate, useLocation } from 'react-router-dom'
+import PrivateFeature from './PrivateFeature';
 
 export default function NavigationBar() {
     const navigate = useNavigate();
     const location = useLocation();
-    const isChaptersPage = location.pathname === '/chapters' || location.pathname === '/our-story' 
+    const isChaptersPage = location.pathname === '/chapters' || location.pathname === '/our-story' || location.pathname.startsWith('/blogs/')
     const [scrolled, setScrolled] = useState(false)
     const [expanded, setExpanded] = useState(false)
 
@@ -51,6 +52,11 @@ export default function NavigationBar() {
                         <Nav.Item>
                             <Nav.Link onClick={()=> handleNavigate('/podcast')}>PODCAST</Nav.Link>
                         </Nav.Item>
+                        <PrivateFeature>
+                            <Nav.Item>
+                            <Nav.Link onClick={()=> handleNavigate('/dashboard')}>DASHBOARD</Nav.Link>
+                        </Nav.Item>
+                        </PrivateFeature>
                         <Nav.Item>
                             <Nav.Link className="join" onClick={()=> handleNavigate('/support-us')}>JOIN</Nav.Link>
                         </Nav.Item>

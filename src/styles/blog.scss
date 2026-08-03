@@ -9,6 +9,18 @@
     padding: 0 1.5rem 4rem;
 }
 
+.blog-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    .show-more-btn {
+        margin-top: 0;
+        align-self: auto;
+    }
+}
+
 .blog-back-link {
     background: none;
     border: none;
@@ -16,15 +28,16 @@
     align-items: center;
     gap: 0.4rem;
     padding: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
     font-weight: 600;
     color: $secondary;
     cursor: pointer;
 }
 
 .blog-back-arrow {
-    font-size: 1.2rem;
-    line-height: 1;
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
 }
 
 .blog-detail-meta {

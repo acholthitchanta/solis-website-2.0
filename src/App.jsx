@@ -26,6 +26,7 @@ import Blog from './components/Blog';
 import Chapter from './components/Chapter';
 import { AuthProvider } from './context/AuthContext';
 import Dashboard from './pages/admin/Dashboard';
+import EditBlog from './pages/admin/EditBlog';
 import "./styles/custom.scss";
 
 
@@ -44,6 +45,7 @@ export default function App() {
             <Route path="/region" element={<Region />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/blogs/:slug" element={<Blog />} />
+            <Route path="/admin/edit-blog/:slug" element={<EditBlog />} />
             <Route path="/our-story" element={<OurStory />} />
             <Route path="/executive-board" element={<ExecutiveBoard />} />
             <Route path="/team-members" element={<TeamMembers />} />

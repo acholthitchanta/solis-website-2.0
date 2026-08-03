@@ -6,6 +6,7 @@ import { getRegion, getTeams, getEvents, getRDs, getRegionMembers, formatSlugReg
 import Landing from './Landing'
 import RegionLanding from './RegionLanding';
 import useShrinkTextToFit from '../hooks/useShrinkTextToFit'
+import { Navigate } from 'react-router-dom';
 
 function formatEventDate(dateString) {
   if (!dateString) return ''
@@ -22,6 +23,7 @@ function splitEventContent(content) {
 }
 
 export default function Chapter() {
+  const navigate = useNavigate()
   const { slug } = useParams()
 
   const [region, setRegion] = useState(null)
@@ -191,7 +193,19 @@ export default function Chapter() {
           <div className="chapter-skeleton chapter-landing-skeleton-image" />
         </div>
       ) : (
-        <RegionLanding theme="dark-blue" background="lb" landingImg={region.image_url || placeholder_url} title={formatSlugRegion(region.name)} description={""} />
+        <>
+          <div className="chapter-landing-wrap">
+            <button className="chapter-back-link" onClick={() => navigate('/chapters')}>
+                <svg className="blog-back-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12" />
+                    <polyline points="12 19 5 12 12 5" />
+                </svg> Back to Chapters
+            </button>
+
+            <RegionLanding theme="dark-blue" background="lb" landingImg={region.image_url || placeholder_url} title={formatSlugRegion(region.name)} description={""} />
+          </div>
+
+        </>
       )}
 
       <div className="section-wide light-blue">

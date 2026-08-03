@@ -1,13 +1,15 @@
 import React from 'react'
-import { Card, Placeholder } from 'react-bootstrap'
+import { Card, Placeholder, Button, Modal } from 'react-bootstrap'
 import { supabase } from '../lib/supabase';
-import { useState, useEffect, useRef, useMemo} from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getBlogs } from '../services/DataService';
 import formatDate from '../lib/formatDate';
 import blogLanding from '../assets/blog.jpg';
 import useReveal from '../hooks/useReveal';
 import Landing from '../components/Landing';
+import AddBlog from './admin/AddBlog';
+import PrivateFeature from '../components/PrivateFeature';
 
 const CATEGORIES = ['music', 'art', 'psychology', 'culture', 'interviews', 'news']
 const PAGE_SIZE = 12
@@ -17,18 +19,23 @@ export default function Blogs() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const [showAddBlog, setShowAddBlog] = useState(false)
   const [activeCategory, setActiveCategory] = useState('all');
   const [sortOrder, setSortOrder] = useState('newest');
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const blogRef = useRef(null)
-  
 
-  useReveal(blogRef, useMemo(()=> ({blogs}), [blogs]))
-  
+
+  useReveal(blogRef, useMemo(() => ({ blogs }), [blogs]))
+
 
   useEffect(() => {
+
+
     async function fetchBlogs() {
       const { data, error } = await getBlogs();
+      const { data: sessData, error: sessError } = await supabase.auth.getSession()
+      console.log(sessData.session)
 
       if (error) {
         console.error(error);
@@ -57,7 +64,7 @@ export default function Blogs() {
 
   return (
     <div ref={blogRef}>
-      <Landing theme='dark-blue' background='white' className='white' landingImg={blogLanding} title={"OUR BLOG"} description={"Updates on the organization and insights on various forms of art from our passionate writing team."}/>
+      <Landing theme='dark-blue' background='white' className='white' landingImg={blogLanding} title={"OUR BLOG"} description={"Updates on the organization and insights on various forms of art from our passionate writing team."} />
 
       <div className="blog-controls">
         <div className="blog-controls-top">
@@ -91,6 +98,7 @@ export default function Blogs() {
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
           </div>
+          <PrivateFeature><Button onClick={() => setShowAddBlog(true)} className="dark-blue">Add Blog</Button></PrivateFeature>
         </div>
 
         <div className="blog-sort">
@@ -109,6 +117,16 @@ export default function Blogs() {
           </button>
         </div>
       </div>
+
+      <Modal show={showAddBlog} onHide={() => setShowAddBlog(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>ADD BLOG</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body className='align-items-center justify-content-center d-flex dark-blue'>
+          <AddBlog />
+        </Modal.Body>
+      </Modal>
 
       {loading ? (
         <div className="blog-grid">
@@ -131,7 +149,7 @@ export default function Blogs() {
         <>
           <div className="blog-grid">
             {visibleBlogs.map((blog) => (
-              <Card className="blog-card" key={blog.id} onClick={()=> (navigate(`/blogs/${blog.slug}`))}>
+              <Card className="blog-card" key={blog.id} onClick={() => (navigate(`/blogs/${blog.slug}`))}>
                 <img src={blog.image_url} className="blog-card-image" alt={blog.title} loading="lazy" />
                 <div className="blog-card-body">
                   <div className="blog-card-meta">
