@@ -118,12 +118,12 @@ export default function Blogs() {
         </div>
       </div>
 
-      <Modal show={showAddBlog} onHide={() => setShowAddBlog(false)}>
+      <Modal show={showAddBlog} onHide={() => setShowAddBlog(false)} size="lg" scrollable>
         <Modal.Header closeButton>
           <Modal.Title>ADD BLOG</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body className='align-items-center justify-content-center d-flex dark-blue'>
+        <Modal.Body className='dark-blue' data-lenis-prevent>
           <AddBlog />
         </Modal.Body>
       </Modal>

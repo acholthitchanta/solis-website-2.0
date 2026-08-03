@@ -49,12 +49,12 @@ export default function EditBlog({ blog }) {
 
     }
     return (
-        <Card className="align-items-center justify-content-center d-flex dark-blue">
-            <Card.Body>
+        <Card className="align-items-center justify-content-center d-flex dark-blue w-100">
+            <Card.Body className="w-100">
                 <Card.Title>{blog.title}</Card.Title>
                 {error && <Alert variant="danger">{error}</Alert>}
                 {message && <Alert variant="success">{message}</Alert>}
-                <Form onSubmit={handleSubmit} ref={formRef}>
+                <Form onSubmit={handleSubmit} ref={formRef} className="w-100">
                     <Form.Group id="author">
                         <Form.Label>Author</Form.Label>
                         <Form.Control type="text" ref={authorRef} defaultValue={blog.author} />

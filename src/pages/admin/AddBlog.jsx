@@ -61,11 +61,11 @@ export default function AddBlog() {
 
     }
     return (
-        <Card className="align-items-center justify-content-center d-flex dark-blue">
-            <Card.Body>
+        <Card className="align-items-center justify-content-center d-flex dark-blue w-100">
+            <Card.Body className="w-100 ">
                 {error && <Alert variant="danger">{error}</Alert>}
                 {message && <Alert variant="success">{message}</Alert>}
-                <Form onSubmit={handleSubmit} ref={formRef}>
+                <Form onSubmit={handleSubmit} ref={formRef} className="w-100">
                     <Form.Group id="name">
                         <Form.Label>Title</Form.Label>
                         <Form.Control type="text" ref={titleRef} required />

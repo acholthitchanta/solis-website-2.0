@@ -33,12 +33,12 @@ export default function Blog() {
 
     return (
         <>
-            <Modal show={showAddBlog} onHide={() => setShowAddBlog(false)}>
+            <Modal show={showAddBlog} onHide={() => setShowAddBlog(false)} size="lg" scrollable>
                 <Modal.Header closeButton>
                 <Modal.Title>EDIT BLOG</Modal.Title>
                 </Modal.Header>
 
-                <Modal.Body className='align-items-center justify-content-center d-flex dark-blue'>
+                <Modal.Body className='dark-blue' data-lenis-prevent>
                 {blog && <EditBlog blog={blog}/>}
                 </Modal.Body>
             </Modal>
