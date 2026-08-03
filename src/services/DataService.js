@@ -54,7 +54,7 @@ export async function getPress(){
 export async function getBlogs(){
     const { data, error } = await supabase
         .from('blogs')
-        .select('*')
+        .select('id,slug,title,category,date,description, image_url')
         .order('date', { ascending: false });
 
     return {data,error}
