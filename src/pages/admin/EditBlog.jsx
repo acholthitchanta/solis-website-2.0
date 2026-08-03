@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { Card, Form, Button, Alert } from 'react-bootstrap'
-import { editBlog, uploadBlogImage } from '../../services/Admin';
+import { useNavigate } from 'react-router-dom';
+import { editBlog, deleteBlog, uploadBlogImage } from '../../services/Admin';
 import { supabase } from '../../lib/supabase';
 
 
@@ -11,6 +12,8 @@ export default function EditBlog({ blog }) {
     const authorRef = useRef();
     const descriptionRef = useRef();
     const contentRef = useRef();
+    const navigate = useNavigate();
+    const [deleting, setDeleting] = useState(false)
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
@@ -37,7 +40,6 @@ export default function EditBlog({ blog }) {
             await editBlog(blog.id, payload)
 
             setMessage('Blog updated!')
-
         }
         catch (err) {
             setError("Failed to update blog")
@@ -48,12 +50,28 @@ export default function EditBlog({ blog }) {
         }
 
     }
+
+    async function handleDelete() {
+        const confirmed = window.confirm(`Delete "${blog.title}"? This cannot be undone.`)
+        if (!confirmed) return
+
+        setDeleting(true)
+        setError('')
+
+        try {
+            await deleteBlog(blog.id)
+            navigate('/blogs')
+        }
+        catch (err) {
+            setError("Failed to delete blog")
+            console.error(err)
+            setDeleting(false)
+        }
+    }
     return (
         <Card className="align-items-center justify-content-center d-flex dark-blue w-100">
             <Card.Body className="w-100">
                 <Card.Title>{blog.title}</Card.Title>
-                {error && <Alert variant="danger">{error}</Alert>}
-                {message && <Alert variant="success">{message}</Alert>}
                 <Form onSubmit={handleSubmit} ref={formRef} className="w-100">
                     <Form.Group id="author">
                         <Form.Label>Author</Form.Label>
@@ -88,7 +106,12 @@ export default function EditBlog({ blog }) {
                         <Form.Control type="file" ref={imageRef} />
                     </Form.Group>
 
-                    <Button disabled={loading} className="w-100  mt-3" type="submit">Edit Blog</Button>
+                    {message && <Alert variant="success" className="mt-3 mb-1 text-center">{message}</Alert>}
+                    {error && <Alert variant="danger" className="mt-3 mb-1 text-center">{error}</Alert>}
+                    <div className="d-grid gap-2 d-md-flex mt-3">
+                        <Button disabled={loading} className="flex-fill" type="submit">Edit Blog</Button>
+                        <Button disabled={deleting} variant="danger" className="flex-fill" type="button" onClick={handleDelete}>Delete Blog</Button>
+                    </div>
                 </Form>
             </Card.Body>
         </Card>

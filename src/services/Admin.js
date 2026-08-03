@@ -22,6 +22,17 @@ export async function addBlog({title, author, description, imageURL, date, categ
     if(error) throw error
 }
 
+export async function deleteBlog(id){
+    const {data, error} = await supabase
+        .from('blogs')
+        .delete()
+        .eq('id', id)
+        .select()
+
+    if (error) throw error
+    if (!data || data.length === 0) throw new Error('Blog not found or you do not have permission to delete it')
+}
+
 export async function uploadBlogImage(file){
     const bitmap = await createImageBitmap(file);
     const MAX_DIM = 1600;
@@ -69,11 +80,13 @@ export async function editBlog(id, {title, author,category, description, imageUR
     if (imageURL !== undefined) updates.image_url = imageURL
     if (content !== undefined) updates.content = content
 
-    const {error} = await supabase
+    const {data, error} = await supabase
         .from('blogs')
         .update(updates)
         .eq('id', id)
-    
+        .select()
+
     if (error) throw error
+    if (!data || data.length === 0) throw new Error('Blog not found or you do not have permission to edit it')
 
 }

@@ -52,7 +52,7 @@ export default function AddBlog() {
 
         }
         catch (err) {
-            setError("Failed to add business")
+            setError("Error: failed to add blog")
             console.error(err)
         }
         finally {
@@ -63,8 +63,6 @@ export default function AddBlog() {
     return (
         <Card className="align-items-center justify-content-center d-flex dark-blue w-100">
             <Card.Body className="w-100 ">
-                {error && <Alert variant="danger">{error}</Alert>}
-                {message && <Alert variant="success">{message}</Alert>}
                 <Form onSubmit={handleSubmit} ref={formRef} className="w-100">
                     <Form.Group id="name">
                         <Form.Label>Title</Form.Label>
@@ -109,6 +107,8 @@ export default function AddBlog() {
                         <Form.Control type="date" ref={dateRef} required />
                     </Form.Group>
 
+                    {message && <Alert variant="success" className="mt-3 mb-1 text-center">{message}</Alert>}
+                    {error && <Alert variant="danger" className="mt-3 mb-1 text-center">{error}</Alert>}
                     <Button disabled={loading} className="w-100  mt-3" type="submit">Add Blog</Button>
                 </Form>
             </Card.Body>
