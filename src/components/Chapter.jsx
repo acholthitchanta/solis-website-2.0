@@ -1,12 +1,17 @@
 import React from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
-import { Card, Spinner } from "react-bootstrap";
-import { getRegion, getTeams, getEvents, getRDs, getRegionMembers, formatSlugRegion, formatSlugLabel } from "../services/MemberService"
+import { Card, Spinner, Modal } from "react-bootstrap";
+import { getRegion, getTeams, getEvents, getRDs, getPendingRDs, getRegionMembers, formatSlugRegion, formatSlugLabel } from "../services/MemberService"
 import Landing from './Landing'
 import RegionLanding from './RegionLanding';
 import useShrinkTextToFit from '../hooks/useShrinkTextToFit'
 import { Navigate } from 'react-router-dom';
+import PrivateFeature from './PrivateFeature';
+import AddTeam from '../pages/admin/AddTeam';
+import AddRD from '../pages/admin/AddRD';
+import AddMember from '../pages/admin/AddMember';
+import AddEvent from '../pages/admin/AddEvent';
 
 function formatEventDate(dateString) {
   if (!dateString) return ''
@@ -32,6 +37,8 @@ export default function Chapter() {
   const [directors, setDirectors] = useState(null)
   const [directorsLoading, setDirectorsLoading] = useState(null)
 
+  const [pendingDirectors, setPendingDirectors] = useState(null)
+
   const [teams, setTeams] = useState(null)
   const [teamsLoading, setTeamsLoading] = useState(true)
 
@@ -49,6 +56,11 @@ export default function Chapter() {
   const [showAllEvents, setShowAllEvents] = useState(false)
   const eventsGridRef = useRef(null)
 
+  const [showAddTeam, setShowAddTeam] = useState(false)
+  const [addRDTeam, setAddRDTeam] = useState(null)
+  const [addMemberTeam, setAddMemberTeam] = useState(null)
+  const [showAddEvent, setShowAddEvent] = useState(false)
+
   const placeholder_url = 'https://uvwpttufrutumpzkysvo.supabase.co/storage/v1/object/public/regions/placeholder_2560x1400.png'
 
   useEffect(() => {
@@ -60,7 +72,6 @@ export default function Chapter() {
         setRegionLoading(false)
         return
       }
-      console.log(regionData)
       setRegion(regionData)
       setRegionLoading(false)
     }
@@ -69,76 +80,86 @@ export default function Chapter() {
 
   }, [])
 
-  useEffect(() => {
-    async function fetchEvents() {
-      if (!region) return
-      const { data: eventsData, error: eventsDataError } = await getEvents(region.id);
+  async function fetchEvents() {
+    if (!region) return
+    const { data: eventsData, error: eventsDataError } = await getEvents(region.id);
 
-      if (eventsDataError) {
-        console.error(eventsDataError)
-        setEventsLoading(false)
-        return
-      }
-      console.log(eventsData)
-      setEvents(eventsData)
+    if (eventsDataError) {
+      console.error(eventsDataError)
       setEventsLoading(false)
+      return
     }
+    setEvents(eventsData)
+    setEventsLoading(false)
+  }
 
+  useEffect(() => {
     fetchEvents();
-
   }, [region])
 
-  useEffect(() => {
-    async function fetchTeams() {
-      if (!region) return
-      const { data: teamsData, error: teamsDataError } = await getTeams(region.id);
+  async function fetchTeams() {
+    if (!region) return
+    const { data: teamsData, error: teamsDataError } = await getTeams(region.id);
 
-      if (teamsDataError) {
-        console.log(teamsDataError)
-        setTeamsLoading(false)
-        return
-      }
-      console.log(teamsData)
-      setTeams(teamsData)
+    if (teamsDataError) {
+      console.log(teamsDataError)
       setTeamsLoading(false)
+      return
     }
+    setTeams(teamsData)
+    setTeamsLoading(false)
+  }
+
+  useEffect(() => {
     fetchTeams();
   }, [region])
 
 
+  async function fetchDirectors() {
+    if (!teams) return
+
+    const results = await Promise.all(
+      teams.map((team) => getRDs(team.id))
+    )
+
+    const allDirectors = results.flatMap((result) => result.data || [])
+    setDirectors(allDirectors)
+    setDirectorsLoading(false)
+  }
+
   useEffect(() => {
-    async function fetchDirectors() {
-      if (!teams) return
-
-      const results = await Promise.all(
-        teams.map((team) => getRDs(team.id))
-      )
-
-      const allDirectors = results.flatMap((result) => result.data || [])
-      console.log(allDirectors)
-      setDirectors(allDirectors)
-      setDirectorsLoading(false)
-    }
     fetchDirectors();
-
   }, [teams])
 
+  async function fetchPendingDirectors() {
+    if (!teams) return
+
+    const results = await Promise.all(
+      teams.map((team) => getPendingRDs(team.id))
+    )
+
+    const allPending = results.flatMap((result) => result.data || [])
+    setPendingDirectors(allPending)
+  }
+
   useEffect(() => {
-    async function fetchMembers() {
-      if (!teams) return
+    fetchPendingDirectors();
+  }, [teams])
 
+  async function fetchMembers() {
+    if (!teams) return
 
-      const results = await Promise.all(
-        teams.map((team) => getRegionMembers(team.id))
-      )
+    const results = await Promise.all(
+      teams.map((team) => getRegionMembers(team.id))
+    )
 
-      const allMembers = results.flatMap((result) => result.data || [])
-      console.log(allMembers)
-      setMembers(allMembers)
-      setMembersLoading(false)
-    }
+    const allMembers = results.flatMap((result) => result.data || [])
+    setMembers(allMembers)
+    setMembersLoading(false)
+  }
+
+  useEffect(() => {
     fetchMembers();
-
   }, [teams])
 
   useEffect(() => {
@@ -211,6 +232,11 @@ export default function Chapter() {
       <div className="section-wide light-blue">
         <div className="chapter-teams-row">
           <div className="chapter-teams-col">
+            <div className="chapter-teams-header">
+              <PrivateFeature>
+                <button className="chapter-add-btn" onClick={() => setShowAddTeam(true)}>Add Team</button>
+              </PrivateFeature>
+            </div>
             {teamsListLoading ? (
               [0, 1].map((i) => (
                 <div key={i} className="chapter-team">
@@ -236,9 +262,20 @@ export default function Chapter() {
                 const teamMembers = (members || [])
                   .filter((m) => m.team_id === team.id)
                   .sort((a, b) => a.name.localeCompare(b.name))
+                const teamHasDirector = teamDirectors.length > 0 || (pendingDirectors || []).some((p) => p.team_id === team.id)
                 return (
                   <div key={team.id} className="chapter-team">
-                    <h2 style={{ textTransform: 'uppercase' }}>{formatSlugLabel(team.discipline)} Team</h2>
+                    <div className="chapter-team-header">
+                      <h2 style={{ textTransform: 'uppercase' }}>{formatSlugLabel(team.discipline)} Team</h2>
+                      <PrivateFeature>
+                        <div className="chapter-team-header-actions">
+                          <button className="chapter-add-btn" onClick={() => setAddRDTeam(team)}>Add Regional Director</button>
+                          {teamHasDirector && (
+                            <button className="chapter-add-btn" onClick={() => setAddMemberTeam(team)}>Add Member</button>
+                          )}
+                        </div>
+                      </PrivateFeature>
+                    </div>
                     <div
                       className={`chapter-people${expandedTeams[team.id] ? ' expanded' : ''}`}
                       ref={(el) => { peopleRefs.current[team.id] = el }}
@@ -338,7 +375,12 @@ export default function Chapter() {
       </div>
 
       <div className="section-wide yellow chapter-events-section">
-        <h1>OUR EVENTS</h1>
+        <div className="chapter-events-header">
+          <h1>OUR EVENTS</h1>
+          <PrivateFeature>
+            <button className="chapter-add-btn chapter-add-btn-dark" onClick={() => setShowAddEvent(true)}>Add Event</button>
+          </PrivateFeature>
+        </div>
         {eventsLoading ? (
           <div className="chapter-events-grid">
             {[0, 1, 2].map((i) => (
@@ -383,6 +425,42 @@ export default function Chapter() {
           <p>No events yet.</p>
         )}
       </div>
+
+      <Modal show={showAddTeam} onHide={() => setShowAddTeam(false)} size="lg" scrollable>
+        <Modal.Header closeButton>
+          <Modal.Title>ADD TEAM</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="dark-blue" data-lenis-prevent>
+          {region && <AddTeam region={region} onAdded={fetchTeams} />}
+        </Modal.Body>
+      </Modal>
+
+      <Modal show={!!addRDTeam} onHide={() => setAddRDTeam(null)} size="lg" scrollable>
+        <Modal.Header closeButton>
+          <Modal.Title>ADD REGIONAL DIRECTOR</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="dark-blue" data-lenis-prevent>
+          {addRDTeam && <AddRD team={addRDTeam} onAdded={fetchPendingDirectors} />}
+        </Modal.Body>
+      </Modal>
+
+      <Modal show={!!addMemberTeam} onHide={() => setAddMemberTeam(null)} size="lg" scrollable>
+        <Modal.Header closeButton>
+          <Modal.Title>ADD MEMBER</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="dark-blue" data-lenis-prevent>
+          {addMemberTeam && <AddMember team={addMemberTeam} onAdded={fetchMembers} />}
+        </Modal.Body>
+      </Modal>
+
+      <Modal show={showAddEvent} onHide={() => setShowAddEvent(false)} size="lg" scrollable>
+        <Modal.Header closeButton>
+          <Modal.Title>ADD EVENT</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="dark-blue" data-lenis-prevent>
+          {region && <AddEvent region={region} onAdded={fetchEvents} />}
+        </Modal.Body>
+      </Modal>
     </div>
   )
 }

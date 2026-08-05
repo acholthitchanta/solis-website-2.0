@@ -245,7 +245,7 @@ export default function Home() {
               {sponsors.length > 0 ? (
                 <div className={`sponsor-track${sponsorCarouselVisible ? '' : ' paused'}`}>
                   {sponsors.concat(sponsors).map((url, i) => (
-                    <img key={i} src={url} className="sponsor-logo" alt="Sponsor logo" loading="lazy" />
+                    <img key={i} src={url} className="sponsor-logo" alt="Sponsor logo" loading="lazy" decoding="async" />
                   ))}
                 </div>
               ) : (

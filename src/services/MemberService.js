@@ -1,5 +1,17 @@
 import { supabase } from "../lib/supabase";
+import { feature } from "topojson-client";
+import worldCountries from "world-atlas/countries-50m.json";
+import usStates from "us-atlas/states-10m.json";
 
+function extractNames(topology) {
+    const objectKey = Object.keys(topology.objects)[0]
+    return feature(topology, topology.objects[objectKey]).features
+        .map((f) => f.properties.name)
+        .sort((a, b) => a.localeCompare(b))
+}
+
+export const countryOptions = extractNames(worldCountries)
+export const usStateOptions = extractNames(usStates)
 
 export function slugifyCountryName(name) {
     if (name === 'United States of America') return 'usa'
@@ -62,6 +74,15 @@ export async function getRDs(teamID) {
         .from('profiles')
         .select('id, full_name, headshot_url, team_id')
         .in('role', ['rd'])
+        .eq('team_id', teamID)
+
+    return { data, error }
+}
+
+export async function getPendingRDs(teamID) {
+    const { data, error } = await supabase
+        .from('pending_rds')
+        .select('id, name, team_id')
         .eq('team_id', teamID)
 
     return { data, error }

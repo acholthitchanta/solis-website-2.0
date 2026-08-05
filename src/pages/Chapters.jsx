@@ -1,9 +1,10 @@
 import { getRegions, formatSlugLabel, slugifyCountryName } from "../services/MemberService"
 import { useEffect, useState, useMemo } from "react";
-import { Spinner } from "react-bootstrap";
+import { Spinner, Modal } from "react-bootstrap";
 import chapterIMG from "../assets/chapters.jpg"
 import Landing from "../components/Landing";
-
+import PrivateFeature from "../components/PrivateFeature";
+import AddRegion from "./admin/AddRegion";
 import { ComposableMap, Geographies, Geography, Annotation, ZoomableGroup } from 'react-simple-maps'
 import usStates from 'us-atlas/states-10m.json'
 import worldCountries from 'world-atlas/countries-50m.json'
@@ -18,6 +19,7 @@ export default function Chapters() {
     const [usselected, usSetSelected] = useState(null)
     const [selected, setSelected] = useState(null)
     const [showFullList, setShowFullList] = useState(false)
+    const [showAddRegion, setShowAddRegion] = useState(false)
 
 
     async function fetchRegions(){
@@ -34,6 +36,17 @@ export default function Chapters() {
 
       setRegions(regionData);
       setRegionsLoading(false);
+    }
+
+    async function refreshRegions(){
+      const {data: regionData, error: regionError} = await getRegions();
+
+      if (regionError){
+        console.error(regionError);
+        return;
+      }
+
+      setRegions(regionData);
     }
 
     useEffect(()=>{
@@ -58,6 +71,8 @@ export default function Chapters() {
             if (!acc[country]) acc[country] = []
             acc[country].push(parts[1])
           }          
+
+          // console.log(acc)
           return acc
           
 
@@ -86,6 +101,9 @@ export default function Chapters() {
         <button className="chapters-list-btn" onClick={() => setShowFullList((v) => !v)}>
           {showFullList ? 'Hide full list' : 'Show full list'}
         </button>
+        <PrivateFeature>
+          <button className="chapters-add-region-btn" onClick={() => setShowAddRegion(true)}>Add Region</button>
+        </PrivateFeature>
       {selected && (
           <div className="chapter-panel">
             <button className="chapter-panel-close" onClick={() => setSelected(null)} aria-label="Close">
@@ -114,6 +132,7 @@ export default function Chapters() {
                   {({ geographies }) =>
                     geographies.map((geo) => {
                       const slug = slugifyCountryName(geo.properties.name)
+                      console.log(geo)
                       return (
                         <Geography
                           key={geo.rsmKey}
@@ -239,6 +258,15 @@ export default function Chapters() {
             ]
           })}
         </div>
+        <Modal show={showAddRegion} onHide={() => setShowAddRegion(false)} size="lg" scrollable>
+        <Modal.Header closeButton>
+          <Modal.Title>ADD REGION</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body className='dark-blue' data-lenis-prevent>
+          <AddRegion onAdded={refreshRegions} />
+        </Modal.Body>
+      </Modal>
       </>
       )}
     </div>
