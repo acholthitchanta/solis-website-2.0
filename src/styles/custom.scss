@@ -76,6 +76,11 @@ a{
     color: inherit;
 }
 
+button, button:focus, button:active, button:focus-visible {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
 .spinner-container{
     display: flex;
     flex-direction: column;

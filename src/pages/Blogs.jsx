@@ -98,7 +98,7 @@ export default function Blogs() {
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
           </div>
-          <PrivateFeature><Button onClick={() => setShowAddBlog(true)} className="dark-blue">Add Blog</Button></PrivateFeature>
+          <PrivateFeature><Button onClick={() => setShowAddBlog(true)}>Add Blog</Button></PrivateFeature>
         </div>
 
         <div className="blog-sort">

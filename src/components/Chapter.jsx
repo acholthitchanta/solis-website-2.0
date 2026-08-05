@@ -378,7 +378,7 @@ export default function Chapter() {
         <div className="chapter-events-header">
           <h1>OUR EVENTS</h1>
           <PrivateFeature>
-            <button className="chapter-add-btn chapter-add-btn-dark" onClick={() => setShowAddEvent(true)}>Add Event</button>
+            <button className="chapter-add-btn" onClick={() => setShowAddEvent(true)}>Add Event</button>
           </PrivateFeature>
         </div>
         {eventsLoading ? (
