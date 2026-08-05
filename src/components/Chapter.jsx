@@ -70,6 +70,7 @@ export default function Chapter() {
   const [showEditRegionImage, setShowEditRegionImage] = useState(false)
 
   const placeholder_url = 'https://uvwpttufrutumpzkysvo.supabase.co/storage/v1/object/public/regions/placeholder_2560x1400.png'
+  const member_placeholder_url = 'https://uvwpttufrutumpzkysvo.supabase.co/storage/v1/object/public/members/solis.jpeg'
 
   async function fetchRegion() {
     const { data: regionData, error: regionDataError } = await getRegion(slug);
@@ -295,7 +296,7 @@ export default function Chapter() {
                                   <PencilIcon />
                                 </button>
                               </PrivateFeature>
-                              <Card.Img src={director.headshot_url} />
+                              <Card.Img src={director.headshot_url || member_placeholder_url} />
                               <Card.Body>
                                 <Card.Title>{director.name}</Card.Title>
                                 <Card.Text>Regional Director</Card.Text>
@@ -309,7 +310,7 @@ export default function Chapter() {
                                   <PencilIcon />
                                 </button>
                               </PrivateFeature>
-                              <Card.Img src={member.headshot_url} />
+                              <Card.Img src={member.headshot_url || member_placeholder_url} />
                               <Card.Body>
                                 <Card.Title>{member.name}</Card.Title>
                                 <Card.Text style={{ textTransform: 'capitalize' }}>{member.role}</Card.Text>
