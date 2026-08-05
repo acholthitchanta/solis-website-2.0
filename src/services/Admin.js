@@ -215,57 +215,6 @@ export async function uploadEventImage(file){
     
     return data.publicUrl
 }
-export async function uploadRDHeadshot(file){
-    const bitmap = await createImageBitmap(file);
-    const MAX_DIM = 500;
-    const scale = Math.min(1, MAX_DIM / Math.max(bitmap.width, bitmap.height));
-    const w = Math.round(bitmap.width * scale);
-    const h = Math.round(bitmap.height * scale);
-
-    const canvas = document.createElement('canvas');
-    canvas.width = w;
-    canvas.height = h;
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0,0,w,h);
-    ctx.drawImage(bitmap, 0,0,w,h)
-
-    let blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.85));
-    let quality = 0.75;
-    while (blob.size > 150_000 && quality >= 0.4) {
-        blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', quality));
-        quality -= 0.1;
-    }
-    
-    const key =  `${crypto.randomUUID()}.jpeg`
-
-    //upload the file
-    const {error: uploadError} = await supabase.storage
-        .from('headshots')
-        .upload(key, blob,{
-            contentType: 'image/jpeg',
-        });
-    
-    if (uploadError) throw uploadError;
-    
-    const {data} = supabase.storage.from('headshots').getPublicUrl(key)
-    
-    return data.publicUrl
-}
-
-export async function addRD({team_id, email, name, headshotURL}){
-    const {error} = await supabase
-        .from('pending_rds')
-        .insert({
-            team_id: team_id,
-            email: email,
-            name: name,
-            headshot_url: headshotURL
-        })
-
-    if (error) throw error
-}
-
 export async function uploadMemberHeadshot(file){
     const bitmap = await createImageBitmap(file);
     const MAX_DIM = 500;
@@ -304,15 +253,92 @@ export async function uploadMemberHeadshot(file){
     return data.publicUrl
 }
 
-export async function addMember({team_id, name, headshotURL}){
+export async function addMember({team_id, name, headshotURL, role}){
     const {error} = await supabase
         .from('team_members')
         .insert({
             team_id: team_id,
             name: name,
             headshot_url: headshotURL,
-            role: 'member'
+            role: role
         })
-    
+
     if (error) throw error
+}
+
+export async function editMember(id, {name, role, headshotURL}){
+    const updates = {}
+
+    if (name !== undefined) updates.name = name
+    if (role !== undefined) updates.role = role
+    if (headshotURL !== undefined) updates.headshot_url = headshotURL
+
+    const {data, error} = await supabase
+        .from('team_members')
+        .update(updates)
+        .eq('id', id)
+        .select()
+
+    if (error) throw error
+    if (!data || data.length === 0) throw new Error('Member not found or you do not have permission to edit it')
+}
+
+export async function deleteMember(id){
+    const {data, error} = await supabase
+        .from('team_members')
+        .delete()
+        .eq('id', id)
+        .select()
+
+    if (error) throw error
+    if (!data || data.length === 0) throw new Error('Member not found or you do not have permission to delete it')
+}
+
+export async function editEvent(id, {title, date, content, imageURL}){
+    const updates = {
+        content: `${title}: ${content}`,
+        event_date: date,
+    }
+
+    if (imageURL !== undefined) updates.image_url = imageURL
+
+    const {data, error} = await supabase
+        .from('events')
+        .update(updates)
+        .eq('id', id)
+        .select()
+
+    if (error) throw error
+    if (!data || data.length === 0) throw new Error('Event not found or you do not have permission to edit it')
+}
+
+export async function deleteEvent(id){
+    const {data, error} = await supabase
+        .from('events')
+        .delete()
+        .eq('id', id)
+        .select()
+
+    if (error) throw error
+    if (!data || data.length === 0) throw new Error('Event not found or you do not have permission to delete it')
+}
+
+export async function deleteRegionImage(imageUrl){
+    if (!imageUrl) return
+
+    const key = imageUrl.split('/regions/').pop()
+    const {error} = await supabase.storage.from('regions').remove([key])
+
+    if (error) throw error
+}
+
+export async function updateRegionImage(id, imageURL){
+    const {data, error} = await supabase
+        .from('regions')
+        .update({image_url: imageURL})
+        .eq('id', id)
+        .select()
+
+    if (error) throw error
+    if (!data || data.length === 0) throw new Error('Region not found or you do not have permission to edit it')
 }

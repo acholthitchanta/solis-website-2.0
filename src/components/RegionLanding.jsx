@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import useReveal from '../hooks/useReveal'
 
-export default function RegionLanding({landingImg, title, description, theme,background}) {
+export default function RegionLanding({landingImg, title, description, theme,background, imageOverlay}) {
   const containerRef = useRef(null)
   useReveal(containerRef)
   return (
@@ -12,6 +12,7 @@ export default function RegionLanding({landingImg, title, description, theme,bac
       </div>
       <div className="landing-medium-image-wrap">
         <img src={landingImg} className="landing-medium-image" alt="" />
+        {imageOverlay}
       </div>
     </div>
   )

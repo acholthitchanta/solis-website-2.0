@@ -95,7 +95,7 @@
     gap: 2rem 3rem;
     text-align: left;
     overflow: hidden;
-    max-height: 200px;
+    max-height: 235px;
 }
 
 .chapter-people.expanded {
@@ -114,6 +114,7 @@
 }
 
 .chapter-person {
+    position: relative;
     min-width: 150px;
     max-width: 150px;
 }
@@ -126,7 +127,7 @@
     text-align: left;
     border-radius: 0;
     width: 200px;
-    height: 200px;
+    height: 210px;
     overflow: hidden;
 }
 
@@ -143,11 +144,11 @@
 
 .chapter-person .card-title {
     color: white;
-    font-size: 1rem;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    height: 1.4rem;
     margin-bottom: 0.1rem;
-    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .chapter-person .card-text {
@@ -237,6 +238,7 @@
 }
 
 .chapter-event-card {
+    position: relative;
     background-color: white;
     color: $secondary;
     border-radius: 8px;
@@ -399,6 +401,9 @@
 }
 
 @media (max-width: 800px) {
+    .chapter-person{
+        margin-bottom: 2rem;
+    }
     .chapter-teams-row {
         flex-direction: column;
     }
@@ -417,4 +422,45 @@
         grid-template-columns: repeat(auto-fill, minmax(90vw, 1fr));
         gap: 2rem;
     }
+}
+
+.chapter-edit-icon-btn {
+    position: absolute;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(2, 3, 65, 0.7);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+.chapter-edit-icon-btn:hover {
+    background-color: $secondary;
+}
+
+.chapter-edit-icon-btn-person {
+    top: 4px;
+    right: 4px;
+}
+
+.chapter-edit-icon-btn-event {
+    top: 0.75rem;
+    right: 0.75rem;
+}
+
+.chapter-edit-icon-btn-region {
+    bottom: 1rem;
+    right: 1rem;
 }

@@ -2,16 +2,18 @@ import React from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 import { Card, Spinner, Modal } from "react-bootstrap";
-import { getRegion, getTeams, getEvents, getRDs, getPendingRDs, getRegionMembers, formatSlugRegion, formatSlugLabel } from "../services/MemberService"
+import { getRegion, getTeams, getEvents, getRegionMembers, formatSlugRegion, formatSlugLabel } from "../services/MemberService"
 import Landing from './Landing'
 import RegionLanding from './RegionLanding';
 import useShrinkTextToFit from '../hooks/useShrinkTextToFit'
 import { Navigate } from 'react-router-dom';
 import PrivateFeature from './PrivateFeature';
 import AddTeam from '../pages/admin/AddTeam';
-import AddRD from '../pages/admin/AddRD';
 import AddMember from '../pages/admin/AddMember';
 import AddEvent from '../pages/admin/AddEvent';
+import EditMember from '../pages/admin/EditMember';
+import EditEvent from '../pages/admin/EditEvent';
+import EditRegionImage from '../pages/admin/EditRegionImage';
 
 function formatEventDate(dateString) {
   if (!dateString) return ''
@@ -27,17 +29,20 @@ function splitEventContent(content) {
   return { title: title.trim(), description: rest.join(':').trim() }
 }
 
+function PencilIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
+    </svg>
+  )
+}
+
 export default function Chapter() {
   const navigate = useNavigate()
   const { slug } = useParams()
 
   const [region, setRegion] = useState(null)
   const [regionLoading, setRegionLoading] = useState(true)
-
-  const [directors, setDirectors] = useState(null)
-  const [directorsLoading, setDirectorsLoading] = useState(null)
-
-  const [pendingDirectors, setPendingDirectors] = useState(null)
 
   const [teams, setTeams] = useState(null)
   const [teamsLoading, setTeamsLoading] = useState(true)
@@ -52,33 +57,44 @@ export default function Chapter() {
   const [overflowingTeams, setOverflowingTeams] = useState({})
   const [rowHeights, setRowHeights] = useState({})
   const peopleRefs = useRef({})
+  const teamsColRef = useRef(null)
 
   const [showAllEvents, setShowAllEvents] = useState(false)
   const eventsGridRef = useRef(null)
 
   const [showAddTeam, setShowAddTeam] = useState(false)
-  const [addRDTeam, setAddRDTeam] = useState(null)
   const [addMemberTeam, setAddMemberTeam] = useState(null)
   const [showAddEvent, setShowAddEvent] = useState(false)
+  const [editMemberState, setEditMemberState] = useState(null)
+  const [editEventState, setEditEventState] = useState(null)
+  const [showEditRegionImage, setShowEditRegionImage] = useState(false)
 
   const placeholder_url = 'https://uvwpttufrutumpzkysvo.supabase.co/storage/v1/object/public/regions/placeholder_2560x1400.png'
 
-  useEffect(() => {
-    async function fetchRegion() {
-      const { data: regionData, error: regionDataError } = await getRegion(slug);
+  async function fetchRegion() {
+    const { data: regionData, error: regionDataError } = await getRegion(slug);
 
-      if (regionDataError) {
-        console.error(regionDataError)
-        setRegionLoading(false)
-        return
-      }
-      setRegion(regionData)
+    if (regionDataError) {
+      console.error(regionDataError)
       setRegionLoading(false)
+      return
     }
+    setRegion(regionData)
+    setRegionLoading(false)
+  }
 
+  useEffect(() => {
     fetchRegion();
-
   }, [])
+
+  async function refreshRegion() {
+    const { data: regionData, error: regionDataError } = await getRegion(slug);
+    if (regionDataError) {
+      console.error(regionDataError)
+      return
+    }
+    setRegion(regionData)
+  }
 
   async function fetchEvents() {
     if (!region) return
@@ -113,38 +129,6 @@ export default function Chapter() {
   useEffect(() => {
     fetchTeams();
   }, [region])
-
-
-  async function fetchDirectors() {
-    if (!teams) return
-
-    const results = await Promise.all(
-      teams.map((team) => getRDs(team.id))
-    )
-
-    const allDirectors = results.flatMap((result) => result.data || [])
-    setDirectors(allDirectors)
-    setDirectorsLoading(false)
-  }
-
-  useEffect(() => {
-    fetchDirectors();
-  }, [teams])
-
-  async function fetchPendingDirectors() {
-    if (!teams) return
-
-    const results = await Promise.all(
-      teams.map((team) => getPendingRDs(team.id))
-    )
-
-    const allPending = results.flatMap((result) => result.data || [])
-    setPendingDirectors(allPending)
-  }
-
-  useEffect(() => {
-    fetchPendingDirectors();
-  }, [teams])
 
   async function fetchMembers() {
     if (!teams) return
@@ -183,9 +167,10 @@ export default function Chapter() {
     })
     setOverflowingTeams(nextOverflowing)
     setRowHeights(nextRowHeights)
-  }, [teams, directors, members])
+  }, [teams, members])
 
   useShrinkTextToFit(eventsGridRef, '.chapter-event-card-body p:not(.chapter-event-card-date)', [events, showAllEvents])
+  useShrinkTextToFit(teamsColRef, '.chapter-person .card-title', [members])
 
   if (!regionLoading && !region) {
     return (
@@ -201,7 +186,8 @@ export default function Chapter() {
     : []
 
   const teamsListLoading = teams === null
-  const peopleLoading = directors === null || members === null
+  const peopleLoading = members === null
+  const regionImageIsPlaceholder = !region || !region.image_url || region.image_url === placeholder_url
 
   return (
     <div>
@@ -223,7 +209,20 @@ export default function Chapter() {
                 </svg> Back to Chapters
             </button>
 
-            <RegionLanding theme="dark-blue" background="lb" landingImg={region.image_url || placeholder_url} title={formatSlugRegion(region.name)} description={""} />
+            <RegionLanding
+              theme="dark-blue"
+              background="lb"
+              landingImg={region.image_url || placeholder_url}
+              title={formatSlugRegion(region.name)}
+              description={""}
+              imageOverlay={
+                <PrivateFeature>
+                  <button className="chapter-edit-icon-btn chapter-edit-icon-btn-region" onClick={() => setShowEditRegionImage(true)} aria-label="Edit region image">
+                    <PencilIcon />
+                  </button>
+                </PrivateFeature>
+              }
+            />
           </div>
 
         </>
@@ -231,7 +230,7 @@ export default function Chapter() {
 
       <div className="section-wide light-blue">
         <div className="chapter-teams-row">
-          <div className="chapter-teams-col">
+          <div className="chapter-teams-col" ref={teamsColRef}>
             <div className="chapter-teams-header">
               <PrivateFeature>
                 <button className="chapter-add-btn" onClick={() => setShowAddTeam(true)}>Add Team</button>
@@ -256,24 +255,20 @@ export default function Chapter() {
               <p>No teams yet.</p>
             ) : (
               teams.map((team) => {
-                const teamDirectors = (directors || [])
-                  .filter((d) => d.team_id === team.id)
-                  .sort((a, b) => a.full_name.localeCompare(b.full_name))
-                const teamMembers = (members || [])
+                const teamMembersAll = (members || [])
                   .filter((m) => m.team_id === team.id)
+                const teamDirectors = teamMembersAll
+                  .filter((m) => m.role === 'rd')
                   .sort((a, b) => a.name.localeCompare(b.name))
-                const teamHasDirector = teamDirectors.length > 0 || (pendingDirectors || []).some((p) => p.team_id === team.id)
+                const teamMembers = teamMembersAll
+                  .filter((m) => m.role !== 'rd')
+                  .sort((a, b) => a.name.localeCompare(b.name))
                 return (
                   <div key={team.id} className="chapter-team">
                     <div className="chapter-team-header">
                       <h2 style={{ textTransform: 'uppercase' }}>{formatSlugLabel(team.discipline)} Team</h2>
                       <PrivateFeature>
-                        <div className="chapter-team-header-actions">
-                          <button className="chapter-add-btn" onClick={() => setAddRDTeam(team)}>Add Regional Director</button>
-                          {teamHasDirector && (
-                            <button className="chapter-add-btn" onClick={() => setAddMemberTeam(team)}>Add Member</button>
-                          )}
-                        </div>
+                        <button className="chapter-add-btn" onClick={() => setAddMemberTeam(team)}>Add Member</button>
                       </PrivateFeature>
                     </div>
                     <div
@@ -295,15 +290,25 @@ export default function Chapter() {
                         <>
                           {teamDirectors.map((director) => (
                             <Card className="chapter-person" key={director.id}>
+                              <PrivateFeature>
+                                <button className="chapter-edit-icon-btn chapter-edit-icon-btn-person" onClick={() => setEditMemberState(director)} aria-label="Edit member">
+                                  <PencilIcon />
+                                </button>
+                              </PrivateFeature>
                               <Card.Img src={director.headshot_url} />
                               <Card.Body>
-                                <Card.Title>{director.full_name}</Card.Title>
+                                <Card.Title>{director.name}</Card.Title>
                                 <Card.Text>Regional Director</Card.Text>
                               </Card.Body>
                             </Card>
                           ))}
                           {teamMembers.map((member) => (
                             <Card className="chapter-person" key={member.id}>
+                              <PrivateFeature>
+                                <button className="chapter-edit-icon-btn chapter-edit-icon-btn-person" onClick={() => setEditMemberState(member)} aria-label="Edit member">
+                                  <PencilIcon />
+                                </button>
+                              </PrivateFeature>
                               <Card.Img src={member.headshot_url} />
                               <Card.Body>
                                 <Card.Title>{member.name}</Card.Title>
@@ -405,6 +410,11 @@ export default function Chapter() {
                   id={`event-${event.id}`}
                   className="chapter-event-card"
                 >
+                  <PrivateFeature>
+                    <button className="chapter-edit-icon-btn chapter-edit-icon-btn-event" onClick={() => setEditEventState(event)} aria-label="Edit event">
+                      <PencilIcon />
+                    </button>
+                  </PrivateFeature>
                   {event.image_url && <img src={event.image_url} alt="" />}
                   <div className="chapter-event-card-body">
                     <h3>{title}</h3>
@@ -435,15 +445,6 @@ export default function Chapter() {
         </Modal.Body>
       </Modal>
 
-      <Modal show={!!addRDTeam} onHide={() => setAddRDTeam(null)} size="lg" scrollable>
-        <Modal.Header closeButton>
-          <Modal.Title>ADD REGIONAL DIRECTOR</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="dark-blue" data-lenis-prevent>
-          {addRDTeam && <AddRD team={addRDTeam} onAdded={fetchPendingDirectors} />}
-        </Modal.Body>
-      </Modal>
-
       <Modal show={!!addMemberTeam} onHide={() => setAddMemberTeam(null)} size="lg" scrollable>
         <Modal.Header closeButton>
           <Modal.Title>ADD MEMBER</Modal.Title>
@@ -459,6 +460,51 @@ export default function Chapter() {
         </Modal.Header>
         <Modal.Body className="dark-blue" data-lenis-prevent>
           {region && <AddEvent region={region} onAdded={fetchEvents} />}
+        </Modal.Body>
+      </Modal>
+
+      <Modal show={!!editMemberState} onHide={() => setEditMemberState(null)} size="lg" scrollable>
+        <Modal.Header closeButton>
+          <Modal.Title>EDIT MEMBER</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="dark-blue" data-lenis-prevent>
+          {editMemberState && (
+            <EditMember
+              member={editMemberState}
+              onUpdated={fetchMembers}
+              onDeleted={() => { fetchMembers(); setEditMemberState(null) }}
+            />
+          )}
+        </Modal.Body>
+      </Modal>
+
+      <Modal show={!!editEventState} onHide={() => setEditEventState(null)} size="lg" scrollable>
+        <Modal.Header closeButton>
+          <Modal.Title>EDIT EVENT</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="dark-blue" data-lenis-prevent>
+          {editEventState && (
+            <EditEvent
+              event={editEventState}
+              onUpdated={fetchEvents}
+              onDeleted={() => { fetchEvents(); setEditEventState(null) }}
+            />
+          )}
+        </Modal.Body>
+      </Modal>
+
+      <Modal show={showEditRegionImage} onHide={() => setShowEditRegionImage(false)} size="lg" scrollable>
+        <Modal.Header closeButton>
+          <Modal.Title>EDIT REGION IMAGE</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="dark-blue" data-lenis-prevent>
+          {region && (
+            <EditRegionImage
+              region={region}
+              isPlaceholder={regionImageIsPlaceholder}
+              onUpdated={refreshRegion}
+            />
+          )}
         </Modal.Body>
       </Modal>
     </div>
