@@ -49,6 +49,9 @@ export default function Home() {
   const [sponsorError, setSponsorsError] = useState(false);
   const [testimonialError, setTestimonialError] = useState(false);
 
+  const numRef = useRef(null)
+  const [started, setStarted] = useState(false)
+
   const homeRef = useRef(null)
   useReveal(homeRef, useMemo(()=> ({reviews}), [reviews]))
 
@@ -79,6 +82,18 @@ export default function Home() {
 
   },[])
 
+  useEffect(()=>{
+        const observer = new IntersectionObserver(
+            ([entry]) =>{
+                setStarted(entry.isIntersecting)
+            },
+            {threshold: 0.12, rootMargin: '0px 0px -8% 0px'}
+        )
+            observer.observe(numRef.current)
+            return () => observer.disconnect()
+  }, [])
+
+  
   useEffect(() => {
     if (testimonialContentRef.current) {
       setTestimonialOverflowing(testimonialContentRef.current.scrollHeight > testimonialContentRef.current.clientHeight)
@@ -137,12 +152,12 @@ export default function Home() {
           <h1 className="reveal">THE ART OF CONNECTION</h1>
           <p className="reveal"> Solis and Luna Arts is a student-run 501(c)(3) organization that offers companionship and encouragement to individuals facing physical and mental health troubles. Through musical performances, collaborative art workshops, nail art, and more, we are dedicated to bringing a variety art forms to as many communities as possible!</p>
         </header>
-        <div className="impact">
+        <div className="impact" ref={numRef}>
           <div className="num">
             <h1>
               <span className="num-value-wrap">
                 <span className="num-value-ghost" aria-hidden="true">50+</span>
-                <span className="num-value-visible"><Counter target='50' />+</span>
+                <span className="num-value-visible"><Counter target='50' started={started} />+</span>
               </span>
             </h1>
             <h4 className="reveal">Chapters</h4>
@@ -151,7 +166,7 @@ export default function Home() {
             <h1>
               <span className="num-value-wrap">
                 <span className="num-value-ghost" aria-hidden="true">350+</span>
-                <span className="num-value-visible"><Counter target='350' />+</span>
+                <span className="num-value-visible"><Counter target='350' started={started} />+</span>
               </span>
             </h1>
             <h4 className="reveal">Events</h4>
@@ -159,8 +174,8 @@ export default function Home() {
           <div className="num">
             <h1>
               <span className="num-value-wrap">
-                <span className="num-value-ghost" aria-hidden="true">2000+</span>
-                <span className="num-value-visible"><Counter target='2000' />+</span>
+                <span className="num-value-ghost" aria-hidden="true">2.0K+</span>
+                <span className="num-value-visible"><Counter target='2.0' started={started} />K+</span>
               </span>
             </h1>
             <h4 className="reveal">Volunteers</h4>
@@ -169,7 +184,7 @@ export default function Home() {
             <h1>
               <span className="num-value-wrap">
                 <span className="num-value-ghost" aria-hidden="true">10K+</span>
-                <span className="num-value-visible"><Counter target='10' />K+</span>
+                <span className="num-value-visible"><Counter target='10' started={started} />K+</span>
               </span>
             </h1>
             <h4 className="reveal">Patients Impacted</h4>

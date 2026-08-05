@@ -1,46 +1,38 @@
 import React from 'react'
-import { useState, useEffect, useRef} from 'react'
+import { useState, useEffect} from 'react'
 
-export default function Counter({target}) {
+export default function Counter({target, started}) {
 
     const [count, setCount] = useState(0.0);
-    const [started, setStarted] = useState(false)
-    const ref = useRef(null)
+
+    const decimals = (String(target).split('.')[1] || '').length
+    const numericTarget = parseFloat(target)
 
     useEffect(()=>{
-        if (!started) return;
-        const duration = 1500;
+        if (!started){
+            setCount(0)
+            return
+        }
+
+        const duration = 800;
         const interval = 16;
         const steps = duration/interval;
-        const increment = target/steps;
+        const increment = numericTarget/steps;
 
         let current = 0
         const timer = setInterval(() => {
-            current = current + (target - current) * 0.08
-            setCount(Math.ceil(current))
-            if (target - current < 0.5){
-                setCount(target);
+            current += increment
+            if (current >= numericTarget){
+                setCount(numericTarget);
                 clearInterval(timer);
-            } 
+            } else {
+                setCount(current)
+            }
         }, interval)
-    
-    if (!started){
-        setCount(0)
-        return
-    }
-    return () => clearInterval(timer)
-    }, [started, target])
 
-    useEffect(()=>{
-        const observer = new IntersectionObserver(
-            ([entry]) =>{
-                setStarted(entry.isIntersecting)
-            },
-            {threshold: 0.12, rootMargin: '0px 0px -8% 0px'}
-        )
-            observer.observe(ref.current)
-            return () => observer.disconnect()
-        }, [])
+        return () => clearInterval(timer)
+    }, [started, numericTarget])
 
-    return <span className="impact-num" ref={ref}>{count}</span>
+
+    return <span className="impact-num">{count.toFixed(decimals)}</span>
 }
