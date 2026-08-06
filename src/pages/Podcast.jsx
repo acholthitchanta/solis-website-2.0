@@ -93,7 +93,7 @@ export default function Podcast() {
         
         <section className="dark-blue">
             <div className="dark-blue podcast-divider">
-                <h2 className="reveal">SOME THEMES WE'VE EXPLORED:</h2>
+                <h2 className="reveal">THEMES WE'VE EXPLORED:</h2>
             </div>
 
             <div className="podcast-category-grid">
