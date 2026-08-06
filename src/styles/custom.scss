@@ -46,6 +46,8 @@ $orange: #e9ab74;
 
 *{
     font-family: 'Teachers', 'Trebuchet MS', sans-serif;
+    scrollbar-color: $primary $dark-blue;
+    scrollbar-width: thin;
 }
 
 a{
