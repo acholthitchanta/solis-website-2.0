@@ -156,11 +156,11 @@ export default function Home() {
           <div className="num">
             <h1>
               <span className="num-value-wrap">
-                <span className="num-value-ghost" aria-hidden="true">50+</span>
-                <span className="num-value-visible"><Counter target='50' started={started} />+</span>
+                <span className="num-value-ghost" aria-hidden="true">90+</span>
+                <span className="num-value-visible"><Counter target='90' started={started} />+</span>
               </span>
             </h1>
-            <h4 className="reveal">Chapters</h4>
+            <h4 className="reveal">Regional Directors</h4>
           </div>
           <div className="num">
             <h1>

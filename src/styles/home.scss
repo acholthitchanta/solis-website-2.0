@@ -386,7 +386,8 @@
 
 .num {
     width: fit-content;
-    padding: 0 1rem;
+    padding: 0 1rem; // adds 1rem total width (0.5rem each side)
+    box-sizing: content-box; // ensures padding adds to width rather than eating into it
     display: flex;
     flex-direction: column;
     align-items: center;
