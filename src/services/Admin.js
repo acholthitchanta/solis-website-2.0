@@ -6,8 +6,8 @@ export function slugify(name) {
         .toLowerCase()
         .trim()
         .replace(/[^a-z0-9\s-]/g, '')  
-        .replace(/\s+/g, '-')           // replace spaces with hyphens
-        .replace(/-+/g, '-')            // collapse multiple hyphens into one
+        .replace(/\s+/g, '-')        
+        .replace(/-+/g, '-')         
 }
 
 
