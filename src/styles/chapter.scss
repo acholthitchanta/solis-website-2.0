@@ -3,13 +3,12 @@
 }
 
 .chapter-back-link {
-    position: absolute;
-    top: max(4rem,5vw);
-    left: 5vw;
     z-index: 10;
     background: none;
     border: none;
     display: flex;
+    margin-left: -0.5rem;
+    margin-top: 0.5rem;
     align-items: center;
     gap: 0.4rem;
     font-weight: 600;
@@ -421,6 +420,12 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(90vw, 1fr));
         gap: 2rem;
+    }
+
+    .chapter-back-link{
+        margin-top: 1rem;
+        font-size: 0.8rem !important;
+
     }
 }
 

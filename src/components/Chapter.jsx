@@ -203,19 +203,20 @@ export default function Chapter() {
       ) : (
         <>
           <div className="chapter-landing-wrap">
-            <button className="chapter-back-link" onClick={() => navigate('/chapters')}>
-                <svg className="blog-back-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="19" y1="12" x2="5" y2="12" />
-                    <polyline points="12 19 5 12 12 5" />
-                </svg> Back to Chapters
-            </button>
 
             <RegionLanding
               theme="dark-blue"
               background="lb"
               landingImg={region.image_url || placeholder_url}
               title={formatSlugRegion(region.name)}
-              description={""}
+              description={
+                <button style={{fontSize:'1rem'}}className="chapter-back-link" onClick={() => navigate('/chapters')}>
+                    <svg className="blog-back-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12" />
+                        <polyline points="12 19 5 12 12 5" />
+                    </svg> Back to Chapters
+                </button>
+              }
               imageOverlay={
                 <PrivateFeature>
                   <button className="chapter-edit-icon-btn chapter-edit-icon-btn-region" onClick={() => setShowEditRegionImage(true)} aria-label="Edit region image">
