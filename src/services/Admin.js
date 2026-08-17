@@ -2,8 +2,14 @@ import { supabase } from "../lib/supabase";
 
 
 export function slugify(name) {
-    return name.toLowerCase().replace(/\s+/g, '-')
+    return name
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9\s-]/g, '')  
+        .replace(/\s+/g, '-')        
+        .replace(/-+/g, '-')         
 }
+
 
 export async function addBlog({title, author, description, imageURL, date, category, content}){
     const {error} = await supabase
