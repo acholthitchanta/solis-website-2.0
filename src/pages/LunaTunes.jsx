@@ -11,7 +11,7 @@ export default function LunaTunes() {
 
   return (
     <div ref={containerRef}>
-      <Landing theme="dark-blue" background="db" landingImg={lunatunes} title={"LUNATUNES"} description={"Our online therapedic music program brings uplifting music to patients upon request."} />
+      <Landing theme="dark-blue" background="db" landingImg={lunatunes} title={"LUNATUNES"} description={"Our online therapeutic music program brings uplifting music to patients upon request."} />
       <div className="mobile-spacer dark-blue" />
 
       <div className="lunatunes-row dark-blue lunatunes-row-padded">
@@ -33,7 +33,7 @@ export default function LunaTunes() {
           <div className="lunatunes-text reveal">
             <h1>HOW IT WORKS</h1>
             <p>Patients will fill out a form online requesting a performance of a piece/song of their choice. Then, each patient will be paired with a Solis member, who will spend a week preparing the piece. Afterwards, the piece will be recorded and sent to the patient!</p>
-            <p>Through this program, we strive to make therapetic arts <strong>accessible to every patient in need</strong>. Additionally, we aim to expand opportunities for students unable to participate in a Solis event in-person but still wish to make an impact on their community.</p>
+            <p>Through this program, we strive to make therapeutic arts <strong>accessible to every patient in need</strong>. Additionally, we aim to expand opportunities for students unable to participate in a Solis event in-person but still wish to make an impact on their community.</p>
           </div>
           <div className="lunatunes-media reveal">
             <div className="lunatunes-video-wrap">
