@@ -62,7 +62,10 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <p id="copyright">© 2026 Faye Cholthitchanta</p>
+          <div id="copyright">
+            <p>© 2026 Solis and Luna Arts</p>
+            <p style={{ fontSize: '0.9rem', marginTop: '-0.5rem', opacity: '0.7' }}>Developed by Faye Cholthitchanta</p>
+          </div>
         </div>
       </footer>
   )
