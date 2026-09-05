@@ -34,6 +34,8 @@ export default function PhotoGallery() {
 
   return (
     <div ref={galleryRef}>
+      <title>Photo Gallery | Solis and Luna Arts</title>
+
       <Landing theme='blue' title={"PHOTO GALLERY"} description={"Pictures from our events across all chapters!"} />
       <div className="section-wide">
         {loading ? (

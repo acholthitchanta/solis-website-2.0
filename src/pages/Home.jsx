@@ -124,6 +124,9 @@ export default function Home() {
 
   return (
     <div ref={homeRef} className="home-page">
+      <title>Solis and Luna Arts</title>
+      <meta property="og:image" content={landing} />
+
       <div className="landing" >
         <Carousel controls={false} interval={2000}>
           <Carousel.Item>

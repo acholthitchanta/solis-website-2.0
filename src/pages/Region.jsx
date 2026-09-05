@@ -47,6 +47,8 @@ export default function Region() {
 
   return (
     <div>
+      <title>Regional Directors | Solis and Luna Arts</title>
+
       <div className="mobile-spacer" />
       <h1>Regional Directors</h1>
       {directors.map((director) => (

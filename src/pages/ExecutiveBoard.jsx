@@ -50,6 +50,9 @@ export default function ExecutiveBoard() {
 
   return (
     <div ref={execRef} className="light-blue">
+      <title>Executive Board | Solis and Luna Arts</title>
+      <meta property="og:image" content={exec} />
+
       <Landing theme="dark-blue" background="lb" landingImg={exec} title={"EXECUTIVE BOARD"} description={"Solis and Luna Arts is entirely student-led: our executive team is made up of high school and college students from across the country who plan, organize, and oversee every Solis operation."}/>
       <div className="section-wide light-blue">
         {(loading) ? (

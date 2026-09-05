@@ -64,6 +64,9 @@ export default function Blogs() {
 
   return (
     <div ref={blogRef}>
+      <title>Blog | Solis and Luna Arts</title>
+      <meta property="og:image" content={blogLanding} />
+
       <Landing theme='dark-blue' background='white' className='white' landingImg={blogLanding} title={"OUR BLOG"} description={"Updates on the organization and insights on various forms of art from our passionate writing team."} />
 
       <div className="blog-controls">

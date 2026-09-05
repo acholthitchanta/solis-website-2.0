@@ -61,6 +61,9 @@ export default function Podcast() {
     
   return (
     <main ref={podcastRef}className="podcast-page">
+        <title>Podcast | Solis and Luna Arts</title>
+        <meta property="og:image" content={podcast1} />
+
         <section className="podcast-landing">
             <img className="podcast-landing-bg" src={podcast1} alt="" />
             <img className="podcast-landing-logo" src={podcast2} alt="Solis and Luna Arts Podcast" />

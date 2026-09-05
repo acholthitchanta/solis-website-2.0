@@ -11,6 +11,9 @@ export default function LunaTunes() {
 
   return (
     <div ref={containerRef}>
+      <title>LunaTunes | Solis and Luna Arts</title>
+      <meta property="og:image" content={lunatunes} />
+
       <Landing theme="dark-blue" background="db" landingImg={lunatunes} title={"LUNATUNES"} description={"Our online therapeutic music program brings uplifting music to patients upon request."} />
       <div className="mobile-spacer dark-blue" />
 

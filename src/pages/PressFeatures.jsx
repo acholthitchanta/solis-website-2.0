@@ -26,6 +26,9 @@ export default function PressFeatures() {
 
   return (
     <div>
+      <title>Press Features | Solis and Luna Arts</title>
+      <meta property="og:image" content={pressIMG} />
+
       <Landing theme="light-blue" background="orange-bg" landingImg={pressIMG} title={"PRESS FEATURES"} description={"See where Solis and Luna Arts has been recognized for our work bringing therapeutic art to communities."}/>
 
       <div className="section-medium orange">

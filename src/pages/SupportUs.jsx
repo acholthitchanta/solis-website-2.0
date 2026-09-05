@@ -27,6 +27,9 @@ export default function SupportUs() {
 
   return (
     <div>
+      <title>Support Us | Solis and Luna Arts</title>
+      <meta property="og:image" content={supportus} />
+
       <div className="mobile-spacer dark-blue" />
       <div className="section-wide dark-blue">
         <div className="join-row">

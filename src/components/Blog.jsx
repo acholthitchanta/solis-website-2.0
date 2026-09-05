@@ -7,6 +7,7 @@ import formatDate from '../lib/formatDate';
 import ReactMarkdown from 'react-markdown';
 import PrivateFeature from './PrivateFeature';
 import EditBlog from '../pages/admin/EditBlog';
+import blogLanding from '../assets/blog.jpg';
 
 export default function Blog() {
     const { slug } = useParams()
@@ -30,9 +31,15 @@ export default function Blog() {
 
     }, [slug]);
 
+    const pageTitle = loading || !blog
+        ? 'Blog | Solis and Luna Arts'
+        : `${blog.title} | Solis and Luna Arts`
+    const pageImage = blog?.image_url || blogLanding
 
     return (
         <>
+            <title>{pageTitle}</title>
+            <meta property="og:image" content={pageImage} />
             <Modal show={showAddBlog} onHide={() => setShowAddBlog(false)} size="lg" scrollable>
                 <Modal.Header closeButton>
                 <Modal.Title>EDIT BLOG</Modal.Title>

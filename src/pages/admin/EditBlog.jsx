@@ -70,6 +70,9 @@ export default function EditBlog({ blog }) {
     }
     return (
         <Card className="align-items-center justify-content-center d-flex dark-blue w-100">
+            <title>{blog.title ? `Edit: ${blog.title}` : 'Edit Blog'} | Solis and Luna Arts</title>
+            <meta name="robots" content="noindex" />
+
             <Card.Body className="w-100">
                 <Card.Title>{blog.title}</Card.Title>
                 <Form onSubmit={handleSubmit} ref={formRef} className="w-100">

@@ -177,6 +177,7 @@ export default function Chapter() {
   if (!regionLoading && !region) {
     return (
       <div className="spinner-container dark-blue">
+        <title>Chapter Not Found | Solis and Luna Arts</title>
         <p>Region not found.</p>
       </div>
     )
@@ -191,8 +192,15 @@ export default function Chapter() {
   const peopleLoading = members === null
   const regionImageIsPlaceholder = !region || !region.image_url || region.image_url === placeholder_url
 
+  const pageTitle = regionLoading || !region
+    ? 'Chapters | Solis and Luna Arts'
+    : `${formatSlugRegion(region.name)} | Solis and Luna Arts`
+  const pageImage = regionImageIsPlaceholder ? '/preview.jpg' : region.image_url
+
   return (
     <div>
+      <title>{pageTitle}</title>
+      <meta property="og:image" content={pageImage} />
       {regionLoading ? (
         <div className="chapter-landing-skeleton">
           <div className="chapter-landing-skeleton-text">

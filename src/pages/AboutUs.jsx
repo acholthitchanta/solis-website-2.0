@@ -90,6 +90,8 @@ export default function AboutUs(){
 
   return (
     <>
+      <title>About Us | Solis and Luna Arts</title>
+
       <div className="mobile-spacer" />
       <Card style={{width: '80%', margin:'auto', padding:'2rem'}}>
       <h1>{region?.name} — {team?.discipline} team</h1>

@@ -1,6 +1,8 @@
 export default function Contact() {
   return (
     <div>
+      <title>Contact Us | Solis and Luna Arts</title>
+
       <div className="mobile-spacer marine" />
       <div className="section-medium marine">
         <h1>CONTACT US</h1>

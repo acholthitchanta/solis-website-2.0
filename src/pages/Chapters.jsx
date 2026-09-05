@@ -82,6 +82,9 @@ export default function Chapters() {
 
   return (
     <div>
+      <title>Our Chapters | Solis and Luna Arts</title>
+      <meta property="og:image" content={chapterIMG} />
+
       <Landing theme="yellow" background="white" landingImg={chapterIMG} title={"OUR CHAPTERS"} description={<>Explore our chapters from around the world and find one near you! Interested in joining or starting one? <a href="/support-us">Sign up here</a>!</>} />
       {regionsLoading ? (
         <>

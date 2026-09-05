@@ -1,6 +1,8 @@
 export default function TeamMembers() {
   return (
     <div>
+      <title>Our Team | Solis and Luna Arts</title>
+
       <div className="mobile-spacer light-blue" />
       <div className="section-medium light-blue">
         <h1>OUR TEAM</h1>

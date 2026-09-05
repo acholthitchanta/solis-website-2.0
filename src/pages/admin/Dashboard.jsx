@@ -21,6 +21,9 @@ export default function Dashboard() {
     }
     return (
         <div className="d-flex align-items-center justify-content-center dark-blue px-3" style={{ minHeight: "100vh", flexDirection: 'column'}}>
+            <title>Dashboard | Solis and Luna Arts</title>
+            <meta name="robots" content="noindex" />
+
             <Card className="w-100" style={{ maxWidth: '400px', flex: 'none'}}>
                 <Card.Body>
                     <h2 className="text-center mb-4">Profile</h2>
