@@ -69,6 +69,23 @@ export async function getTeams(regionID) {
     return { data, error }
 }
 
+export async function getOrgTeams() {
+    const { data, error } = await supabase
+        .from('org_teams')
+        .select('*')
+
+    return { data, error }
+}
+
+export async function getOrgTeamMembers(teamID){
+    const {data, error} = await supabase
+    .from('org_team_members')
+    .select('name, headshot_url,role, org_team_id, id')
+    .eq('org_team_id', teamID)
+    
+    return {data,error}
+}
+
 export async function getRDs(teamID) {
     const { data, error } = await supabase
         .from('profiles')

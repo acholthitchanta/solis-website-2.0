@@ -272,6 +272,47 @@ export async function addMember({team_id, name, headshotURL, role}){
     if (error) throw error
 }
 
+export async function addOrgMember({org_team_id, name, headshotURL, role}){
+    const {error} = await supabase
+        .from('org_team_members')
+        .insert({
+            org_team_id: org_team_id,
+            name: name,
+            headshot_url: headshotURL,
+            role: role
+        })
+
+    if (error) throw error
+}
+
+export async function editOrgMember(id, {name, role, headshotURL}){
+    const updates = {}
+
+    if (name !== undefined) updates.name = name
+    if (role !== undefined) updates.role = role
+    if (headshotURL !== undefined) updates.headshot_url = headshotURL
+
+    const {data, error} = await supabase
+        .from('org_team_members')
+        .update(updates)
+        .eq('id', id)
+        .select()
+
+    if (error) throw error
+    if (!data || data.length === 0) throw new Error('Member not found or you do not have permission to edit it')
+}
+
+export async function deleteOrgMember(id){
+    const {data, error} = await supabase
+        .from('org_team_members')
+        .delete()
+        .eq('id', id)
+        .select()
+
+    if (error) throw error
+    if (!data || data.length === 0) throw new Error('Member not found or you do not have permission to delete it')
+}
+
 export async function editMember(id, {name, role, headshotURL}){
     const updates = {}
 

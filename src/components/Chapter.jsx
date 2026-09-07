@@ -156,14 +156,8 @@ export default function Chapter() {
     teams.forEach((team) => {
       const el = peopleRefs.current[team.id]
       if (el && el.firstElementChild) {
-        // measure the actual rendered row height (cards stretch to match
-        // the tallest sibling in their row, so any card reflects it) instead
-        // of assuming a fixed card height, since long names/roles can wrap
-        // to a second line and grow a row taller than expected
         const rowHeight = el.firstElementChild.getBoundingClientRect().height
         nextRowHeights[team.id] = rowHeight
-        // small buffer to absorb sub-pixel rounding, so an exact single row
-        // never falsely counts as overflowing
         nextOverflowing[team.id] = el.scrollHeight > rowHeight + 10
       }
     })
