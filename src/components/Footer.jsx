@@ -30,7 +30,7 @@ export default function Footer() {
                 <div className="pages">
                   <p><a onClick={() => navigate('/our-story')}>Our Story</a></p>
                   <p><a onClick={() => navigate('/executive-board')}>Executive Board</a></p>
-                  <p><a onClick={() => navigate('/team-members')}>Team Members</a></p>
+                  <p><a onClick={() => navigate('/team-members')}>Our Teams</a></p>
                 </div>
               </div>
 
