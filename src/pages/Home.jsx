@@ -124,8 +124,21 @@ export default function Home() {
 
   return (
     <div ref={homeRef} className="home-page">
+    <head>
+      <meta charset="UTF-8" />
+      <link rel="icon"  href="/public/favicon.ico" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Solis and Luna Arts</title>
-      <meta property="og:image" content={landing} />
+      <meta name="description" content="Offering companionship and joy through therapeutic creative sessions." />
+      <meta property="og:title" content="Solis and Luna Arts" />
+      <meta property="og:description" content="Offering companionship and joy through therapeutic creative sessions." />
+      <meta property="og:image" content="/preview.jpg" />
+      <meta property="og:type" content="website" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Solis and Luna Arts" />
+      <meta name="twitter:description" content="Offering companionship and joy through therapeutic creative sessions." />
+      <meta name="twitter:image" content="/preview.jpg" />
+    </head>
 
       <div className="landing" >
         <Carousel controls={false} interval={2000}>

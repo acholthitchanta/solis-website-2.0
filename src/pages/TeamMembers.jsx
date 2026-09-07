@@ -181,6 +181,12 @@ export default function TeamMembers() {
 
           
       </div>
+      <div className="section-medium yellow">
+          <h1>WANT TO BE PART OF THE TEAM?</h1>
+          <p>If you'd like to join one of Solis and Luna Arts's essential organizational teams, please email us at <a href="mailto:contact@solisandlunaarts.com">contact@solisandlunaarts.com</a>. No experience required. 
+             We would love for you to help us continue to grow and reach even more communities!
+          </p>
+      </div>
     </div>
   )
 }
