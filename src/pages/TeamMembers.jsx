@@ -91,9 +91,9 @@ export default function TeamMembers() {
       <title>Our Team | Solis and Luna Arts</title>
       <meta property="og:image" content={ourteam} />
 
-      <Landing theme="dark-blue" background="lb" landingImg={ourteam} title={"OUR TEAM"} description={"Meet the team behind Solis and Luna Arts's international operations: writing, outreach, research, tech, and media."}/>
+      <Landing theme="dark-blue" background="lb" landingImg={ourteam} title={"OUR TEAMS"} description={"Meet the teams behind Solis and Luna Arts's international operations: writing, outreach, research, tech, and media."}/>
       <div className="section-wide light-blue">
-        {(loading || membersLoading) ? (
+        {(loading && membersLoading) ? (
           <div className="people">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
               <Card className="person" key={n}>
